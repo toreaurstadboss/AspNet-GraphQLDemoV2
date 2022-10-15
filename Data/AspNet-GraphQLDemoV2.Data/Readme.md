@@ -25,6 +25,9 @@ dotnet ef migrations add InitialCreate
 You might have to update the dotnet-ef tools (when I ran the command I had to update it, it updated
 to version 6.0.10). 
 
+Note - the file MountainContextContextFactory was necessary due to the splitting of two projects
+for the server and the data project to make EF core tooling work.
+
 
 ### Update database to latest migration for this demo 
 

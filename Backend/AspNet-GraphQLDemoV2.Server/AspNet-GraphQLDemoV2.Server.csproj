@@ -9,6 +9,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="HotChocolate.AspNetCore" Version="12.15.0" />
+		<PackageReference Include="HotChocolate.Data" Version="12.15.0" />
+		<PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.15.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
 			<PrivateAssets>all</PrivateAssets>
@@ -19,11 +21,6 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="GraphQL\Types\Models\" />
-		<Folder Include="GraphQL\Types\Queries\" />
 	</ItemGroup>
 
 	<ItemGroup>
