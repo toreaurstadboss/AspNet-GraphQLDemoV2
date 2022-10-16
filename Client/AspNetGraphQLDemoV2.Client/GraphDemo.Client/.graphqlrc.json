@@ -4,7 +4,7 @@
   "extensions": {
     "strawberryShake": {
       "name": "GraphQLDemoClient",
-      "namespace": "GraphQLDemoClient",
+      "namespace": "GraphQLDemoClientV2",
       "url": "https://localhost:7074/graphql/",
       "records": {
         "inputs": false,
