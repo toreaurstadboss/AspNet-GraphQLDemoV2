@@ -1,0 +1,5 @@
+query GetMountains {
+	mountains {
+		id
+	}
+}

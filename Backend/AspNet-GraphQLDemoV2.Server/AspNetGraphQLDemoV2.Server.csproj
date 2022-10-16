@@ -4,7 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<RootNamespace>AspNet_GraphQLDemoV2.Server</RootNamespace>
+		<RootNamespace>AspNetGraphQLDemoV2.Server</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Data\AspNet-GraphQLDemoV2.Data\AspNet-GraphQLDemoV2.Data.csproj" />
+	  <ProjectReference Include="..\..\Data\AspNet-GraphQLDemoV2.Data\AspNetGraphQLDemoV2.Data.csproj" />
 	</ItemGroup>
 
 </Project>

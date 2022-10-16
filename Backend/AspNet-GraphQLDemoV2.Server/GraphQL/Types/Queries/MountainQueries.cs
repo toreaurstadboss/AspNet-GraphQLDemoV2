@@ -14,7 +14,6 @@ namespace AspNet_GraphQLDemoV2.Server.GraphQL.Types.Queries
         //}
 
         [UseFiltering]
-        [UsePaging]
         public async Task<List<Mountain>> GetMountains([Service] MountainDbContext mountainDb)
         {
             return await mountainDb.Mountains.ToListAsync();

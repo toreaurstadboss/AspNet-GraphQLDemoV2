@@ -1,0 +1,20 @@
+{
+  "projects": [
+    {
+      "schema": [
+        "Client/AspNet-GraphQLDemoV2.Client/bin/Debug/net6.0/GraphDemo.Client/schema.graphql"
+      ],
+      "documents": [
+        "Client/AspNet-GraphQLDemoV2.Client/bin/Debug/net6.0/GraphDemo.Client/**/*.graphql"
+      ]
+    },
+    {
+      "schema": [
+        "Client/AspNet-GraphQLDemoV2.Client/GraphDemo.Client/schema.graphql"
+      ],
+      "documents": [
+        "Client/AspNet-GraphQLDemoV2.Client/GraphDemo.Client/**/*.graphql"
+      ]
+    }
+  ]
+}
