@@ -6,4 +6,16 @@
 
 Welcome to your new app.
 
+<UseHentMountains Context="result">
+<ChildContent>
+    @foreach (var mountain in result.Mountains){
+        <p>@mountain.Id</p>
+    }
+</ChildContent>
+<LoadingContent>
+    this is a test
+</LoadingContent>
+
+</UseHentMountains>
+
 <SurveyPrompt Title="How is Blazor working for you?" />
