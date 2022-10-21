@@ -14,6 +14,7 @@ builder.Services
     })
     .AddGraphQLServer()
     .AddFiltering()
+    .AddSorting()
     .RegisterDbContext<MountainDbContext>()
     .AddQueryType<MountainQueries>()
     .AddMutationType<MountainMutations>();
