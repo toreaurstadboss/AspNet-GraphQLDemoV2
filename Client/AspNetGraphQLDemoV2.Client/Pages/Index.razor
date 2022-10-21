@@ -1,16 +1,52 @@
 ﻿@page "/"
+@using Blazorise.DataGrid
 
 <PageTitle>Index</PageTitle>
 
-<h1>This is a test!</h1>
+<h1>Norwegian Mountains V2</h1>
 
-Welcome to your new app.
+Client-side : StrawberryShake
+Backend: HotChocolate
 
 <UseHentMountains Context="result">
 <ChildContent>
-    @foreach (var mountain in result.Mountains){
-        <p>@mountain.Id</p>
-    }
+
+    <DataGrid 
+          Data="@result.Mountains"
+          Filterable="true"
+          FilterMethod="DataGridFilterMethod.Contains"
+          ShowPager="true"
+          ShowPageSizes="true"
+          Editable="false"
+          Striped="true"
+          Hoverable="true"
+          Responsive="true"
+>
+    <ChildContent>
+        <DataGridCommandColumn TItem="IHentMountains_Mountains"></DataGridCommandColumn>
+        <DataGridColumn TItem="IHentMountains_Mountains" Field="Id" Caption="Id" Sortable="false" Displayable="true"/>
+        <DataGridColumn TItem="IHentMountains_Mountains" Field="OfficialName" Caption="OfficialName" Sortable="false" Displayable="true"/>
+        <DataGridColumn TItem="IHentMountains_Mountains" Field="MetresAboveSeaLevel" Caption="ReferencePoint" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="IHentMountains_Mountains" Field="PrimaryFactor" Caption="PrimaryFactor" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="IHentMountains_Mountains" Field="Municipality" Caption="Municipality" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="IHentMountains_Mountains" Field="ReferencePoint" Caption="ReferencePoint" Sortable="false" Displayable="true"/>
+        <DataGridColumn TItem="IHentMountains_Mountains" Field="County" Caption="County" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="IHentMountains_Mountains" Field="Comments" Caption="ReferencePoint" Sortable="false" Displayable="true" />
+
+    </ChildContent>
+    <EmptyTemplate>
+        <div class="box">
+            No mountains were found.
+        </div>
+    </EmptyTemplate>
+    <LoadingTemplate>
+        <div class="box">
+            <progress class="progress is-small is-primary" max="100"/>
+        </div>
+    </LoadingTemplate>
+
+</DataGrid>
+
 </ChildContent>
 <LoadingContent>
     this is a test
@@ -19,3 +55,19 @@ Welcome to your new app.
 </UseHentMountains>
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+
+@code {
+
+    [Inject] private ILogger<Index> log { get; init; }
+
+    //protected void OnSelectedRowChanged(IHentMountains_Mountains_Mountain model)
+    //{
+    //    log.LogInformation($"selected row changed: {model.ToJson()}");
+    //}
+
+    protected async Task OnReadData(DataGridReadDataEventArgs<IHentMountains_Mountains> e)
+    {
+        //StateHasChanged();
+    }
+}
