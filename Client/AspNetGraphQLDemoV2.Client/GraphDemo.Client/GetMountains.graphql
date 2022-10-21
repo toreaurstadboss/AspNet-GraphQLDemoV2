@@ -6,6 +6,8 @@ query HentMountains {
         primaryFactor
         officialName
         referencePoint
-        county      	
+        county 
+        municipality
+        comments
 	}
 }
