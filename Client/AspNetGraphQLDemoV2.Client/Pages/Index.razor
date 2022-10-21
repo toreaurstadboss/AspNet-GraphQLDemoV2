@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Blazorise.DataGrid
+@using System.Text.Json
 
 <PageTitle>Index</PageTitle>
 
@@ -16,9 +17,9 @@ Backend: HotChocolate
           Filterable="true"          
           FilterMethod="DataGridFilterMethod.Contains"
           ShowPager="true"
+          @bind-SelectedRow="@selectedMountain"
           ShowPageSizes="true"
-          Editable="true"
-          
+          Editable="true"        
           Striped="true"
           Hoverable="true"
           Responsive="true"
@@ -35,11 +36,11 @@ Backend: HotChocolate
         <DataGridColumn TItem="IHentMountains_Mountains" Field="Comments" Caption="Comments" Sortable="false" Displayable="true" Editable="true">
                     <EditTemplate>
                         @{
-                            var serializedContext = System.Text.Json.JsonSerializer.Serialize(context); 
+                            var serializedContext = JsonSerializer.Serialize(context); 
 
                         }
-                        <Label><br /><br /><b>@context.Item.OfficialName</b></Label>
-                        <TextEdit TValue="string" Text="@((string)context.CellValue)" TextChanged="@( v => context.CellValue = v)" />
+                        <Label><br /><b>@context.Item.OfficialName</b></Label>
+                        <TextEdit TValue="string" Text="@((string)context.CellValue)" TextChanged="@( v => { context.CellValue = v; SaveEditedMountain(context.Item); })" />
                     </EditTemplate>
         </DataGridColumn>
     </ChildContent>
@@ -53,6 +54,9 @@ Backend: HotChocolate
             <progress class="progress is-small is-primary" max="100"/>
         </div>
     </LoadingTemplate>
+    <ButtonRowTemplate>
+        <Button Color="Color.Primary" Disabled="(selectedMountain is null)" Clicked="context.EditCommand.Clicked">Edit</Button>
+    </ButtonRowTemplate>
 
 </DataGrid>
 
@@ -70,10 +74,27 @@ Backend: HotChocolate
 
     [Inject] private ILogger<Index> log { get; init; }
 
+    private IHentMountains_Mountains selectedMountain; 
+
     //protected void OnSelectedRowChanged(IHentMountains_Mountains_Mountain model)
     //{
     //    log.LogInformation($"selected row changed: {model.ToJson()}");
     //}
+
+    protected async Task SaveEditedMountain(IHentMountains_Mountains mountain) {
+        var serializedContext = System.Text.Json.JsonSerializer.Serialize(mountain);
+        Console.WriteLine(serializedContext);
+        await Task.Delay(100);
+    }
+
+    public void OnRowUpdatedAsync(SavedRowItem<IHentMountains_Mountains, Dictionary<string, object>> e)
+    {
+        // This handler is fired after i hit the save button provided by internal edit functionality.
+        IHentMountains_Mountains mountain = e.Item;
+        string? comments = e.Values["Comments"] as string; // This gives me old value.
+        //TODO: Persist the comments for mountain via a mutation to the GraphQL Server 
+        StateHasChanged();
+    }
 
     protected async Task OnReadData(DataGridReadDataEventArgs<IHentMountains_Mountains> e)
     {
