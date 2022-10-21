@@ -22,7 +22,7 @@ builder.Services
 
 var app = builder.Build();
 
-app.UseCors();
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()); //this is just a demo.. allow CORS from whatever
 
 app.MapGet("/", () => "Hello World!");
 
