@@ -5,7 +5,7 @@
 
 <h1>Norwegian Mountains V2</h1>
 
-Client-side : StrawberryShake
+Clientside : StrawberryShake
 Backend: HotChocolate
 
 <UseHentMountains Context="result">
@@ -13,11 +13,12 @@ Backend: HotChocolate
 
     <DataGrid 
           Data="@result.Mountains"
-          Filterable="true"
+          Filterable="true"          
           FilterMethod="DataGridFilterMethod.Contains"
           ShowPager="true"
           ShowPageSizes="true"
-          Editable="false"
+          Editable="true"
+          
           Striped="true"
           Hoverable="true"
           Responsive="true"
@@ -31,8 +32,16 @@ Backend: HotChocolate
         <DataGridColumn TItem="IHentMountains_Mountains" Field="Municipality" Caption="Municipality" Sortable="false" Displayable="true" />
         <DataGridColumn TItem="IHentMountains_Mountains" Field="ReferencePoint" Caption="ReferencePoint" Sortable="false" Displayable="true"/>
         <DataGridColumn TItem="IHentMountains_Mountains" Field="County" Caption="County" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IHentMountains_Mountains" Field="Comments" Caption="Comments" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="IHentMountains_Mountains" Field="Comments" Caption="Comments" Sortable="false" Displayable="true" Editable="true">
+                    <EditTemplate>
+                        @{
+                            var serializedContext = System.Text.Json.JsonSerializer.Serialize(context); 
 
+                        }
+                        <Label><br /><br /><b>@context.Item.OfficialName</b></Label>
+                        <TextEdit TValue="string" Text="@((string)context.CellValue)" TextChanged="@( v => context.CellValue = v)" />
+                    </EditTemplate>
+        </DataGridColumn>
     </ChildContent>
     <EmptyTemplate>
         <div class="box">
