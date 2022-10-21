@@ -12,6 +12,7 @@ builder.Services
     {
         options.UseSqlServer(connectionString);
     })
+    .AddCors()
     .AddGraphQLServer()
     .AddFiltering()
     .AddSorting()
@@ -20,6 +21,8 @@ builder.Services
     .AddMutationType<MountainMutations>();
 
 var app = builder.Build();
+
+app.UseCors();
 
 app.MapGet("/", () => "Hello World!");
 
