@@ -1,16 +1,17 @@
 {
   "schema": "schema.graphql",
-  "documents": "GraphQLDocuments/*.graphql",
+  "documents": "**/*.graphql",
   "extensions": {
     "strawberryShake": {
-      "name": "MountainsDemo",
+      "name": "MountainsDemoV2",
+      "namespace": "MountainsClientDemoV2",
       "url": "https://localhost:7074/graphql/",
       "dependencyInjection": true,
       "strictSchemaValidation": true,
       "hashAlgorithm": "md5",
       "useSingleFile": true,
       "requestStrategy": "Default",
-      "outputDirectoryName": "Generated",
+      "outputDirectoryName": "GeneratedV2",
       "noStore": false,
       "emitGeneratedCode": true,
       "razorComponents": false,

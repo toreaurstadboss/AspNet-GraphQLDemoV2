@@ -1,0 +1,13 @@
+query GetMountains {
+	mountains {
+	    id
+        officialName
+        metresAboveSeaLevel
+        primaryFactor
+        officialName
+        referencePoint
+        county 
+        municipality
+        comments
+	}
+}

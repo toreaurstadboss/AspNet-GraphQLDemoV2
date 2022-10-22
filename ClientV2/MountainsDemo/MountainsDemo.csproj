@@ -4,16 +4,23 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	<EmitGeneratedCode>true</EmitGeneratedCode>
   </PropertyGroup>
 
   <ItemGroup>
+    <GraphQL Remove="GetMountain.graphql" />
+    <GraphQL Remove="GetMountains.graphql" />
     <GraphQL Remove="GraphQLDocuments\UpdateMountainComments.graphql" />
+    <GraphQL Remove="UpdateMountainComments.graphql" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="GetMountain.graphql" />
+    <None Remove="GetMountains.graphql" />
     <None Remove="GraphQLDocuments\GetMountain.graphql" />
     <None Remove="GraphQLDocuments\GetMountains.graphql" />
     <None Remove="GraphQLDocuments\UpdateMountainComments.graphql" />
+    <None Remove="UpdateMountainComments.graphql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +29,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.8" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
 	  <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
 	  <!--<PackageReference Include="StrawberryShake.Blazor" Version="13.0.0-preview.68" />-->
@@ -35,9 +42,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Include="GetMountain.graphql" />
+    <Page Include="GetMountains.graphql" />
     <Page Include="GraphQLDocuments\UpdateMountainComments.graphql" />
     <Page Include="GraphQLDocuments\GetMountain.graphql" />
     <Page Include="GraphQLDocuments\GetMountains.graphql" />
+    <Page Include="UpdateMountainComments.graphql" />
   </ItemGroup>
 
 </Project>

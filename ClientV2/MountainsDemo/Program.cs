@@ -16,6 +16,6 @@ builder.Services.AddBlazorise(options =>
 })
     .AddBootstrapProviders()
     .AddFontAwesomeIcons();
-//builder.Services.AddMountainsDemo().ConfigureHttpClient(client => client.BaseAddress = new Uri("https://localhost:7074/graphql"));
+builder.Services.AddMountainsDemoV2().ConfigureHttpClient(client => client.BaseAddress = new Uri("https://localhost:7074/graphql"));
 
 await builder.Build().RunAsync();
