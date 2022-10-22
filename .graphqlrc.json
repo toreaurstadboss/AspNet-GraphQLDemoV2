@@ -2,10 +2,10 @@
   "projects": [
     {
       "schema": [
-        "Client/AspNetGraphQLDemoV2.Client/GraphDemo.Client/schema.graphql"
+        "Client/AspNetGraphQLDemoV2Client/GraphDemo.Client/schema.graphql"
       ],
       "documents": [
-        "Client/AspNetGraphQLDemoV2.Client/GraphDemo.Client/**/*.graphql"
+        "Client/AspNetGraphQLDemoV2Client/GraphDemo.Client/**/*.graphql"
       ]
     }
   ]

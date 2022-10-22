@@ -1,0 +1,13 @@
+query HentMountains {
+	mountains {
+	    id
+        officialName
+        metresAboveSeaLevel
+        primaryFactor
+        officialName
+        referencePoint
+        county 
+        municipality
+        comments
+	}
+}

@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetGraphQLDemoV2.Client", "Client\AspNetGraphQLDemoV2.Client\AspNetGraphQLDemoV2.Client.csproj", "{EBE5B23C-5A70-4409-862B-43C3FB7E8DBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetGraphQLDemoV2Client", "Client\AspNetGraphQLDemoV2Client\AspNetGraphQLDemoV2Client.csproj", "{411F6934-7D24-4A63-A035-64E428F266B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +34,10 @@ Global
 		{E67D9FDA-0E7E-485A-B36D-688BDDF634B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E67D9FDA-0E7E-485A-B36D-688BDDF634B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E67D9FDA-0E7E-485A-B36D-688BDDF634B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBE5B23C-5A70-4409-862B-43C3FB7E8DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBE5B23C-5A70-4409-862B-43C3FB7E8DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBE5B23C-5A70-4409-862B-43C3FB7E8DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBE5B23C-5A70-4409-862B-43C3FB7E8DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{411F6934-7D24-4A63-A035-64E428F266B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{411F6934-7D24-4A63-A035-64E428F266B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{411F6934-7D24-4A63-A035-64E428F266B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{411F6934-7D24-4A63-A035-64E428F266B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
