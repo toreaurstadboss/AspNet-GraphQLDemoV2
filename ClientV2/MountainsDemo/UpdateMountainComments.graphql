@@ -1,0 +1,12 @@
+mutation UpdateMountainCommentV2 {
+updateMountainComment(mountainId: 1, comments: "dette er en kommentar") {
+  id
+  comments
+  primaryFactor
+  county
+  municipality
+  metresAboveSeaLevel
+  officialName
+  referencePoint
+}
+}

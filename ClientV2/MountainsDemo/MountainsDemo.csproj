@@ -7,8 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <GraphQL Remove="GetMountain.graphql" />
+    <GraphQL Remove="GetMountains.graphql" />
+    <GraphQL Remove="GraphQLDocuments\UpdateMountainComments.graphql" />
+    <GraphQL Remove="UpdateMountainComments.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="GetMountain.graphql" />
+    <None Remove="GetMountains.graphql" />
     <None Remove="GraphQLDocuments\GetMountain.graphql" />
     <None Remove="GraphQLDocuments\GetMountains.graphql" />
+    <None Remove="GraphQLDocuments\UpdateMountainComments.graphql" />
+    <None Remove="UpdateMountainComments.graphql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,8 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Include="GetMountain.graphql" />
+    <Page Include="GetMountains.graphql" />
+    <Page Include="GraphQLDocuments\UpdateMountainComments.graphql" />
     <Page Include="GraphQLDocuments\GetMountain.graphql" />
     <Page Include="GraphQLDocuments\GetMountains.graphql" />
+    <Page Include="UpdateMountainComments.graphql" />
   </ItemGroup>
 
 </Project>

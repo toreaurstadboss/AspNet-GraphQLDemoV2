@@ -9,15 +9,11 @@
   <ItemGroup>
     <GraphQL Remove="GetMountain.graphql" />
     <GraphQL Remove="GetMountains.graphql" />
-    <GraphQL Remove="GraphDemo.Client\GetMountain.graphql" />
-    <GraphQL Remove="GraphDemo.Client\GetMountains.graphql" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="GetMountain.graphql" />
     <None Remove="GetMountains.graphql" />
-    <None Remove="GraphDemo.Client\GetMountain.graphql" />
-    <None Remove="GraphDemo.Client\GetMountains.graphql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,10 +40,6 @@
   <ItemGroup>
     <Page Include="GetMountain.graphql" />
     <Page Include="GetMountains.graphql" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="GraphDemo.Client\Queries\" />
   </ItemGroup>
 
 </Project>

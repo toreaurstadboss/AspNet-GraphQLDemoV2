@@ -23,6 +23,17 @@ namespace AspNet_GraphQLDemoV2.Server.GraphQL.Types.Mutations
             return removedMountain.Entity;
         }
 
+        public async Task<Mountain?> UpdateMountainComment([Service] MountainDbContext mountainDb, int mountainId, string comments)
+        {              
+            var mountainToUpdate = await mountainDb.Mountains.FindAsync(mountainId);
+            if (mountainToUpdate == null)
+                return null;
+            mountainToUpdate.Comments = comments;
+            var updatedMountain = mountainDb.Update(mountainToUpdate);
+            mountainDb.SaveChanges();
+            return updatedMountain.Entity;
+        }
+
         public async Task<Mountain?> UpdateMountain([Service] MountainDbContext mountainDb, Mountain mountain)
         {
             if (mountain == null)

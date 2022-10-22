@@ -1,4 +1,4 @@
-query GetMountains {
+query HentMountains {
 	mountains {
 	    id
         officialName

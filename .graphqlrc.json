@@ -5,7 +5,15 @@
         "Client/AspNetGraphQLDemoV2Client/schema.graphql"
       ],
       "documents": [
-        "Client/AspNetGraphQLDemoV2Client/**/*.graphql"
+        "Client/AspNetGraphQLDemoV2Client/*.graphql"
+      ]
+    },
+    {
+      "schema": [
+        "ClientV2/MountainsDemo/schema.graphql"
+      ],
+      "documents": [
+        "ClientV2/MountainsDemo/GraphQLDocuments/*.graphql"
       ]
     }
   ]
