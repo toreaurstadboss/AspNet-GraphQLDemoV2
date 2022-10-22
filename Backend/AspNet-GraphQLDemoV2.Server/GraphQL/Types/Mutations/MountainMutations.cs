@@ -23,5 +23,32 @@ namespace AspNet_GraphQLDemoV2.Server.GraphQL.Types.Mutations
             return removedMountain.Entity;
         }
 
+        public async Task<Mountain?> UpdateMountain([Service] MountainDbContext mountainDb, Mountain mountain)
+        {
+            if (mountain == null)
+            {
+                return null; 
+            }
+            var mountainToUpdate = await mountainDb.Mountains.FindAsync(mountain.Id);
+            if (mountainToUpdate == null)
+                return null;
+            MapMountainUpdate(mountainToUpdate, mountain);
+            var updatedMountain = mountainDb.Update(mountainToUpdate);
+            mountainDb.SaveChanges();
+            return updatedMountain.Entity;
+        }
+
+        private void MapMountainUpdate(Mountain mountainToUpdate, Mountain mountain)
+        {
+            mountainToUpdate.Id = mountain.Id;
+            mountainToUpdate.Comments = mountain.Comments;
+            mountainToUpdate.PrimaryFactor = mountain.PrimaryFactor;
+            mountainToUpdate.ReferencePoint = mountain.ReferencePoint;
+            mountainToUpdate.County = mountain.County;
+            mountainToUpdate.OfficialName = mountain.OfficialName;
+            mountainToUpdate.Municipality = mountain.Municipality;
+            mountainToUpdate.MetresAboveSeaLevel = mountain.MetresAboveSeaLevel;
+        }
+
     }
 }
