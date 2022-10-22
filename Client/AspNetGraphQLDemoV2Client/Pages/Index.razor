@@ -9,7 +9,7 @@
 Clientside : StrawberryShake
 Backend: HotChocolate
 
-<UseHentMountains Context="result">
+@*<UseHentMountains Context="result">
 <ChildContent>
 
     <DataGrid 
@@ -65,39 +65,39 @@ Backend: HotChocolate
     this is a test
 </LoadingContent>
 
-</UseHentMountains>
+</UseHentMountains>*@
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@*<SurveyPrompt Title="How is Blazor working for you?" />*@
 
 
 @code {
 
     [Inject] private ILogger<Index> log { get; init; }
 
-    private IHentMountains_Mountains selectedMountain; 
+    //private IHentMountains_Mountains selectedMountain; 
 
-    //protected void OnSelectedRowChanged(IHentMountains_Mountains_Mountain model)
-    //{
-    //    log.LogInformation($"selected row changed: {model.ToJson()}");
+    ////protected void OnSelectedRowChanged(IHentMountains_Mountains_Mountain model)
+    ////{
+    ////    log.LogInformation($"selected row changed: {model.ToJson()}");
+    ////}
+
+    //protected async Task SaveEditedMountain(IHentMountains_Mountains mountain) {
+    //    var serializedContext = System.Text.Json.JsonSerializer.Serialize(mountain);
+    //    Console.WriteLine(serializedContext);
+    //    await Task.Delay(100);
     //}
 
-    protected async Task SaveEditedMountain(IHentMountains_Mountains mountain) {
-        var serializedContext = System.Text.Json.JsonSerializer.Serialize(mountain);
-        Console.WriteLine(serializedContext);
-        await Task.Delay(100);
-    }
+    //public void OnRowUpdatedAsync(SavedRowItem<IHentMountains_Mountains, Dictionary<string, object>> e)
+    //{
+    //    // This handler is fired after i hit the save button provided by internal edit functionality.
+    //    IHentMountains_Mountains mountain = e.Item;
+    //    string? comments = e.Values["Comments"] as string; // This gives me old value.
+    //    //TODO: Persist the comments for mountain via a mutation to the GraphQL Server 
+    //    StateHasChanged();
+    //}
 
-    public void OnRowUpdatedAsync(SavedRowItem<IHentMountains_Mountains, Dictionary<string, object>> e)
-    {
-        // This handler is fired after i hit the save button provided by internal edit functionality.
-        IHentMountains_Mountains mountain = e.Item;
-        string? comments = e.Values["Comments"] as string; // This gives me old value.
-        //TODO: Persist the comments for mountain via a mutation to the GraphQL Server 
-        StateHasChanged();
-    }
-
-    protected async Task OnReadData(DataGridReadDataEventArgs<IHentMountains_Mountains> e)
-    {
-        //StateHasChanged();
-    }
+    //protected async Task OnReadData(DataGridReadDataEventArgs<IHentMountains_Mountains> e)
+    //{
+    //    //StateHasChanged();
+    //}
 }

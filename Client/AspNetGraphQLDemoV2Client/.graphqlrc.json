@@ -1,10 +1,9 @@
 {
   "schema": "schema.graphql",
-  "documents": "**/*.graphql",
+  "documents": "*.graphql",
   "extensions": {
     "strawberryShake": {
-      "name": "GraphQLDemoClient",
-      "namespace": "GraphQLDemoClientV2",
+      "name": "AspNetGraphQLDemoV2Client",
       "url": "https://localhost:7074/graphql/",
       "records": {
         "inputs": false,

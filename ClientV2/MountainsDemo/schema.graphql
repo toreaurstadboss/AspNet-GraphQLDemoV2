@@ -1,0 +1,111 @@
+﻿schema {
+  query: MountainQueries
+  mutation: MountainMutations
+}
+
+type MountainQueries {
+  mountains(where: MountainFilterInput order: [MountainSortInput!]): [Mountain!]!
+  hentFjell(id: Int!): Mountain
+}
+
+type MountainMutations {
+  addMountain(mountainToAdd: MountainInput!): Mountain!
+  removeMountain(id: Int!): Mountain
+  updateMountain(mountain: MountainInput!): Mountain
+}
+
+input MountainFilterInput {
+  and: [MountainFilterInput!]
+  or: [MountainFilterInput!]
+  id: ComparableInt32OperationFilterInput
+  county: StringOperationFilterInput
+  municipality: StringOperationFilterInput
+  officialName: StringOperationFilterInput
+  metresAboveSeaLevel: ComparableDoubleOperationFilterInput
+  primaryFactor: ComparableDoubleOperationFilterInput
+  comments: StringOperationFilterInput
+  referencePoint: StringOperationFilterInput
+}
+
+input MountainSortInput {
+  id: SortEnumType
+  county: SortEnumType
+  municipality: SortEnumType
+  officialName: SortEnumType
+  metresAboveSeaLevel: SortEnumType
+  primaryFactor: SortEnumType
+  comments: SortEnumType
+  referencePoint: SortEnumType
+}
+
+input ComparableInt32OperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int!]
+  nin: [Int!]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+input ComparableDoubleOperationFilterInput {
+  eq: Float
+  neq: Float
+  in: [Float!]
+  nin: [Float!]
+  gt: Float
+  ngt: Float
+  gte: Float
+  ngte: Float
+  lt: Float
+  nlt: Float
+  lte: Float
+  nlte: Float
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+input MountainInput {
+  id: Int!
+  county: String
+  municipality: String
+  officialName: String!
+  metresAboveSeaLevel: Float!
+  primaryFactor: Float!
+  comments: String
+  referencePoint: String
+}
+
+type Mountain {
+  id: Int!
+  county: String
+  municipality: String
+  officialName: String!
+  metresAboveSeaLevel: Float!
+  primaryFactor: Float!
+  comments: String
+  referencePoint: String
+}

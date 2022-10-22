@@ -20,7 +20,7 @@ namespace AspNet_GraphQLDemoV2.Server.GraphQL.Types.Queries
             return await mountainDb.Mountains.ToListAsync();
         }
 
-        public async Task<Mountain?> GetMountain([Service] MountainDbContext mountainDb, int id)
+        public async Task<Mountain?> HentFjell([Service] MountainDbContext mountainDb, int id)
         {
             return await mountainDb.Mountains.FindAsync(id);
         }

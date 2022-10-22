@@ -1,5 +1,5 @@
-query HentMountain {
-  mountain (id: 1){
+query HentFjell {
+ hentFjell (id: 1){
     id
     officialName
     metresAboveSeaLevel

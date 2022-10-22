@@ -4,13 +4,14 @@
 }
 
 type MountainQueries {
-  mountains(where: MountainFilterInput): [Mountain!]!
-  mountain(id: Int!): Mountain
+  mountains(where: MountainFilterInput order: [MountainSortInput!]): [Mountain!]!
+  hentFjell(id: Int!): Mountain
 }
 
 type MountainMutations {
   addMountain(mountainToAdd: MountainInput!): Mountain!
   removeMountain(id: Int!): Mountain
+  updateMountain(mountain: MountainInput!): Mountain
 }
 
 input MountainFilterInput {
@@ -24,6 +25,17 @@ input MountainFilterInput {
   primaryFactor: ComparableDoubleOperationFilterInput
   comments: StringOperationFilterInput
   referencePoint: StringOperationFilterInput
+}
+
+input MountainSortInput {
+  id: SortEnumType
+  county: SortEnumType
+  municipality: SortEnumType
+  officialName: SortEnumType
+  metresAboveSeaLevel: SortEnumType
+  primaryFactor: SortEnumType
+  comments: SortEnumType
+  referencePoint: SortEnumType
 }
 
 input ComparableInt32OperationFilterInput {
@@ -69,6 +81,11 @@ input ComparableDoubleOperationFilterInput {
   nlt: Float
   lte: Float
   nlte: Float
+}
+
+enum SortEnumType {
+  ASC
+  DESC
 }
 
 input MountainInput {
