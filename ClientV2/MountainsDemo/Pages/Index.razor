@@ -1,7 +1,9 @@
 ﻿@page "/"
+@using Blazorise
 @using Blazorise.DataGrid
 @using System.Text.Json
 @using MountainsClientDemoV2
+@using MountainsDemo.PresentationModels
 @*@using MountainsClientDemoV2*@
 @*@using MountainsClientDemoV2
 *@
@@ -14,7 +16,7 @@ Clientside : StrawberryShake
 Backend: HotChocolate
 
 <DataGrid Data="@mountainsResult"
-    TItem="IGetMountains_Mountains"
+          TItem="MountainItem"
           Filterable="true"
           FilterMethod="DataGridFilterMethod.Contains"
           ShowPager="true"
@@ -22,21 +24,28 @@ Backend: HotChocolate
           ShowPageSizes="true"
           Editable="true"
           Striped="true"
+          EditMode="DataGridEditMode.Popup"
+          RowUpdated="OnRowUpdatedAsync"
           Hoverable="true"
           Responsive="true">
     <ChildContent>
-        <DataGridCommandColumn TItem="IGetMountains_Mountains"></DataGridCommandColumn>
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="Id" Caption="Id" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="OfficialName" Caption="OfficialName" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="MetresAboveSeaLevel" Caption="ReferencePoint" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="PrimaryFactor" Caption="PrimaryFactor" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="Municipality" Caption="Municipality" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="ReferencePoint" Caption="ReferencePoint" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="County" Caption="County" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="Comments" Caption="Comments" Sortable="false" Displayable="true" Editable="true">
+        <DataGridCommandColumn TItem="MountainItem"></DataGridCommandColumn>
+        <DataGridColumn TItem="MountainItem" Field="Id" Caption="Id" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="OfficialName" Caption="OfficialName" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="MetresAboveSeaLevel" Caption="ReferencePoint" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="PrimaryFactor" Caption="PrimaryFactor" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="Municipality" Caption="Municipality" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="ReferencePoint" Caption="ReferencePoint" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="County" Caption="County" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="Comments" Caption="Comments" Sortable="false" Displayable="true" Editable="true">
             <EditTemplate>
                 <Label><br /><b>@context.Item.OfficialName</b></Label>
-                <TextEdit TValue="string" Text="@((string)context.CellValue)" />
+                <TextEdit TValue="string"
+                          Text="@((string)context.CellValue)"
+                          TextChanged="@( v => {
+                                                    context.CellValue = v;
+                                                    context.UpdateCell( nameof( MountainItem.Comments ), v);
+                                              })" />
             </EditTemplate>
         </DataGridColumn>
     </ChildContent>
@@ -72,15 +81,15 @@ Backend: HotChocolate
           Responsive="true"
 >
     <ChildContent>
-        <DataGridCommandColumn TItem="IGetMountains_Mountains"></DataGridCommandColumn>
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="Id" Caption="Id" Sortable="false" Displayable="true"/>
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="OfficialName" Caption="OfficialName" Sortable="false" Displayable="true"/>
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="MetresAboveSeaLevel" Caption="ReferencePoint" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="PrimaryFactor" Caption="PrimaryFactor" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="Municipality" Caption="Municipality" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="ReferencePoint" Caption="ReferencePoint" Sortable="false" Displayable="true"/>
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="County" Caption="County" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="IGetMountains_Mountains" Field="Comments" Caption="Comments" Sortable="false" Displayable="true" Editable="true">
+        <DataGridCommandColumn TItem="MountainItem"></DataGridCommandColumn>
+        <DataGridColumn TItem="MountainItem" Field="Id" Caption="Id" Sortable="false" Displayable="true"/>
+        <DataGridColumn TItem="MountainItem" Field="OfficialName" Caption="OfficialName" Sortable="false" Displayable="true"/>
+        <DataGridColumn TItem="MountainItem" Field="MetresAboveSeaLevel" Caption="ReferencePoint" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="PrimaryFactor" Caption="PrimaryFactor" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="Municipality" Caption="Municipality" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="ReferencePoint" Caption="ReferencePoint" Sortable="false" Displayable="true"/>
+        <DataGridColumn TItem="MountainItem" Field="County" Caption="County" Sortable="false" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="Comments" Caption="Comments" Sortable="false" Displayable="true" Editable="true">
                     <EditTemplate>
                         @{
                             var serializedContext = JsonSerializer.Serialize(context);
@@ -123,11 +132,11 @@ Backend: HotChocolate
 
     [Inject] private MountainsDemoV2 client { get; set; }
 
-    private IGetMountains_Mountains selectedMountain;
+    private MountainItem selectedMountain;
 
-    private IReadOnlyList<IGetMountains_Mountains>? mountainsResult;
+    private IList<MountainItem>? mountainsResult;
 
-    ////protected void OnSelectedRowChanged(IGetMountains_Mountains_Mountain model)
+    ////protected void OnSelectedRowChanged(MountainItem_Mountain model)
     ////{
     ////    log.LogInformation($"selected row changed: {model.ToJson()}");
     ////}
@@ -135,25 +144,25 @@ Backend: HotChocolate
     protected async override Task OnParametersSetAsync()
     {
         var mountainsFromServer = await client.GetMountains.ExecuteAsync();
-        mountainsResult = mountainsFromServer?.Data?.Mountains;
+        mountainsResult = mountainsFromServer?.Data?.Mountains?.Select(x => new MountainItem(x)).ToList();
     }
 
-    //protected async Task SaveEditedMountain(IGetMountains_Mountains mountain) {
+    //protected async Task SaveEditedMountain(MountainItem mountain) {
     //    var serializedContext = System.Text.Json.JsonSerializer.Serialize(mountain);
     //    Console.WriteLine(serializedContext);
     //    await Task.Delay(100);
     //}
 
-    //public void OnRowUpdatedAsync(SavedRowItem<IGetMountains_Mountains, Dictionary<string, object>> e)
-    //{
-    //    // This handler is fired after i hit the save button provided by internal edit functionality.
-    //    IGetMountains_Mountains mountain = e.Item;
-    //    string? comments = e.Values["Comments"] as string; // This gives me old value.
-    //    //TODO: Persist the comments for mountain via a mutation to the GraphQL Server
-    //    StateHasChanged();
-    //}
+    public void OnRowUpdatedAsync(SavedRowItem<MountainItem, Dictionary<string, object>> e)
+    {
+        // This handler is fired after i hit the save button provided by internal edit functionality.
+        MountainItem mountain = e.Item;
+        string? comments = e.Values["Comments"] as string; // This gives me old value.
+        //TODO: Persist the comments for mountain via a mutation to the GraphQL Server
+        StateHasChanged();
+    }
 
-    //protected async Task OnReadData(DataGridReadDataEventArgs<IGetMountains_Mountains> e)
+    //protected async Task OnReadData(DataGridReadDataEventArgs<MountainItem> e)
     //{
     //    //StateHasChanged();
     //}
