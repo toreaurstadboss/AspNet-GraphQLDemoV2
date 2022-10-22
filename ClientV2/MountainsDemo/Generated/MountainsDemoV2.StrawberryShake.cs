@@ -638,7 +638,7 @@ namespace MountainsClientDemoV2
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial interface IGetMountains_Mountains
     {
-        public global::System.Int32 Id { get; set; }
+        public global::System.Int32 Id { get; }
 
         public global::System.String OfficialName { get; }
 

@@ -136,10 +136,11 @@ Backend: HotChocolate
 
     private IList<MountainItem>? mountainsResult;
 
-    ////protected void OnSelectedRowChanged(MountainItem_Mountain model)
-    ////{
-    ////    log.LogInformation($"selected row changed: {model.ToJson()}");
-    ////}
+    protected void OnSelectedRowChanged(MountainItem model)
+    {
+        selectedMountain = model;
+        log.LogInformation($"selected row (mountain) changed - current id is now: {model.Id}");
+    }
 
     protected async override Task OnParametersSetAsync()
     {
@@ -158,8 +159,14 @@ Backend: HotChocolate
         // This handler is fired after i hit the save button provided by internal edit functionality.
         MountainItem mountain = e.Item;
         string? comments = e.Values["Comments"] as string; // This gives me old value.
-        //TODO: Persist the comments for mountain via a mutation to the GraphQL Server
-        StateHasChanged();
+                                                           //TODO: Persist the comments for mountain via a mutation to the GraphQL Server
+        if (selectedMountain == null || string.IsNullOrEmpty(comments)){
+            return;
+        }
+        else if (selectedMountain.Id >= 1) {
+            client.UpdateMountainComment.ExecuteAsync(selectedMountain.Id, comments);
+            StateHasChanged();
+        }
     }
 
     //protected async Task OnReadData(DataGridReadDataEventArgs<MountainItem> e)
