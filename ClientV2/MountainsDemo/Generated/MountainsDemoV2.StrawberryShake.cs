@@ -15,6 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 return new ClientServiceProvider(global::Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(serviceCollection));
             });
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => new global::MountainsClientDemoV2.State.MountainsDemoV2StoreAccessor(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityIdSerializer>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationRequestFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationResultDataFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp))));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.UpdateMountainCommentMutation>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.GetMountainQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.GetMountainsQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.MountainsDemoV2>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
@@ -31,6 +32,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 var clientFactory = global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Net.Http.IHttpClientFactory>(parentServices);
                 return new global::StrawberryShake.Transport.Http.HttpConnection(() => clientFactory.CreateClient("MountainsDemoV2"));
             });
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, global::MountainsClientDemoV2.UpdateMountainComment_UpdateMountainComment_Mountain>, global::MountainsClientDemoV2.State.UpdateMountainComment_UpdateMountainComment_MountainFromMountainEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, global::MountainsClientDemoV2.GetMountain_Mountain_Mountain>, global::MountainsClientDemoV2.State.GetMountain_Mountain_MountainFromMountainEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, global::MountainsClientDemoV2.GetMountains_Mountains_Mountain>, global::MountainsClientDemoV2.State.GetMountains_Mountains_MountainFromMountainEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.StringSerializer>(services);
@@ -50,6 +52,13 @@ namespace Microsoft.Extensions.DependencyInjection
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.TimeSpanSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.JsonSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializerResolver>(services, sp => new global::StrawberryShake.Serialization.SerializerResolver(global::System.Linq.Enumerable.Concat(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.Serialization.ISerializer>>(parentServices), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.Serialization.ISerializer>>(sp))));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IUpdateMountainCommentResult>, global::MountainsClientDemoV2.State.UpdateMountainCommentResultFactory>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IUpdateMountainCommentResult>>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.IUpdateMountainCommentMutation>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IUpdateMountainCommentResult>, global::MountainsClientDemoV2.State.UpdateMountainCommentBuilder>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::MountainsClientDemoV2.IUpdateMountainCommentResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IUpdateMountainCommentResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IUpdateMountainCommentResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::MountainsClientDemoV2.UpdateMountainCommentMutation>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::MountainsClientDemoV2.IUpdateMountainCommentMutation>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.UpdateMountainCommentMutation>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IGetMountainResult>, global::MountainsClientDemoV2.State.GetMountainResultFactory>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IGetMountainResult>>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.IGetMountainQuery>(sp));
@@ -96,6 +105,159 @@ namespace Microsoft.Extensions.DependencyInjection
 
 namespace MountainsClientDemoV2
 {
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class UpdateMountainCommentResult : global::System.IEquatable<UpdateMountainCommentResult>, IUpdateMountainCommentResult
+    {
+        public UpdateMountainCommentResult(global::MountainsClientDemoV2.IUpdateMountainComment_UpdateMountainComment? updateMountainComment)
+        {
+            UpdateMountainComment = updateMountainComment;
+        }
+
+        public global::MountainsClientDemoV2.IUpdateMountainComment_UpdateMountainComment? UpdateMountainComment { get; }
+
+        public virtual global::System.Boolean Equals(UpdateMountainCommentResult? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((UpdateMountainComment is null && other.UpdateMountainComment is null) || UpdateMountainComment != null && UpdateMountainComment.Equals(other.UpdateMountainComment)));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((UpdateMountainCommentResult)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (UpdateMountainComment != null)
+                {
+                    hash ^= 397 * UpdateMountainComment.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class UpdateMountainComment_UpdateMountainComment_Mountain : global::System.IEquatable<UpdateMountainComment_UpdateMountainComment_Mountain>, IUpdateMountainComment_UpdateMountainComment_Mountain
+    {
+        public UpdateMountainComment_UpdateMountainComment_Mountain(global::System.Int32 id, global::System.String? comments)
+        {
+            Id = id;
+            Comments = comments;
+        }
+
+        public global::System.Int32 Id { get; }
+
+        public global::System.String? Comments { get; }
+
+        public virtual global::System.Boolean Equals(UpdateMountainComment_UpdateMountainComment_Mountain? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (Id == other.Id) && ((Comments is null && other.Comments is null) || Comments != null && Comments.Equals(other.Comments));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((UpdateMountainComment_UpdateMountainComment_Mountain)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * Id.GetHashCode();
+                if (Comments != null)
+                {
+                    hash ^= 397 * Comments.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IUpdateMountainCommentResult
+    {
+        public global::MountainsClientDemoV2.IUpdateMountainComment_UpdateMountainComment? UpdateMountainComment { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IUpdateMountainComment_UpdateMountainComment
+    {
+        public global::System.Int32 Id { get; }
+
+        public global::System.String? Comments { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IUpdateMountainComment_UpdateMountainComment_Mountain : IUpdateMountainComment_UpdateMountainComment
+    {
+    }
+
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class GetMountainResult : global::System.IEquatable<GetMountainResult>, IGetMountainResult
     {
@@ -499,6 +661,139 @@ namespace MountainsClientDemoV2
     }
 
     /// <summary>
+    /// Represents the operation service of the UpdateMountainComment GraphQL operation
+    /// <code>
+    /// mutation UpdateMountainComment($mountainId: Int!, $comments: String!) {
+    ///   updateMountainComment(mountainId: $mountainId, comments: $comments) {
+    ///     __typename
+    ///     id
+    ///     comments
+    ///     ... on Mountain {
+    ///       id
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class UpdateMountainCommentMutationDocument : global::StrawberryShake.IDocument
+    {
+        private UpdateMountainCommentMutationDocument()
+        {
+        }
+
+        public static UpdateMountainCommentMutationDocument Instance { get; } = new UpdateMountainCommentMutationDocument();
+        public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Mutation;
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x6d, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x28, 0x24, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x49, 0x6e, 0x74, 0x21, 0x2c, 0x20, 0x24, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x21, 0x29, 0x20, 0x7b, 0x20, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x28, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x3a, 0x20, 0x24, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x2c, 0x20, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x3a, 0x20, 0x24, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x69, 0x64, 0x20, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x20, 0x2e, 0x2e, 0x2e, 0x20, 0x6f, 0x6e, 0x20, 0x4d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x20, 0x7b, 0x20, 0x69, 0x64, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d};
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "9b439a19d68100b3b3c75fb53e74b9dd");
+        public override global::System.String ToString()
+        {
+#if NETSTANDARD2_0
+        return global::System.Text.Encoding.UTF8.GetString(Body.ToArray());
+#else
+            return global::System.Text.Encoding.UTF8.GetString(Body);
+#endif
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the UpdateMountainComment GraphQL operation
+    /// <code>
+    /// mutation UpdateMountainComment($mountainId: Int!, $comments: String!) {
+    ///   updateMountainComment(mountainId: $mountainId, comments: $comments) {
+    ///     __typename
+    ///     id
+    ///     comments
+    ///     ... on Mountain {
+    ///       id
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class UpdateMountainCommentMutation : global::MountainsClientDemoV2.IUpdateMountainCommentMutation
+    {
+        private readonly global::StrawberryShake.IOperationExecutor<IUpdateMountainCommentResult> _operationExecutor;
+        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _intFormatter;
+        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _stringFormatter;
+        public UpdateMountainCommentMutation(global::StrawberryShake.IOperationExecutor<IUpdateMountainCommentResult> operationExecutor, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _operationExecutor = operationExecutor ?? throw new global::System.ArgumentNullException(nameof(operationExecutor));
+            _intFormatter = serializerResolver.GetInputValueFormatter("Int");
+            _stringFormatter = serializerResolver.GetInputValueFormatter("String");
+        }
+
+        global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(IUpdateMountainCommentResult);
+        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IUpdateMountainCommentResult>> ExecuteAsync(global::System.Int32 mountainId, global::System.String comments, global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var request = CreateRequest(mountainId, comments);
+            return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
+        }
+
+        public global::System.IObservable<global::StrawberryShake.IOperationResult<IUpdateMountainCommentResult>> Watch(global::System.Int32 mountainId, global::System.String comments, global::StrawberryShake.ExecutionStrategy? strategy = null)
+        {
+            var request = CreateRequest(mountainId, comments);
+            return _operationExecutor.Watch(request, strategy);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Int32 mountainId, global::System.String comments)
+        {
+            var variables = new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>();
+            variables.Add("mountainId", FormatMountainId(mountainId));
+            variables.Add("comments", FormatComments(comments));
+            return CreateRequest(variables);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return new global::StrawberryShake.OperationRequest(id: UpdateMountainCommentMutationDocument.Instance.Hash.Value, name: "UpdateMountainComment", document: UpdateMountainCommentMutationDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default, variables: variables);
+        }
+
+        private global::System.Object? FormatMountainId(global::System.Int32 value)
+        {
+            return _intFormatter.Format(value);
+        }
+
+        private global::System.Object? FormatComments(global::System.String value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _stringFormatter.Format(value);
+        }
+
+        global::StrawberryShake.OperationRequest global::StrawberryShake.IOperationRequestFactory.Create(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return CreateRequest(variables!);
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the UpdateMountainComment GraphQL operation
+    /// <code>
+    /// mutation UpdateMountainComment($mountainId: Int!, $comments: String!) {
+    ///   updateMountainComment(mountainId: $mountainId, comments: $comments) {
+    ///     __typename
+    ///     id
+    ///     comments
+    ///     ... on Mountain {
+    ///       id
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IUpdateMountainCommentMutation : global::StrawberryShake.IOperationRequestFactory
+    {
+        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IUpdateMountainCommentResult>> ExecuteAsync(global::System.Int32 mountainId, global::System.String comments, global::System.Threading.CancellationToken cancellationToken = default);
+        global::System.IObservable<global::StrawberryShake.IOperationResult<IUpdateMountainCommentResult>> Watch(global::System.Int32 mountainId, global::System.String comments, global::StrawberryShake.ExecutionStrategy? strategy = null);
+    }
+
+    /// <summary>
     /// Represents the operation service of the GetMountain GraphQL operation
     /// <code>
     /// query GetMountain {
@@ -765,15 +1060,18 @@ namespace MountainsClientDemoV2
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class MountainsDemoV2 : global::MountainsClientDemoV2.IMountainsDemoV2
     {
+        private readonly global::MountainsClientDemoV2.IUpdateMountainCommentMutation _updateMountainComment;
         private readonly global::MountainsClientDemoV2.IGetMountainQuery _getMountain;
         private readonly global::MountainsClientDemoV2.IGetMountainsQuery _getMountains;
-        public MountainsDemoV2(global::MountainsClientDemoV2.IGetMountainQuery getMountain, global::MountainsClientDemoV2.IGetMountainsQuery getMountains)
+        public MountainsDemoV2(global::MountainsClientDemoV2.IUpdateMountainCommentMutation updateMountainComment, global::MountainsClientDemoV2.IGetMountainQuery getMountain, global::MountainsClientDemoV2.IGetMountainsQuery getMountains)
         {
+            _updateMountainComment = updateMountainComment ?? throw new global::System.ArgumentNullException(nameof(updateMountainComment));
             _getMountain = getMountain ?? throw new global::System.ArgumentNullException(nameof(getMountain));
             _getMountains = getMountains ?? throw new global::System.ArgumentNullException(nameof(getMountains));
         }
 
         public static global::System.String ClientName => "MountainsDemoV2";
+        public global::MountainsClientDemoV2.IUpdateMountainCommentMutation UpdateMountainComment => _updateMountainComment;
         public global::MountainsClientDemoV2.IGetMountainQuery GetMountain => _getMountain;
         public global::MountainsClientDemoV2.IGetMountainsQuery GetMountains => _getMountains;
     }
@@ -784,6 +1082,8 @@ namespace MountainsClientDemoV2
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial interface IMountainsDemoV2
     {
+        global::MountainsClientDemoV2.IUpdateMountainCommentMutation UpdateMountainComment { get; }
+
         global::MountainsClientDemoV2.IGetMountainQuery GetMountain { get; }
 
         global::MountainsClientDemoV2.IGetMountainsQuery GetMountains { get; }
@@ -795,19 +1095,21 @@ namespace MountainsClientDemoV2.State
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class MountainEntity
     {
-        public MountainEntity(global::System.Int32 id = default !, global::System.String officialName = default !, global::System.Double metresAboveSeaLevel = default !, global::System.Double primaryFactor = default !, global::System.String? referencePoint = default !, global::System.String? county = default !, global::System.String? comments = default !, global::System.String? municipality = default !)
+        public MountainEntity(global::System.Int32 id = default !, global::System.String? comments = default !, global::System.String officialName = default !, global::System.Double metresAboveSeaLevel = default !, global::System.Double primaryFactor = default !, global::System.String? referencePoint = default !, global::System.String? county = default !, global::System.String? municipality = default !)
         {
             Id = id;
+            Comments = comments;
             OfficialName = officialName;
             MetresAboveSeaLevel = metresAboveSeaLevel;
             PrimaryFactor = primaryFactor;
             ReferencePoint = referencePoint;
             County = county;
-            Comments = comments;
             Municipality = municipality;
         }
 
         public global::System.Int32 Id { get; }
+
+        public global::System.String? Comments { get; }
 
         public global::System.String OfficialName { get; }
 
@@ -819,9 +1121,97 @@ namespace MountainsClientDemoV2.State
 
         public global::System.String? County { get; }
 
-        public global::System.String? Comments { get; }
-
         public global::System.String? Municipality { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class UpdateMountainCommentResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.UpdateMountainCommentResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, UpdateMountainComment_UpdateMountainComment_Mountain> _updateMountainComment_UpdateMountainComment_MountainFromMountainEntityMapper;
+        public UpdateMountainCommentResultFactory(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, UpdateMountainComment_UpdateMountainComment_Mountain> updateMountainComment_UpdateMountainComment_MountainFromMountainEntityMapper)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _updateMountainComment_UpdateMountainComment_MountainFromMountainEntityMapper = updateMountainComment_UpdateMountainComment_MountainFromMountainEntityMapper ?? throw new global::System.ArgumentNullException(nameof(updateMountainComment_UpdateMountainComment_MountainFromMountainEntityMapper));
+        }
+
+        global::System.Type global::StrawberryShake.IOperationResultDataFactory.ResultType => typeof(global::MountainsClientDemoV2.IUpdateMountainCommentResult);
+        public UpdateMountainCommentResult Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            if (dataInfo is UpdateMountainCommentResultInfo info)
+            {
+                return new UpdateMountainCommentResult(MapIUpdateMountainComment_UpdateMountainComment(info.UpdateMountainComment, snapshot));
+            }
+
+            throw new global::System.ArgumentException("UpdateMountainCommentResultInfo expected.");
+        }
+
+        private global::MountainsClientDemoV2.IUpdateMountainComment_UpdateMountainComment? MapIUpdateMountainComment_UpdateMountainComment(global::StrawberryShake.EntityId? entityId, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (entityId is null)
+            {
+                return null;
+            }
+
+            if (entityId.Value.Name.Equals("Mountain", global::System.StringComparison.Ordinal))
+            {
+                return _updateMountainComment_UpdateMountainComment_MountainFromMountainEntityMapper.Map(snapshot.GetEntity<global::MountainsClientDemoV2.State.MountainEntity>(entityId.Value) ?? throw new global::StrawberryShake.GraphQLClientException());
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        global::System.Object global::StrawberryShake.IOperationResultDataFactory.Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot)
+        {
+            return Create(dataInfo, snapshot);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class UpdateMountainCommentResultInfo : global::StrawberryShake.IOperationResultDataInfo
+    {
+        private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
+        private readonly global::System.UInt64 _version;
+        public UpdateMountainCommentResultInfo(global::StrawberryShake.EntityId? updateMountainComment, global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> entityIds, global::System.UInt64 version)
+        {
+            UpdateMountainComment = updateMountainComment;
+            _entityIds = entityIds ?? throw new global::System.ArgumentNullException(nameof(entityIds));
+            _version = version;
+        }
+
+        public global::StrawberryShake.EntityId? UpdateMountainComment { get; }
+
+        public global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> EntityIds => _entityIds;
+        public global::System.UInt64 Version => _version;
+        public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
+        {
+            return new UpdateMountainCommentResultInfo(UpdateMountainComment, _entityIds, version);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class UpdateMountainComment_UpdateMountainComment_MountainFromMountainEntityMapper : global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, UpdateMountainComment_UpdateMountainComment_Mountain>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        public UpdateMountainComment_UpdateMountainComment_MountainFromMountainEntityMapper(global::StrawberryShake.IEntityStore entityStore)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+        }
+
+        public UpdateMountainComment_UpdateMountainComment_Mountain Map(global::MountainsClientDemoV2.State.MountainEntity entity, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            return new UpdateMountainComment_UpdateMountainComment_Mountain(entity.Id, entity.Comments);
+        }
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
@@ -1016,6 +1406,125 @@ namespace MountainsClientDemoV2.State
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class UpdateMountainCommentBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IUpdateMountainCommentResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityIdSerializer _idSerializer;
+        private readonly global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IUpdateMountainCommentResult> _resultDataFactory;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Int32, global::System.Int32> _intParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _stringParser;
+        public UpdateMountainCommentBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IUpdateMountainCommentResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _idSerializer = idSerializer ?? throw new global::System.ArgumentNullException(nameof(idSerializer));
+            _resultDataFactory = resultDataFactory ?? throw new global::System.ArgumentNullException(nameof(resultDataFactory));
+            _intParser = serializerResolver.GetLeafValueParser<global::System.Int32, global::System.Int32>("Int") ?? throw new global::System.ArgumentException("No serializer for type `Int` found.");
+            _stringParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("String") ?? throw new global::System.ArgumentException("No serializer for type `String` found.");
+        }
+
+        public global::StrawberryShake.IOperationResult<IUpdateMountainCommentResult> Build(global::StrawberryShake.Response<global::System.Text.Json.JsonDocument> response)
+        {
+            (IUpdateMountainCommentResult Result, UpdateMountainCommentResultInfo Info)? data = null;
+            global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.IClientError>? errors = null;
+            if (response.Exception is null)
+            {
+                try
+                {
+                    if (response.Body != null)
+                    {
+                        if (response.Body.RootElement.TryGetProperty("data", out global::System.Text.Json.JsonElement dataElement) && dataElement.ValueKind == global::System.Text.Json.JsonValueKind.Object)
+                        {
+                            data = BuildData(dataElement);
+                        }
+
+                        if (response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                        {
+                            errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                        }
+                    }
+                }
+                catch (global::System.Exception ex)
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(ex.Message, exception: ex, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+            else
+            {
+                if (response.Body != null && response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                {
+                    errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                }
+                else
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+
+            return new global::StrawberryShake.OperationResult<IUpdateMountainCommentResult>(data?.Result, data?.Info, _resultDataFactory, errors);
+        }
+
+        private (IUpdateMountainCommentResult, UpdateMountainCommentResultInfo) BuildData(global::System.Text.Json.JsonElement obj)
+        {
+            var entityIds = new global::System.Collections.Generic.HashSet<global::StrawberryShake.EntityId>();
+            global::StrawberryShake.IEntityStoreSnapshot snapshot = default !;
+            global::StrawberryShake.EntityId? updateMountainCommentId = default !;
+            _entityStore.Update(session =>
+            {
+                updateMountainCommentId = UpdateIUpdateMountainComment_UpdateMountainCommentEntity(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "updateMountainComment"), entityIds);
+                snapshot = session.CurrentSnapshot;
+            });
+            var resultInfo = new UpdateMountainCommentResultInfo(updateMountainCommentId, entityIds, snapshot.Version);
+            return (_resultDataFactory.Create(resultInfo), resultInfo);
+        }
+
+        private global::StrawberryShake.EntityId? UpdateIUpdateMountainComment_UpdateMountainCommentEntity(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            global::StrawberryShake.EntityId entityId = _idSerializer.Parse(obj.Value);
+            entityIds.Add(entityId);
+            if (entityId.Name.Equals("Mountain", global::System.StringComparison.Ordinal))
+            {
+                if (session.CurrentSnapshot.TryGetEntity(entityId, out global::MountainsClientDemoV2.State.MountainEntity? entity))
+                {
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), entity.OfficialName, entity.MetresAboveSeaLevel, entity.PrimaryFactor, entity.ReferencePoint, entity.County, entity.Municipality));
+                }
+                else
+                {
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), default !, default !, default !, default !, default !, default !));
+                }
+
+                return entityId;
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.Int32 DeserializeNonNullableInt32(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _intParser.Parse(obj.Value.GetInt32()!);
+        }
+
+        private global::System.String? DeserializeString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class GetMountainBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IGetMountainResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -1102,11 +1611,11 @@ namespace MountainsClientDemoV2.State
             {
                 if (session.CurrentSnapshot.TryGetEntity(entityId, out global::MountainsClientDemoV2.State.MountainEntity? entity))
                 {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
                 }
                 else
                 {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
                 }
 
                 return entityId;
@@ -1259,11 +1768,11 @@ namespace MountainsClientDemoV2.State
             {
                 if (session.CurrentSnapshot.TryGetEntity(entityId, out global::MountainsClientDemoV2.State.MountainEntity? entity))
                 {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
                 }
                 else
                 {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
                 }
 
                 return entityId;

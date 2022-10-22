@@ -1,0 +1,6 @@
+mutation UpdateMountainComment($mountainId: Int!, $comments: String!) {
+updateMountainComment(mountainId: $mountainId, comments: $comments) {
+   id
+   comments	  
+ }
+}

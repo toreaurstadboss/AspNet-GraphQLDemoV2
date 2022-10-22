@@ -1,0 +1,6 @@
+mutation UpdateMountain($mountain: MountainInput) {
+updateMountain(mountain: $mountain) {
+   id
+   comments	  
+ }
+}

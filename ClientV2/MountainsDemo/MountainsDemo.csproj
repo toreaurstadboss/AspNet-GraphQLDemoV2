@@ -8,22 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <GraphQL Remove="GetMountain.graphql" />
-    <GraphQL Remove="GetMountains.graphql" />
-    <GraphQL Remove="GraphQLDocuments\UpdateMountainComments.graphql" />
-    <GraphQL Remove="UpdateMountainComments.graphql" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="GetMountain.graphql" />
-    <None Remove="GetMountains.graphql" />
-    <None Remove="GraphQLDocuments\GetMountain.graphql" />
-    <None Remove="GraphQLDocuments\GetMountains.graphql" />
-    <None Remove="GraphQLDocuments\UpdateMountainComments.graphql" />
-    <None Remove="UpdateMountainComments.graphql" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
   </ItemGroup>
 
@@ -42,12 +26,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Include="GetMountain.graphql" />
-    <Page Include="GetMountains.graphql" />
-    <Page Include="GraphQLDocuments\UpdateMountainComments.graphql" />
-    <Page Include="GraphQLDocuments\GetMountain.graphql" />
-    <Page Include="GraphQLDocuments\GetMountains.graphql" />
-    <Page Include="UpdateMountainComments.graphql" />
+    <Page Include="Mutations\UpdateMountain.graphql" />
+    <Page Include="Queries\GetMountain.graphql" />
+    <Page Include="Mutations\UpdateMountainComments.graphql" />
+    <Page Include="Queries\GetMountains.graphql" />
+    <Page Include="UpdateMountain.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Remove="Queries\GetMountains.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <GraphQL Remove="Mutations\UpdateMountain.graphql" />
+    <GraphQL Remove="UpdateMountain.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Mutations\UpdateMountain.graphql" />
+    <None Remove="UpdateMountain.graphql" />
   </ItemGroup>
 
 </Project>

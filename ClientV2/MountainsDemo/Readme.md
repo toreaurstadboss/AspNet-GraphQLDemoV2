@@ -31,3 +31,32 @@ query HentMountain {
   }
 }
 ```
+
+
+Update a mountain (mutation): 
+
+
+```
+
+ mutation UpdateMountain {
+  updateMountain(mountain: {
+    id: 1,
+    primaryFactor: 123,
+    metresAboveSeaLevel: 123,
+    county: "En test",
+    municipality: "En test kommune",
+    officialName: "En test navn",
+    comments: "en oppdatering"
+  }) {
+    id
+    comments
+    primaryFactor
+    officialName
+    municipality
+    comments
+    metresAboveSeaLevel
+    county  
+  }
+
+}
+```

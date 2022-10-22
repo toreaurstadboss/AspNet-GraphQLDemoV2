@@ -13,7 +13,7 @@
         "ClientV2/MountainsDemo/schema.graphql"
       ],
       "documents": [
-        "ClientV2/MountainsDemo/GraphQLDocuments/*.graphql"
+        "ClientV2/MountainsDemo/**/*.graphql"
       ]
     }
   ]
