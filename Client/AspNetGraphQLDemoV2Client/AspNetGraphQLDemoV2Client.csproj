@@ -24,11 +24,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
-    <PackageReference Include="StrawberryShake.Blazor" Version="13.0.0-preview.68" />
+    <!--<PackageReference Include="StrawberryShake.Blazor" Version="12.15.0" />-->
     <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="12.15.0" />
-    <PackageReference Include="StrawberryShake.Transport.Http" Version="13.0.0-preview.70" />
+    <PackageReference Include="StrawberryShake.Transport.Http" Version="12.15.0" />
 	<PackageReference Include="StrawberryShake.Tools.Configuration" Version="12.15.0" />
-    <!-- <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Transport.WebSockets" Version="13.0.0-preview.70" /> 
+	  <PackageReference Include="StrawberryShake.Core" Version="12.15.0" />
+
+	  <!-- <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Transport.WebSockets" Version="13.0.0-preview.70" /> 
    -->
 
     <!--<PackageReference Include="StrawberryShake.Core" Version="12.15.0" />

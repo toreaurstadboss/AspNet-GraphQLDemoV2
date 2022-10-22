@@ -4,8 +4,16 @@
   "extensions": {
     "strawberryShake": {
       "name": "MountainsDemo",
-      "dependencyInjection":  true,
       "url": "https://localhost:7074/graphql/",
+      "dependencyInjection": true,
+      "strictSchemaValidation": true,
+      "hashAlgorithm": "md5",
+      "useSingleFile": true,
+      "requestStrategy": "Default",
+      "outputDirectoryName": "Generated",
+      "noStore": false,
+      "emitGeneratedCode": true,
+      "razorComponents": false,
       "records": {
         "inputs": false,
         "entities": false
