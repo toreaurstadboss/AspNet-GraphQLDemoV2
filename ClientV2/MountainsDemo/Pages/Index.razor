@@ -10,10 +10,17 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>Norwegian Mountains V2</h1>
+<h5>
+    Norwegian Mountains V2 <Figure Size="FigureSize.Is24x24" TextAlignment="TextAlignment.End">
+        <FigureImage Source="images/mountain.png" AlternateText="mountain image logo" Rounded />
+        <FigureCaption>Tallest moutains and hills in Norwegian municipalities (kommuner)</FigureCaption>
+    </Figure>
+</h5>
 
-Clientside : StrawberryShake
-Backend: HotChocolate
+
+<Card></Card>
+Clientside : .net 6 Blazor wasm with StrawberryShake to access GraphQL Server
+Backend: HotChocolate GraphQL server
 
 <DataGrid Data="@mountainsResult"
           TItem="MountainItem"
@@ -24,21 +31,29 @@ Backend: HotChocolate
           ShowPageSizes="true"
           Editable="true"
           Striped="true"
+          PageSize="5"
           EditMode="DataGridEditMode.Popup"
           RowUpdating="OnRowUpdatingAsync"
           RowUpdated="OnRowUpdatedAsync"
           Hoverable="true"
           Responsive="true">
     <ChildContent>
-        <DataGridCommandColumn TItem="MountainItem"></DataGridCommandColumn>
-        <DataGridColumn TItem="MountainItem" Field="Id" Caption="Id" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="MountainItem" Field="OfficialName" Caption="OfficialName" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="MountainItem" Field="MetresAboveSeaLevel" Caption="ReferencePoint" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="MountainItem" Field="PrimaryFactor" Caption="PrimaryFactor" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="MountainItem" Field="Municipality" Caption="Municipality" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="MountainItem" Field="ReferencePoint" Caption="ReferencePoint" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="MountainItem" Field="County" Caption="County" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="MountainItem" Field="Comments" Caption="Comments" Sortable="false" Displayable="true" Editable="true">
+        <DataGridCommandColumn TItem="MountainItem" Width="200">
+              <EditCommandTemplate>
+               <Button Margin="Margin.Is1" Color="Color.Success" Clicked="@context.Clicked">Edit</Button>
+            </EditCommandTemplate>
+            <DeleteCommandTemplate>
+                <Button Margin="Margin.Is1" Color="Color.Danger" Clicked="@context.Clicked">Delete</Button>
+            </DeleteCommandTemplate>
+        </DataGridCommandColumn>
+        <DataGridColumn TItem="MountainItem" Field="Id" Caption="Id" Sortable="true" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="OfficialName" Caption="OfficialName" Sortable="true" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="MetresAboveSeaLevel" Caption="MetresAboveSeaLevel" Sortable="true" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="PrimaryFactor" Caption="PrimaryFactor" Sortable="true" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="Municipality" Caption="Municipality" Sortable="true" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="ReferencePoint" Caption="ReferencePoint" Sortable="true" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="County" Caption="County" Sortable="true" Displayable="true" />
+        <DataGridColumn TItem="MountainItem" Field="Comments" Caption="Comments" Sortable="true" Displayable="true" Editable="true">
             <EditTemplate>
                 <Label><br /><b>@context.Item.OfficialName</b></Label>
                 <TextEdit TValue="string"
@@ -60,72 +75,9 @@ Backend: HotChocolate
             <progress class="progress is-small is-primary" max="100" />
         </div>
     </LoadingTemplate>
-    <ButtonRowTemplate>
-        <Button Color="Color.Primary" Disabled="(selectedMountain is null)" Clicked="context.EditCommand.Clicked">Edit</Button>
-    </ButtonRowTemplate>
+  
 
 </DataGrid>
-
-@*<UseHentMountains Context="result">
-<ChildContent>
-
-    <DataGrid
-          Data="@result.Mountains"
-          Filterable="true"
-          FilterMethod="DataGridFilterMethod.Contains"
-          ShowPager="true"
-          @bind-SelectedRow="@selectedMountain"
-          ShowPageSizes="true"
-          Editable="true"
-          Striped="true"
-          Hoverable="true"
-          Responsive="true"
->
-    <ChildContent>
-        <DataGridCommandColumn TItem="MountainItem"></DataGridCommandColumn>
-        <DataGridColumn TItem="MountainItem" Field="Id" Caption="Id" Sortable="false" Displayable="true"/>
-        <DataGridColumn TItem="MountainItem" Field="OfficialName" Caption="OfficialName" Sortable="false" Displayable="true"/>
-        <DataGridColumn TItem="MountainItem" Field="MetresAboveSeaLevel" Caption="ReferencePoint" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="MountainItem" Field="PrimaryFactor" Caption="PrimaryFactor" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="MountainItem" Field="Municipality" Caption="Municipality" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="MountainItem" Field="ReferencePoint" Caption="ReferencePoint" Sortable="false" Displayable="true"/>
-        <DataGridColumn TItem="MountainItem" Field="County" Caption="County" Sortable="false" Displayable="true" />
-        <DataGridColumn TItem="MountainItem" Field="Comments" Caption="Comments" Sortable="false" Displayable="true" Editable="true">
-                    <EditTemplate>
-                        @{
-                            var serializedContext = JsonSerializer.Serialize(context);
-
-                        }
-                        <Label><br /><b>@context.Item.OfficialName</b></Label>
-                        <TextEdit TValue="string" Text="@((string)context.CellValue)" TextChanged="@( v => { context.CellValue = v; SaveEditedMountain(context.Item); })" />
-                    </EditTemplate>
-        </DataGridColumn>
-    </ChildContent>
-    <EmptyTemplate>
-        <div class="box">
-            No mountains were found.
-        </div>
-    </EmptyTemplate>
-    <LoadingTemplate>
-        <div class="box">
-            <progress class="progress is-small is-primary" max="100"/>
-        </div>
-    </LoadingTemplate>
-    <ButtonRowTemplate>
-        <Button Color="Color.Primary" Disabled="(selectedMountain is null)" Clicked="context.EditCommand.Clicked">Edit</Button>
-    </ButtonRowTemplate>
-
-</DataGrid>
-
-</ChildContent>
-<LoadingContent>
-    this is a test
-</LoadingContent>
-
-</UseHentMountains>*@
-
-@*<SurveyPrompt Title="How is Blazor working for you?" />*@
-
 
 @code {
 
