@@ -25,6 +25,7 @@ Backend: HotChocolate
           Editable="true"
           Striped="true"
           EditMode="DataGridEditMode.Popup"
+          RowUpdating="OnRowUpdatingAsync"
           RowUpdated="OnRowUpdatedAsync"
           Hoverable="true"
           Responsive="true">
@@ -42,7 +43,7 @@ Backend: HotChocolate
                 <Label><br /><b>@context.Item.OfficialName</b></Label>
                 <TextEdit TValue="string"
                           Text="@((string)context.CellValue)"
-                          TextChanged="@( v => {
+                          TextChanged="@( v => {                                                   
                                                     context.CellValue = v;
                                                     context.UpdateCell( nameof( MountainItem.Comments ), v);
                                               })" />
@@ -132,7 +133,7 @@ Backend: HotChocolate
 
     [Inject] private MountainsDemoV2 client { get; set; }
 
-    private MountainItem selectedMountain;
+    private MountainItem? selectedMountain;
 
     private IList<MountainItem>? mountainsResult;
 
@@ -148,11 +149,15 @@ Backend: HotChocolate
         mountainsResult = mountainsFromServer?.Data?.Mountains?.Select(x => new MountainItem(x)).ToList();
     }
 
-    //protected async Task SaveEditedMountain(MountainItem mountain) {
-    //    var serializedContext = System.Text.Json.JsonSerializer.Serialize(mountain);
-    //    Console.WriteLine(serializedContext);
-    //    await Task.Delay(100);
-    //}
+    public void OnRowUpdatingAsync(CancellableRowChange<MountainItem, Dictionary<string, object>> e){
+        MountainItem? mountain = e?.Item; 
+        if (mountain != null){
+            selectedMountain = mountain; 
+        }
+        else {
+            selectedMountain = null;
+        }
+    }
 
     public void OnRowUpdatedAsync(SavedRowItem<MountainItem, Dictionary<string, object>> e)
     {

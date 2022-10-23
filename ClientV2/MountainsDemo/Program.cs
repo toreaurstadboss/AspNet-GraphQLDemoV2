@@ -12,7 +12,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddBlazorise(options =>
 {
-    options.Immediate = true;
+    options.Debounce = true;
+    options.DebounceInterval = 1000;
 })
     .AddBootstrapProviders()
     .AddFontAwesomeIcons();

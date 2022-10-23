@@ -47,4 +47,8 @@
     <None Remove="UpdateMountain.graphql" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>
