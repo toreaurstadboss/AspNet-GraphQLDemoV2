@@ -46,3 +46,38 @@ query {
 
 We get a list of the most prominent mountains in Norway with highest primary factor. 
 
+
+Pagination is also supported. Getting the first 10 mountains in a 'page' with startcursor and endcursor looks like this : 
+
+
+```
+
+
+query MountainPage {
+  mountainsPage(first:10, order: [{id: ASC}]) {   
+
+    edges {
+      node {
+        id
+        officialName
+        metresAboveSeaLevel
+        primaryFactor
+        officialName
+        referencePoint
+        county 
+        municipality
+        comments
+      }
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+      hasPreviousPage
+            
+    }
+    
+  }
+}
+```
+

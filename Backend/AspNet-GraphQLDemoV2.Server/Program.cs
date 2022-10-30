@@ -14,6 +14,7 @@ builder.Services
     })
     .AddCors()
     .AddGraphQLServer()
+    .AddProjections()
     .AddFiltering()
     .AddSorting()
     .RegisterDbContext<MountainDbContext>()

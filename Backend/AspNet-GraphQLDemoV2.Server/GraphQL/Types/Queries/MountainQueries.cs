@@ -20,6 +20,14 @@ namespace AspNet_GraphQLDemoV2.Server.GraphQL.Types.Queries
             return await mountainDb.Mountains.ToListAsync();
         }
 
+        [UsePaging(MaxPageSize = 1000,IncludeTotalCount = true)]
+        [UseFiltering]
+        [UseSorting]
+        public async Task<List<Mountain>> GetMountainsPage([Service] MountainDbContext mountainDb)
+        {
+            return await mountainDb.Mountains.ToListAsync();
+        }
+
         public async Task<Mountain?> GetMountain([Service] MountainDbContext mountainDb, int id)
         {
             return await mountainDb.Mountains.FindAsync(id);
