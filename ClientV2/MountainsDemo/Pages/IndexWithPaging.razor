@@ -29,7 +29,7 @@ This page uses a paginated query to fetch data from the server using cursor base
           TItem="MountainItem"
           Filterable="true"
           FilterMethod="DataGridFilterMethod.Contains"
-          ShowPager="true"
+          ShowPager="false"
           @bind-SelectedRow="@selectedMountain"
           ShowPageSizes="true"
           Editable="true"
@@ -42,9 +42,18 @@ This page uses a paginated query to fetch data from the server using cursor base
           Hoverable="true"
           Responsive="true">
     <ChildContent>
-        <_DataGridPagination >
-            
-        </_DataGridPagination>
+<FirstPageButtonTemplate>
+    <Button>First page</Button> <!-- TODO : implement custom control of the paging ! -->
+</FirstPageButtonTemplate>
+<FirstPageButtonTemplate>
+    <Button>Last page</Button>
+</FirstPageButtonTemplate>
+<PreviousPageButtonTemplate>
+    <Button>Previous page</Button>
+</PreviousPageButtonTemplate>
+<NextPageButtonTemplate>
+    Next page
+</NextPageButtonTemplate>
         <DataGridCommandColumn TItem="MountainItem" Width="200">
               <EditCommandTemplate>
                <Button Margin="Margin.Is1" Color="Color.Success" Clicked="@context.Clicked">Edit</Button>
@@ -159,7 +168,13 @@ This page uses a paginated query to fetch data from the server using cursor base
         startIndexGetMountainsPaginatedData = pageIndex * pageSize;     
         var mountainsFromServerPaginated = await client.MountainsPage.ExecuteAsync(pageSize, startIndexGetMountainsPaginatedData);
         mountainsResult = mountainsFromServerPaginated!.Data!.MountainsPage!.Items!.Select(e => new MountainItem(e)).ToList();
+
+        if (MountainsDataPaginatedGrid != null){
+            MountainsDataPaginatedGrid.TotalItems = 100; // mountainsFromServerPaginated.Data.MountainsPage.TotalCount;
+        }
+
         Console.WriteLine("Page info:" + JsonSerializer.Serialize(mountainsFromServerPaginated.Data.MountainsPage.PageInfo));
+
     }
 
 }

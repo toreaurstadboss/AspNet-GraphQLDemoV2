@@ -1,6 +1,7 @@
 query mountainsPage ($pageSize : Int, $startIndex: Int) {
  
   mountainsPage(take: $pageSize, skip: $startIndex ) {
+    totalCount
     pageInfo {
       hasNextPage
       hasPreviousPage
