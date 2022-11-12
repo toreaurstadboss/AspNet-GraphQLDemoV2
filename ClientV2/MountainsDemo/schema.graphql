@@ -5,7 +5,7 @@
 
 type MountainQueries {
   mountains(where: MountainFilterInput order: [MountainSortInput!]): [Mountain!]!
-  mountainsPage("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: MountainFilterInput order: [MountainSortInput!]): MountainsPageConnection
+  mountainsPage(skip: Int take: Int where: MountainFilterInput order: [MountainSortInput!]): MountainCollectionSegment
   mountain(id: Int!): Mountain
 }
 
@@ -40,14 +40,10 @@ input MountainSortInput {
   referencePoint: SortEnumType
 }
 
-"A connection to a list of items."
-type MountainsPageConnection {
+type MountainCollectionSegment {
+  items: [Mountain!]
   "Information to aid in pagination."
-  pageInfo: PageInfo!
-  "A list of edges."
-  edges: [MountainsPageEdge!]
-  "A flattened list of the nodes."
-  nodes: [Mountain!]
+  pageInfo: CollectionSegmentInfo!
   totalCount: Int!
 }
 
@@ -101,18 +97,6 @@ enum SortEnumType {
   DESC
 }
 
-"Information about pagination in a connection."
-type PageInfo {
-  "Indicates whether more edges exist following the set defined by the clients arguments."
-  hasNextPage: Boolean!
-  "Indicates whether more edges exist prior the set defined by the clients arguments."
-  hasPreviousPage: Boolean!
-  "When paginating backwards, the cursor to continue."
-  startCursor: String
-  "When paginating forwards, the cursor to continue."
-  endCursor: String
-}
-
 type Mountain {
   id: Int!
   county: String
@@ -124,12 +108,12 @@ type Mountain {
   referencePoint: String
 }
 
-"An edge in a connection."
-type MountainsPageEdge {
-  "A cursor for use in pagination."
-  cursor: String!
-  "The item at the end of the edge."
-  node: Mountain!
+"Information about the offset pagination."
+type CollectionSegmentInfo {
+  "Indicates whether more items exist following the set defined by the clients arguments."
+  hasNextPage: Boolean!
+  "Indicates whether more items exist prior the set defined by the clients arguments."
+  hasPreviousPage: Boolean!
 }
 
 input MountainInput {

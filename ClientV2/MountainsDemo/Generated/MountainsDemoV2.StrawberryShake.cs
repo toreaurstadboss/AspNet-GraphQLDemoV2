@@ -15,9 +15,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 return new ClientServiceProvider(global::Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(serviceCollection));
             });
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => new global::MountainsClientDemoV2.State.MountainsDemoV2StoreAccessor(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityIdSerializer>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationRequestFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationResultDataFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp))));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.MountainsPageQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.UpdateMountainCommentMutation>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.GetMountainQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.MountainsPageQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.GetMountainsQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.MountainsDemoV2>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.IMountainsDemoV2>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
@@ -33,9 +33,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 var clientFactory = global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Net.Http.IHttpClientFactory>(parentServices);
                 return new global::StrawberryShake.Transport.Http.HttpConnection(() => clientFactory.CreateClient("MountainsDemoV2"));
             });
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, global::MountainsClientDemoV2.MountainsPage_MountainsPage_Items_Mountain>, global::MountainsClientDemoV2.State.MountainsPage_MountainsPage_Items_MountainFromMountainEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, global::MountainsClientDemoV2.UpdateMountainComment_UpdateMountainComment_Mountain>, global::MountainsClientDemoV2.State.UpdateMountainComment_UpdateMountainComment_MountainFromMountainEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, global::MountainsClientDemoV2.GetMountain_Mountain_Mountain>, global::MountainsClientDemoV2.State.GetMountain_Mountain_MountainFromMountainEntityMapper>(services);
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, global::MountainsClientDemoV2.MountainsPage_MountainsPage_Edges_Node_Mountain>, global::MountainsClientDemoV2.State.MountainsPage_MountainsPage_Edges_Node_MountainFromMountainEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, global::MountainsClientDemoV2.GetMountains_Mountains_Mountain>, global::MountainsClientDemoV2.State.GetMountains_Mountains_MountainFromMountainEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.StringSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.BooleanSerializer>(services);
@@ -54,6 +54,13 @@ namespace Microsoft.Extensions.DependencyInjection
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.TimeSpanSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.JsonSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializerResolver>(services, sp => new global::StrawberryShake.Serialization.SerializerResolver(global::System.Linq.Enumerable.Concat(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.Serialization.ISerializer>>(parentServices), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.Serialization.ISerializer>>(sp))));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IMountainsPageResult>, global::MountainsClientDemoV2.State.MountainsPageResultFactory>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IMountainsPageResult>>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.IMountainsPageQuery>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IMountainsPageResult>, global::MountainsClientDemoV2.State.MountainsPageBuilder>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::MountainsClientDemoV2.IMountainsPageResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IMountainsPageResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IMountainsPageResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::MountainsClientDemoV2.MountainsPageQuery>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::MountainsClientDemoV2.IMountainsPageQuery>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.MountainsPageQuery>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IUpdateMountainCommentResult>, global::MountainsClientDemoV2.State.UpdateMountainCommentResultFactory>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IUpdateMountainCommentResult>>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.IUpdateMountainCommentMutation>(sp));
@@ -68,13 +75,6 @@ namespace Microsoft.Extensions.DependencyInjection
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::MountainsClientDemoV2.IGetMountainResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IGetMountainResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IGetMountainResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::MountainsClientDemoV2.GetMountainQuery>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::MountainsClientDemoV2.IGetMountainQuery>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.GetMountainQuery>(sp));
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IMountainsPageResult>, global::MountainsClientDemoV2.State.MountainsPageResultFactory>(services);
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IMountainsPageResult>>(sp));
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.IMountainsPageQuery>(sp));
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IMountainsPageResult>, global::MountainsClientDemoV2.State.MountainsPageBuilder>(services);
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::MountainsClientDemoV2.IMountainsPageResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IMountainsPageResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IMountainsPageResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::MountainsClientDemoV2.MountainsPageQuery>(services);
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::MountainsClientDemoV2.IMountainsPageQuery>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.MountainsPageQuery>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IGetMountainsResult>, global::MountainsClientDemoV2.State.GetMountainsResultFactory>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IGetMountainsResult>>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::MountainsClientDemoV2.IGetMountainsQuery>(sp));
@@ -114,6 +114,397 @@ namespace Microsoft.Extensions.DependencyInjection
 
 namespace MountainsClientDemoV2
 {
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class MountainsPageResult : global::System.IEquatable<MountainsPageResult>, IMountainsPageResult
+    {
+        public MountainsPageResult(global::MountainsClientDemoV2.IMountainsPage_MountainsPage? mountainsPage)
+        {
+            MountainsPage = mountainsPage;
+        }
+
+        public global::MountainsClientDemoV2.IMountainsPage_MountainsPage? MountainsPage { get; }
+
+        public virtual global::System.Boolean Equals(MountainsPageResult? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((MountainsPage is null && other.MountainsPage is null) || MountainsPage != null && MountainsPage.Equals(other.MountainsPage)));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((MountainsPageResult)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (MountainsPage != null)
+                {
+                    hash ^= 397 * MountainsPage.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class MountainsPage_MountainsPage_MountainCollectionSegment : global::System.IEquatable<MountainsPage_MountainsPage_MountainCollectionSegment>, IMountainsPage_MountainsPage_MountainCollectionSegment
+    {
+        public MountainsPage_MountainsPage_MountainCollectionSegment(global::MountainsClientDemoV2.IMountainsPage_MountainsPage_PageInfo pageInfo, global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Items>? items)
+        {
+            PageInfo = pageInfo;
+            Items = items;
+        }
+
+        /// <summary>
+        /// Information to aid in pagination.
+        /// </summary>
+        public global::MountainsClientDemoV2.IMountainsPage_MountainsPage_PageInfo PageInfo { get; }
+
+        public global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Items>? Items { get; }
+
+        public virtual global::System.Boolean Equals(MountainsPage_MountainsPage_MountainCollectionSegment? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (PageInfo.Equals(other.PageInfo)) && global::StrawberryShake.Helper.ComparisonHelper.SequenceEqual(Items, other.Items);
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((MountainsPage_MountainsPage_MountainCollectionSegment)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * PageInfo.GetHashCode();
+                if (Items != null)
+                {
+                    foreach (var Items_elm in Items)
+                    {
+                        hash ^= 397 * Items_elm.GetHashCode();
+                    }
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Information about the offset pagination.
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class MountainsPage_MountainsPage_PageInfo_CollectionSegmentInfo : global::System.IEquatable<MountainsPage_MountainsPage_PageInfo_CollectionSegmentInfo>, IMountainsPage_MountainsPage_PageInfo_CollectionSegmentInfo
+    {
+        public MountainsPage_MountainsPage_PageInfo_CollectionSegmentInfo(global::System.Boolean hasNextPage, global::System.Boolean hasPreviousPage)
+        {
+            HasNextPage = hasNextPage;
+            HasPreviousPage = hasPreviousPage;
+        }
+
+        /// <summary>
+        /// Indicates whether more items exist following the set defined by the clients arguments.
+        /// </summary>
+        public global::System.Boolean HasNextPage { get; }
+
+        /// <summary>
+        /// Indicates whether more items exist prior the set defined by the clients arguments.
+        /// </summary>
+        public global::System.Boolean HasPreviousPage { get; }
+
+        public virtual global::System.Boolean Equals(MountainsPage_MountainsPage_PageInfo_CollectionSegmentInfo? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (HasNextPage == other.HasNextPage) && HasPreviousPage == other.HasPreviousPage;
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((MountainsPage_MountainsPage_PageInfo_CollectionSegmentInfo)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * HasNextPage.GetHashCode();
+                hash ^= 397 * HasPreviousPage.GetHashCode();
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class MountainsPage_MountainsPage_Items_Mountain : global::System.IEquatable<MountainsPage_MountainsPage_Items_Mountain>, IMountainsPage_MountainsPage_Items_Mountain
+    {
+        public MountainsPage_MountainsPage_Items_Mountain(global::System.Int32 id, global::System.String officialName, global::System.Double metresAboveSeaLevel, global::System.String? county, global::System.String? municipality, global::System.Double primaryFactor, global::System.String? referencePoint, global::System.String? comments)
+        {
+            Id = id;
+            OfficialName = officialName;
+            MetresAboveSeaLevel = metresAboveSeaLevel;
+            County = county;
+            Municipality = municipality;
+            PrimaryFactor = primaryFactor;
+            ReferencePoint = referencePoint;
+            Comments = comments;
+        }
+
+        public global::System.Int32 Id { get; }
+
+        public global::System.String OfficialName { get; }
+
+        public global::System.Double MetresAboveSeaLevel { get; }
+
+        public global::System.String? County { get; }
+
+        public global::System.String? Municipality { get; }
+
+        public global::System.Double PrimaryFactor { get; }
+
+        public global::System.String? ReferencePoint { get; }
+
+        public global::System.String? Comments { get; }
+
+        public virtual global::System.Boolean Equals(MountainsPage_MountainsPage_Items_Mountain? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (Id == other.Id) && OfficialName.Equals(other.OfficialName) && MetresAboveSeaLevel == other.MetresAboveSeaLevel && ((County is null && other.County is null) || County != null && County.Equals(other.County)) && ((Municipality is null && other.Municipality is null) || Municipality != null && Municipality.Equals(other.Municipality)) && PrimaryFactor == other.PrimaryFactor && ((ReferencePoint is null && other.ReferencePoint is null) || ReferencePoint != null && ReferencePoint.Equals(other.ReferencePoint)) && ((Comments is null && other.Comments is null) || Comments != null && Comments.Equals(other.Comments));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((MountainsPage_MountainsPage_Items_Mountain)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * Id.GetHashCode();
+                hash ^= 397 * OfficialName.GetHashCode();
+                hash ^= 397 * MetresAboveSeaLevel.GetHashCode();
+                if (County != null)
+                {
+                    hash ^= 397 * County.GetHashCode();
+                }
+
+                if (Municipality != null)
+                {
+                    hash ^= 397 * Municipality.GetHashCode();
+                }
+
+                hash ^= 397 * PrimaryFactor.GetHashCode();
+                if (ReferencePoint != null)
+                {
+                    hash ^= 397 * ReferencePoint.GetHashCode();
+                }
+
+                if (Comments != null)
+                {
+                    hash ^= 397 * Comments.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IMountainsPageResult
+    {
+        public global::MountainsClientDemoV2.IMountainsPage_MountainsPage? MountainsPage { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IMountainsPage_MountainsPage
+    {
+        /// <summary>
+        /// Information to aid in pagination.
+        /// </summary>
+        public global::MountainsClientDemoV2.IMountainsPage_MountainsPage_PageInfo PageInfo { get; }
+
+        public global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Items>? Items { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IMountainsPage_MountainsPage_MountainCollectionSegment : IMountainsPage_MountainsPage
+    {
+    }
+
+    /// <summary>
+    /// Information about the offset pagination.
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IMountainsPage_MountainsPage_PageInfo
+    {
+        /// <summary>
+        /// Indicates whether more items exist following the set defined by the clients arguments.
+        /// </summary>
+        public global::System.Boolean HasNextPage { get; }
+
+        /// <summary>
+        /// Indicates whether more items exist prior the set defined by the clients arguments.
+        /// </summary>
+        public global::System.Boolean HasPreviousPage { get; }
+    }
+
+    /// <summary>
+    /// Information about the offset pagination.
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IMountainsPage_MountainsPage_PageInfo_CollectionSegmentInfo : IMountainsPage_MountainsPage_PageInfo
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IMountainsPage_MountainsPage_Items
+    {
+        public global::System.Int32 Id { get; }
+
+        public global::System.String OfficialName { get; }
+
+        public global::System.Double MetresAboveSeaLevel { get; }
+
+        public global::System.String? County { get; }
+
+        public global::System.String? Municipality { get; }
+
+        public global::System.Double PrimaryFactor { get; }
+
+        public global::System.String? ReferencePoint { get; }
+
+        public global::System.String? Comments { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IMountainsPage_MountainsPage_Items_Mountain : IMountainsPage_MountainsPage_Items
+    {
+    }
+
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class UpdateMountainCommentResult : global::System.IEquatable<UpdateMountainCommentResult>, IUpdateMountainCommentResult
     {
@@ -469,531 +860,6 @@ namespace MountainsClientDemoV2
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPageResult : global::System.IEquatable<MountainsPageResult>, IMountainsPageResult
-    {
-        public MountainsPageResult(global::MountainsClientDemoV2.IMountainsPage_MountainsPage? mountainsPage)
-        {
-            MountainsPage = mountainsPage;
-        }
-
-        public global::MountainsClientDemoV2.IMountainsPage_MountainsPage? MountainsPage { get; }
-
-        public virtual global::System.Boolean Equals(MountainsPageResult? other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            if (other.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return (((MountainsPage is null && other.MountainsPage is null) || MountainsPage != null && MountainsPage.Equals(other.MountainsPage)));
-        }
-
-        public override global::System.Boolean Equals(global::System.Object? obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return Equals((MountainsPageResult)obj);
-        }
-
-        public override global::System.Int32 GetHashCode()
-        {
-            unchecked
-            {
-                int hash = 5;
-                if (MountainsPage != null)
-                {
-                    hash ^= 397 * MountainsPage.GetHashCode();
-                }
-
-                return hash;
-            }
-        }
-    }
-
-    /// <summary>
-    /// A connection to a list of items.
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPage_MountainsPage_MountainsPageConnection : global::System.IEquatable<MountainsPage_MountainsPage_MountainsPageConnection>, IMountainsPage_MountainsPage_MountainsPageConnection
-    {
-        public MountainsPage_MountainsPage_MountainsPageConnection(global::MountainsClientDemoV2.IMountainsPage_MountainsPage_PageInfo pageInfo, global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Edges>? edges)
-        {
-            PageInfo = pageInfo;
-            Edges = edges;
-        }
-
-        /// <summary>
-        /// Information to aid in pagination.
-        /// </summary>
-        public global::MountainsClientDemoV2.IMountainsPage_MountainsPage_PageInfo PageInfo { get; }
-
-        /// <summary>
-        /// A list of edges.
-        /// </summary>
-        public global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Edges>? Edges { get; }
-
-        public virtual global::System.Boolean Equals(MountainsPage_MountainsPage_MountainsPageConnection? other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            if (other.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return (PageInfo.Equals(other.PageInfo)) && global::StrawberryShake.Helper.ComparisonHelper.SequenceEqual(Edges, other.Edges);
-        }
-
-        public override global::System.Boolean Equals(global::System.Object? obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return Equals((MountainsPage_MountainsPage_MountainsPageConnection)obj);
-        }
-
-        public override global::System.Int32 GetHashCode()
-        {
-            unchecked
-            {
-                int hash = 5;
-                hash ^= 397 * PageInfo.GetHashCode();
-                if (Edges != null)
-                {
-                    foreach (var Edges_elm in Edges)
-                    {
-                        hash ^= 397 * Edges_elm.GetHashCode();
-                    }
-                }
-
-                return hash;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Information about pagination in a connection.
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPage_MountainsPage_PageInfo_PageInfo : global::System.IEquatable<MountainsPage_MountainsPage_PageInfo_PageInfo>, IMountainsPage_MountainsPage_PageInfo_PageInfo
-    {
-        public MountainsPage_MountainsPage_PageInfo_PageInfo(global::System.Boolean hasNextPage, global::System.Boolean hasPreviousPage, global::System.String? startCursor, global::System.String? endCursor)
-        {
-            HasNextPage = hasNextPage;
-            HasPreviousPage = hasPreviousPage;
-            StartCursor = startCursor;
-            EndCursor = endCursor;
-        }
-
-        /// <summary>
-        /// Indicates whether more edges exist following the set defined by the clients arguments.
-        /// </summary>
-        public global::System.Boolean HasNextPage { get; }
-
-        /// <summary>
-        /// Indicates whether more edges exist prior the set defined by the clients arguments.
-        /// </summary>
-        public global::System.Boolean HasPreviousPage { get; }
-
-        /// <summary>
-        /// When paginating backwards, the cursor to continue.
-        /// </summary>
-        public global::System.String? StartCursor { get; }
-
-        /// <summary>
-        /// When paginating forwards, the cursor to continue.
-        /// </summary>
-        public global::System.String? EndCursor { get; }
-
-        public virtual global::System.Boolean Equals(MountainsPage_MountainsPage_PageInfo_PageInfo? other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            if (other.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return (HasNextPage == other.HasNextPage) && HasPreviousPage == other.HasPreviousPage && ((StartCursor is null && other.StartCursor is null) || StartCursor != null && StartCursor.Equals(other.StartCursor)) && ((EndCursor is null && other.EndCursor is null) || EndCursor != null && EndCursor.Equals(other.EndCursor));
-        }
-
-        public override global::System.Boolean Equals(global::System.Object? obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return Equals((MountainsPage_MountainsPage_PageInfo_PageInfo)obj);
-        }
-
-        public override global::System.Int32 GetHashCode()
-        {
-            unchecked
-            {
-                int hash = 5;
-                hash ^= 397 * HasNextPage.GetHashCode();
-                hash ^= 397 * HasPreviousPage.GetHashCode();
-                if (StartCursor != null)
-                {
-                    hash ^= 397 * StartCursor.GetHashCode();
-                }
-
-                if (EndCursor != null)
-                {
-                    hash ^= 397 * EndCursor.GetHashCode();
-                }
-
-                return hash;
-            }
-        }
-    }
-
-    /// <summary>
-    /// An edge in a connection.
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPage_MountainsPage_Edges_MountainsPageEdge : global::System.IEquatable<MountainsPage_MountainsPage_Edges_MountainsPageEdge>, IMountainsPage_MountainsPage_Edges_MountainsPageEdge
-    {
-        public MountainsPage_MountainsPage_Edges_MountainsPageEdge(global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Edges_Node node)
-        {
-            Node = node;
-        }
-
-        /// <summary>
-        /// The item at the end of the edge.
-        /// </summary>
-        public global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Edges_Node Node { get; }
-
-        public virtual global::System.Boolean Equals(MountainsPage_MountainsPage_Edges_MountainsPageEdge? other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            if (other.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return (Node.Equals(other.Node));
-        }
-
-        public override global::System.Boolean Equals(global::System.Object? obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return Equals((MountainsPage_MountainsPage_Edges_MountainsPageEdge)obj);
-        }
-
-        public override global::System.Int32 GetHashCode()
-        {
-            unchecked
-            {
-                int hash = 5;
-                hash ^= 397 * Node.GetHashCode();
-                return hash;
-            }
-        }
-    }
-
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPage_MountainsPage_Edges_Node_Mountain : global::System.IEquatable<MountainsPage_MountainsPage_Edges_Node_Mountain>, IMountainsPage_MountainsPage_Edges_Node_Mountain
-    {
-        public MountainsPage_MountainsPage_Edges_Node_Mountain(global::System.Int32 id, global::System.String officialName, global::System.Double metresAboveSeaLevel, global::System.String? county, global::System.String? municipality, global::System.Double primaryFactor, global::System.String? referencePoint, global::System.String? comments)
-        {
-            Id = id;
-            OfficialName = officialName;
-            MetresAboveSeaLevel = metresAboveSeaLevel;
-            County = county;
-            Municipality = municipality;
-            PrimaryFactor = primaryFactor;
-            ReferencePoint = referencePoint;
-            Comments = comments;
-        }
-
-        public global::System.Int32 Id { get; }
-
-        public global::System.String OfficialName { get; }
-
-        public global::System.Double MetresAboveSeaLevel { get; }
-
-        public global::System.String? County { get; }
-
-        public global::System.String? Municipality { get; }
-
-        public global::System.Double PrimaryFactor { get; }
-
-        public global::System.String? ReferencePoint { get; }
-
-        public global::System.String? Comments { get; }
-
-        public virtual global::System.Boolean Equals(MountainsPage_MountainsPage_Edges_Node_Mountain? other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            if (other.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return (Id == other.Id) && OfficialName.Equals(other.OfficialName) && MetresAboveSeaLevel == other.MetresAboveSeaLevel && ((County is null && other.County is null) || County != null && County.Equals(other.County)) && ((Municipality is null && other.Municipality is null) || Municipality != null && Municipality.Equals(other.Municipality)) && PrimaryFactor == other.PrimaryFactor && ((ReferencePoint is null && other.ReferencePoint is null) || ReferencePoint != null && ReferencePoint.Equals(other.ReferencePoint)) && ((Comments is null && other.Comments is null) || Comments != null && Comments.Equals(other.Comments));
-        }
-
-        public override global::System.Boolean Equals(global::System.Object? obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return Equals((MountainsPage_MountainsPage_Edges_Node_Mountain)obj);
-        }
-
-        public override global::System.Int32 GetHashCode()
-        {
-            unchecked
-            {
-                int hash = 5;
-                hash ^= 397 * Id.GetHashCode();
-                hash ^= 397 * OfficialName.GetHashCode();
-                hash ^= 397 * MetresAboveSeaLevel.GetHashCode();
-                if (County != null)
-                {
-                    hash ^= 397 * County.GetHashCode();
-                }
-
-                if (Municipality != null)
-                {
-                    hash ^= 397 * Municipality.GetHashCode();
-                }
-
-                hash ^= 397 * PrimaryFactor.GetHashCode();
-                if (ReferencePoint != null)
-                {
-                    hash ^= 397 * ReferencePoint.GetHashCode();
-                }
-
-                if (Comments != null)
-                {
-                    hash ^= 397 * Comments.GetHashCode();
-                }
-
-                return hash;
-            }
-        }
-    }
-
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial interface IMountainsPageResult
-    {
-        public global::MountainsClientDemoV2.IMountainsPage_MountainsPage? MountainsPage { get; }
-    }
-
-    /// <summary>
-    /// A connection to a list of items.
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial interface IMountainsPage_MountainsPage
-    {
-        /// <summary>
-        /// Information to aid in pagination.
-        /// </summary>
-        public global::MountainsClientDemoV2.IMountainsPage_MountainsPage_PageInfo PageInfo { get; }
-
-        /// <summary>
-        /// A list of edges.
-        /// </summary>
-        public global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Edges>? Edges { get; }
-    }
-
-    /// <summary>
-    /// A connection to a list of items.
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial interface IMountainsPage_MountainsPage_MountainsPageConnection : IMountainsPage_MountainsPage
-    {
-    }
-
-    /// <summary>
-    /// Information about pagination in a connection.
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial interface IMountainsPage_MountainsPage_PageInfo
-    {
-        /// <summary>
-        /// Indicates whether more edges exist following the set defined by the clients arguments.
-        /// </summary>
-        public global::System.Boolean HasNextPage { get; }
-
-        /// <summary>
-        /// Indicates whether more edges exist prior the set defined by the clients arguments.
-        /// </summary>
-        public global::System.Boolean HasPreviousPage { get; }
-
-        /// <summary>
-        /// When paginating backwards, the cursor to continue.
-        /// </summary>
-        public global::System.String? StartCursor { get; }
-
-        /// <summary>
-        /// When paginating forwards, the cursor to continue.
-        /// </summary>
-        public global::System.String? EndCursor { get; }
-    }
-
-    /// <summary>
-    /// Information about pagination in a connection.
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial interface IMountainsPage_MountainsPage_PageInfo_PageInfo : IMountainsPage_MountainsPage_PageInfo
-    {
-    }
-
-    /// <summary>
-    /// An edge in a connection.
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial interface IMountainsPage_MountainsPage_Edges
-    {
-        /// <summary>
-        /// The item at the end of the edge.
-        /// </summary>
-        public global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Edges_Node Node { get; }
-    }
-
-    /// <summary>
-    /// An edge in a connection.
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial interface IMountainsPage_MountainsPage_Edges_MountainsPageEdge : IMountainsPage_MountainsPage_Edges
-    {
-    }
-
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial interface IMountainsPage_MountainsPage_Edges_Node
-    {
-        public global::System.Int32 Id { get; }
-
-        public global::System.String OfficialName { get; }
-
-        public global::System.Double MetresAboveSeaLevel { get; }
-
-        public global::System.String? County { get; }
-
-        public global::System.String? Municipality { get; }
-
-        public global::System.Double PrimaryFactor { get; }
-
-        public global::System.String? ReferencePoint { get; }
-
-        public global::System.String? Comments { get; }
-    }
-
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial interface IMountainsPage_MountainsPage_Edges_Node_Mountain : IMountainsPage_MountainsPage_Edges_Node
-    {
-    }
-
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class GetMountainsResult : global::System.IEquatable<GetMountainsResult>, IGetMountainsResult
     {
         public GetMountainsResult(global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.IGetMountains_Mountains> mountains)
@@ -1192,6 +1058,188 @@ namespace MountainsClientDemoV2
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial interface IGetMountains_Mountains_Mountain : IGetMountains_Mountains
     {
+    }
+
+    /// <summary>
+    /// Represents the operation service of the MountainsPage GraphQL operation
+    /// <code>
+    /// query MountainsPage($pageSize: Int, $startIndex: Int) {
+    ///   mountainsPage(take: $pageSize, skip: $startIndex) {
+    ///     __typename
+    ///     pageInfo {
+    ///       __typename
+    ///       hasNextPage
+    ///       hasPreviousPage
+    ///     }
+    ///     items {
+    ///       __typename
+    ///       id
+    ///       officialName
+    ///       metresAboveSeaLevel
+    ///       county
+    ///       municipality
+    ///       primaryFactor
+    ///       referencePoint
+    ///       comments
+    ///       ... on Mountain {
+    ///         id
+    ///       }
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class MountainsPageQueryDocument : global::StrawberryShake.IDocument
+    {
+        private MountainsPageQueryDocument()
+        {
+        }
+
+        public static MountainsPageQueryDocument Instance { get; } = new MountainsPageQueryDocument();
+        public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Query;
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x71, 0x75, 0x65, 0x72, 0x79, 0x20, 0x4d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x73, 0x50, 0x61, 0x67, 0x65, 0x28, 0x24, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x3a, 0x20, 0x49, 0x6e, 0x74, 0x2c, 0x20, 0x24, 0x73, 0x74, 0x61, 0x72, 0x74, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x3a, 0x20, 0x49, 0x6e, 0x74, 0x29, 0x20, 0x7b, 0x20, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x73, 0x50, 0x61, 0x67, 0x65, 0x28, 0x74, 0x61, 0x6b, 0x65, 0x3a, 0x20, 0x24, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x2c, 0x20, 0x73, 0x6b, 0x69, 0x70, 0x3a, 0x20, 0x24, 0x73, 0x74, 0x61, 0x72, 0x74, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x70, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x68, 0x61, 0x73, 0x4e, 0x65, 0x78, 0x74, 0x50, 0x61, 0x67, 0x65, 0x20, 0x68, 0x61, 0x73, 0x50, 0x72, 0x65, 0x76, 0x69, 0x6f, 0x75, 0x73, 0x50, 0x61, 0x67, 0x65, 0x20, 0x7d, 0x20, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x69, 0x64, 0x20, 0x6f, 0x66, 0x66, 0x69, 0x63, 0x69, 0x61, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x20, 0x6d, 0x65, 0x74, 0x72, 0x65, 0x73, 0x41, 0x62, 0x6f, 0x76, 0x65, 0x53, 0x65, 0x61, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x20, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x79, 0x20, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x69, 0x70, 0x61, 0x6c, 0x69, 0x74, 0x79, 0x20, 0x70, 0x72, 0x69, 0x6d, 0x61, 0x72, 0x79, 0x46, 0x61, 0x63, 0x74, 0x6f, 0x72, 0x20, 0x72, 0x65, 0x66, 0x65, 0x72, 0x65, 0x6e, 0x63, 0x65, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x20, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x20, 0x2e, 0x2e, 0x2e, 0x20, 0x6f, 0x6e, 0x20, 0x4d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x20, 0x7b, 0x20, 0x69, 0x64, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d};
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "7dccc028f34514942713ac0ca3a3b064");
+        public override global::System.String ToString()
+        {
+#if NETSTANDARD2_0
+        return global::System.Text.Encoding.UTF8.GetString(Body.ToArray());
+#else
+            return global::System.Text.Encoding.UTF8.GetString(Body);
+#endif
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the MountainsPage GraphQL operation
+    /// <code>
+    /// query MountainsPage($pageSize: Int, $startIndex: Int) {
+    ///   mountainsPage(take: $pageSize, skip: $startIndex) {
+    ///     __typename
+    ///     pageInfo {
+    ///       __typename
+    ///       hasNextPage
+    ///       hasPreviousPage
+    ///     }
+    ///     items {
+    ///       __typename
+    ///       id
+    ///       officialName
+    ///       metresAboveSeaLevel
+    ///       county
+    ///       municipality
+    ///       primaryFactor
+    ///       referencePoint
+    ///       comments
+    ///       ... on Mountain {
+    ///         id
+    ///       }
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class MountainsPageQuery : global::MountainsClientDemoV2.IMountainsPageQuery
+    {
+        private readonly global::StrawberryShake.IOperationExecutor<IMountainsPageResult> _operationExecutor;
+        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _intFormatter;
+        public MountainsPageQuery(global::StrawberryShake.IOperationExecutor<IMountainsPageResult> operationExecutor, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _operationExecutor = operationExecutor ?? throw new global::System.ArgumentNullException(nameof(operationExecutor));
+            _intFormatter = serializerResolver.GetInputValueFormatter("Int");
+        }
+
+        global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(IMountainsPageResult);
+        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IMountainsPageResult>> ExecuteAsync(global::System.Int32? pageSize, global::System.Int32? startIndex, global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var request = CreateRequest(pageSize, startIndex);
+            return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
+        }
+
+        public global::System.IObservable<global::StrawberryShake.IOperationResult<IMountainsPageResult>> Watch(global::System.Int32? pageSize, global::System.Int32? startIndex, global::StrawberryShake.ExecutionStrategy? strategy = null)
+        {
+            var request = CreateRequest(pageSize, startIndex);
+            return _operationExecutor.Watch(request, strategy);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Int32? pageSize, global::System.Int32? startIndex)
+        {
+            var variables = new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>();
+            variables.Add("pageSize", FormatPageSize(pageSize));
+            variables.Add("startIndex", FormatStartIndex(startIndex));
+            return CreateRequest(variables);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return new global::StrawberryShake.OperationRequest(id: MountainsPageQueryDocument.Instance.Hash.Value, name: "MountainsPage", document: MountainsPageQueryDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default, variables: variables);
+        }
+
+        private global::System.Object? FormatPageSize(global::System.Int32? value)
+        {
+            if (value is null)
+            {
+                return value;
+            }
+            else
+            {
+                return _intFormatter.Format(value);
+            }
+        }
+
+        private global::System.Object? FormatStartIndex(global::System.Int32? value)
+        {
+            if (value is null)
+            {
+                return value;
+            }
+            else
+            {
+                return _intFormatter.Format(value);
+            }
+        }
+
+        global::StrawberryShake.OperationRequest global::StrawberryShake.IOperationRequestFactory.Create(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return CreateRequest(variables!);
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the MountainsPage GraphQL operation
+    /// <code>
+    /// query MountainsPage($pageSize: Int, $startIndex: Int) {
+    ///   mountainsPage(take: $pageSize, skip: $startIndex) {
+    ///     __typename
+    ///     pageInfo {
+    ///       __typename
+    ///       hasNextPage
+    ///       hasPreviousPage
+    ///     }
+    ///     items {
+    ///       __typename
+    ///       id
+    ///       officialName
+    ///       metresAboveSeaLevel
+    ///       county
+    ///       municipality
+    ///       primaryFactor
+    ///       referencePoint
+    ///       comments
+    ///       ... on Mountain {
+    ///         id
+    ///       }
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial interface IMountainsPageQuery : global::StrawberryShake.IOperationRequestFactory
+    {
+        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IMountainsPageResult>> ExecuteAsync(global::System.Int32? pageSize, global::System.Int32? startIndex, global::System.Threading.CancellationToken cancellationToken = default);
+        global::System.IObservable<global::StrawberryShake.IOperationResult<IMountainsPageResult>> Watch(global::System.Int32? pageSize, global::System.Int32? startIndex, global::StrawberryShake.ExecutionStrategy? strategy = null);
     }
 
     /// <summary>
@@ -1457,205 +1505,6 @@ namespace MountainsClientDemoV2
     }
 
     /// <summary>
-    /// Represents the operation service of the MountainsPage GraphQL operation
-    /// <code>
-    /// query MountainsPage($pageSize: Int, $startCursor: String) {
-    ///   mountainsPage(first: $pageSize, after: $startCursor) {
-    ///     __typename
-    ///     pageInfo {
-    ///       __typename
-    ///       hasNextPage
-    ///       hasPreviousPage
-    ///       startCursor
-    ///       endCursor
-    ///     }
-    ///     edges {
-    ///       __typename
-    ///       node {
-    ///         __typename
-    ///         id
-    ///         officialName
-    ///         metresAboveSeaLevel
-    ///         county
-    ///         municipality
-    ///         primaryFactor
-    ///         referencePoint
-    ///         comments
-    ///         ... on Mountain {
-    ///           id
-    ///         }
-    ///       }
-    ///     }
-    ///   }
-    /// }
-    /// </code>
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPageQueryDocument : global::StrawberryShake.IDocument
-    {
-        private MountainsPageQueryDocument()
-        {
-        }
-
-        public static MountainsPageQueryDocument Instance { get; } = new MountainsPageQueryDocument();
-        public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Query;
-        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x71, 0x75, 0x65, 0x72, 0x79, 0x20, 0x4d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x73, 0x50, 0x61, 0x67, 0x65, 0x28, 0x24, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x3a, 0x20, 0x49, 0x6e, 0x74, 0x2c, 0x20, 0x24, 0x73, 0x74, 0x61, 0x72, 0x74, 0x43, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x3a, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x29, 0x20, 0x7b, 0x20, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x73, 0x50, 0x61, 0x67, 0x65, 0x28, 0x66, 0x69, 0x72, 0x73, 0x74, 0x3a, 0x20, 0x24, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x2c, 0x20, 0x61, 0x66, 0x74, 0x65, 0x72, 0x3a, 0x20, 0x24, 0x73, 0x74, 0x61, 0x72, 0x74, 0x43, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x70, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x68, 0x61, 0x73, 0x4e, 0x65, 0x78, 0x74, 0x50, 0x61, 0x67, 0x65, 0x20, 0x68, 0x61, 0x73, 0x50, 0x72, 0x65, 0x76, 0x69, 0x6f, 0x75, 0x73, 0x50, 0x61, 0x67, 0x65, 0x20, 0x73, 0x74, 0x61, 0x72, 0x74, 0x43, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x20, 0x65, 0x6e, 0x64, 0x43, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x20, 0x7d, 0x20, 0x65, 0x64, 0x67, 0x65, 0x73, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x6e, 0x6f, 0x64, 0x65, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x69, 0x64, 0x20, 0x6f, 0x66, 0x66, 0x69, 0x63, 0x69, 0x61, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x20, 0x6d, 0x65, 0x74, 0x72, 0x65, 0x73, 0x41, 0x62, 0x6f, 0x76, 0x65, 0x53, 0x65, 0x61, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x20, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x79, 0x20, 0x6d, 0x75, 0x6e, 0x69, 0x63, 0x69, 0x70, 0x61, 0x6c, 0x69, 0x74, 0x79, 0x20, 0x70, 0x72, 0x69, 0x6d, 0x61, 0x72, 0x79, 0x46, 0x61, 0x63, 0x74, 0x6f, 0x72, 0x20, 0x72, 0x65, 0x66, 0x65, 0x72, 0x65, 0x6e, 0x63, 0x65, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x20, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x20, 0x2e, 0x2e, 0x2e, 0x20, 0x6f, 0x6e, 0x20, 0x4d, 0x6f, 0x75, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x20, 0x7b, 0x20, 0x69, 0x64, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d};
-        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "fd0929a92a24c30ced4532e86bdd8227");
-        public override global::System.String ToString()
-        {
-#if NETSTANDARD2_0
-        return global::System.Text.Encoding.UTF8.GetString(Body.ToArray());
-#else
-            return global::System.Text.Encoding.UTF8.GetString(Body);
-#endif
-        }
-    }
-
-    /// <summary>
-    /// Represents the operation service of the MountainsPage GraphQL operation
-    /// <code>
-    /// query MountainsPage($pageSize: Int, $startCursor: String) {
-    ///   mountainsPage(first: $pageSize, after: $startCursor) {
-    ///     __typename
-    ///     pageInfo {
-    ///       __typename
-    ///       hasNextPage
-    ///       hasPreviousPage
-    ///       startCursor
-    ///       endCursor
-    ///     }
-    ///     edges {
-    ///       __typename
-    ///       node {
-    ///         __typename
-    ///         id
-    ///         officialName
-    ///         metresAboveSeaLevel
-    ///         county
-    ///         municipality
-    ///         primaryFactor
-    ///         referencePoint
-    ///         comments
-    ///         ... on Mountain {
-    ///           id
-    ///         }
-    ///       }
-    ///     }
-    ///   }
-    /// }
-    /// </code>
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPageQuery : global::MountainsClientDemoV2.IMountainsPageQuery
-    {
-        private readonly global::StrawberryShake.IOperationExecutor<IMountainsPageResult> _operationExecutor;
-        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _intFormatter;
-        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _stringFormatter;
-        public MountainsPageQuery(global::StrawberryShake.IOperationExecutor<IMountainsPageResult> operationExecutor, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
-        {
-            _operationExecutor = operationExecutor ?? throw new global::System.ArgumentNullException(nameof(operationExecutor));
-            _intFormatter = serializerResolver.GetInputValueFormatter("Int");
-            _stringFormatter = serializerResolver.GetInputValueFormatter("String");
-        }
-
-        global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(IMountainsPageResult);
-        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IMountainsPageResult>> ExecuteAsync(global::System.Int32? pageSize, global::System.String? startCursor, global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var request = CreateRequest(pageSize, startCursor);
-            return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
-        }
-
-        public global::System.IObservable<global::StrawberryShake.IOperationResult<IMountainsPageResult>> Watch(global::System.Int32? pageSize, global::System.String? startCursor, global::StrawberryShake.ExecutionStrategy? strategy = null)
-        {
-            var request = CreateRequest(pageSize, startCursor);
-            return _operationExecutor.Watch(request, strategy);
-        }
-
-        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Int32? pageSize, global::System.String? startCursor)
-        {
-            var variables = new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>();
-            variables.Add("pageSize", FormatPageSize(pageSize));
-            variables.Add("startCursor", FormatStartCursor(startCursor));
-            return CreateRequest(variables);
-        }
-
-        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
-        {
-            return new global::StrawberryShake.OperationRequest(id: MountainsPageQueryDocument.Instance.Hash.Value, name: "MountainsPage", document: MountainsPageQueryDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default, variables: variables);
-        }
-
-        private global::System.Object? FormatPageSize(global::System.Int32? value)
-        {
-            if (value is null)
-            {
-                return value;
-            }
-            else
-            {
-                return _intFormatter.Format(value);
-            }
-        }
-
-        private global::System.Object? FormatStartCursor(global::System.String? value)
-        {
-            if (value is null)
-            {
-                return value;
-            }
-            else
-            {
-                return _stringFormatter.Format(value);
-            }
-        }
-
-        global::StrawberryShake.OperationRequest global::StrawberryShake.IOperationRequestFactory.Create(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
-        {
-            return CreateRequest(variables!);
-        }
-    }
-
-    /// <summary>
-    /// Represents the operation service of the MountainsPage GraphQL operation
-    /// <code>
-    /// query MountainsPage($pageSize: Int, $startCursor: String) {
-    ///   mountainsPage(first: $pageSize, after: $startCursor) {
-    ///     __typename
-    ///     pageInfo {
-    ///       __typename
-    ///       hasNextPage
-    ///       hasPreviousPage
-    ///       startCursor
-    ///       endCursor
-    ///     }
-    ///     edges {
-    ///       __typename
-    ///       node {
-    ///         __typename
-    ///         id
-    ///         officialName
-    ///         metresAboveSeaLevel
-    ///         county
-    ///         municipality
-    ///         primaryFactor
-    ///         referencePoint
-    ///         comments
-    ///         ... on Mountain {
-    ///           id
-    ///         }
-    ///       }
-    ///     }
-    ///   }
-    /// }
-    /// </code>
-    /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial interface IMountainsPageQuery : global::StrawberryShake.IOperationRequestFactory
-    {
-        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IMountainsPageResult>> ExecuteAsync(global::System.Int32? pageSize, global::System.String? startCursor, global::System.Threading.CancellationToken cancellationToken = default);
-        global::System.IObservable<global::StrawberryShake.IOperationResult<IMountainsPageResult>> Watch(global::System.Int32? pageSize, global::System.String? startCursor, global::StrawberryShake.ExecutionStrategy? strategy = null);
-    }
-
-    /// <summary>
     /// Represents the operation service of the GetMountains GraphQL operation
     /// <code>
     /// query GetMountains {
@@ -1793,22 +1642,22 @@ namespace MountainsClientDemoV2
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class MountainsDemoV2 : global::MountainsClientDemoV2.IMountainsDemoV2
     {
+        private readonly global::MountainsClientDemoV2.IMountainsPageQuery _mountainsPage;
         private readonly global::MountainsClientDemoV2.IUpdateMountainCommentMutation _updateMountainComment;
         private readonly global::MountainsClientDemoV2.IGetMountainQuery _getMountain;
-        private readonly global::MountainsClientDemoV2.IMountainsPageQuery _mountainsPage;
         private readonly global::MountainsClientDemoV2.IGetMountainsQuery _getMountains;
-        public MountainsDemoV2(global::MountainsClientDemoV2.IUpdateMountainCommentMutation updateMountainComment, global::MountainsClientDemoV2.IGetMountainQuery getMountain, global::MountainsClientDemoV2.IMountainsPageQuery mountainsPage, global::MountainsClientDemoV2.IGetMountainsQuery getMountains)
+        public MountainsDemoV2(global::MountainsClientDemoV2.IMountainsPageQuery mountainsPage, global::MountainsClientDemoV2.IUpdateMountainCommentMutation updateMountainComment, global::MountainsClientDemoV2.IGetMountainQuery getMountain, global::MountainsClientDemoV2.IGetMountainsQuery getMountains)
         {
+            _mountainsPage = mountainsPage ?? throw new global::System.ArgumentNullException(nameof(mountainsPage));
             _updateMountainComment = updateMountainComment ?? throw new global::System.ArgumentNullException(nameof(updateMountainComment));
             _getMountain = getMountain ?? throw new global::System.ArgumentNullException(nameof(getMountain));
-            _mountainsPage = mountainsPage ?? throw new global::System.ArgumentNullException(nameof(mountainsPage));
             _getMountains = getMountains ?? throw new global::System.ArgumentNullException(nameof(getMountains));
         }
 
         public static global::System.String ClientName => "MountainsDemoV2";
+        public global::MountainsClientDemoV2.IMountainsPageQuery MountainsPage => _mountainsPage;
         public global::MountainsClientDemoV2.IUpdateMountainCommentMutation UpdateMountainComment => _updateMountainComment;
         public global::MountainsClientDemoV2.IGetMountainQuery GetMountain => _getMountain;
-        public global::MountainsClientDemoV2.IMountainsPageQuery MountainsPage => _mountainsPage;
         public global::MountainsClientDemoV2.IGetMountainsQuery GetMountains => _getMountains;
     }
 
@@ -1818,11 +1667,11 @@ namespace MountainsClientDemoV2
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial interface IMountainsDemoV2
     {
+        global::MountainsClientDemoV2.IMountainsPageQuery MountainsPage { get; }
+
         global::MountainsClientDemoV2.IUpdateMountainCommentMutation UpdateMountainComment { get; }
 
         global::MountainsClientDemoV2.IGetMountainQuery GetMountain { get; }
-
-        global::MountainsClientDemoV2.IMountainsPageQuery MountainsPage { get; }
 
         global::MountainsClientDemoV2.IGetMountainsQuery GetMountains { get; }
     }
@@ -1833,33 +1682,169 @@ namespace MountainsClientDemoV2.State
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class MountainEntity
     {
-        public MountainEntity(global::System.Int32 id = default !, global::System.String? comments = default !, global::System.String officialName = default !, global::System.Double metresAboveSeaLevel = default !, global::System.Double primaryFactor = default !, global::System.String? referencePoint = default !, global::System.String? county = default !, global::System.String? municipality = default !)
+        public MountainEntity(global::System.Int32 id = default !, global::System.String officialName = default !, global::System.Double metresAboveSeaLevel = default !, global::System.String? county = default !, global::System.String? municipality = default !, global::System.Double primaryFactor = default !, global::System.String? referencePoint = default !, global::System.String? comments = default !)
         {
             Id = id;
-            Comments = comments;
             OfficialName = officialName;
             MetresAboveSeaLevel = metresAboveSeaLevel;
-            PrimaryFactor = primaryFactor;
-            ReferencePoint = referencePoint;
             County = county;
             Municipality = municipality;
+            PrimaryFactor = primaryFactor;
+            ReferencePoint = referencePoint;
+            Comments = comments;
         }
 
         public global::System.Int32 Id { get; }
-
-        public global::System.String? Comments { get; }
 
         public global::System.String OfficialName { get; }
 
         public global::System.Double MetresAboveSeaLevel { get; }
 
+        public global::System.String? County { get; }
+
+        public global::System.String? Municipality { get; }
+
         public global::System.Double PrimaryFactor { get; }
 
         public global::System.String? ReferencePoint { get; }
 
-        public global::System.String? County { get; }
+        public global::System.String? Comments { get; }
+    }
 
-        public global::System.String? Municipality { get; }
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class MountainsPageResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.MountainsPageResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, MountainsPage_MountainsPage_Items_Mountain> _mountainsPage_MountainsPage_Items_MountainFromMountainEntityMapper;
+        public MountainsPageResultFactory(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, MountainsPage_MountainsPage_Items_Mountain> mountainsPage_MountainsPage_Items_MountainFromMountainEntityMapper)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _mountainsPage_MountainsPage_Items_MountainFromMountainEntityMapper = mountainsPage_MountainsPage_Items_MountainFromMountainEntityMapper ?? throw new global::System.ArgumentNullException(nameof(mountainsPage_MountainsPage_Items_MountainFromMountainEntityMapper));
+        }
+
+        global::System.Type global::StrawberryShake.IOperationResultDataFactory.ResultType => typeof(global::MountainsClientDemoV2.IMountainsPageResult);
+        public MountainsPageResult Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            if (dataInfo is MountainsPageResultInfo info)
+            {
+                return new MountainsPageResult(MapIMountainsPage_MountainsPage(info.MountainsPage, snapshot));
+            }
+
+            throw new global::System.ArgumentException("MountainsPageResultInfo expected.");
+        }
+
+        private global::MountainsClientDemoV2.IMountainsPage_MountainsPage? MapIMountainsPage_MountainsPage(global::MountainsClientDemoV2.State.MountainCollectionSegmentData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            IMountainsPage_MountainsPage returnValue = default !;
+            if (data?.__typename.Equals("MountainCollectionSegment", global::System.StringComparison.Ordinal) ?? false)
+            {
+                returnValue = new MountainsPage_MountainsPage_MountainCollectionSegment(MapNonNullableIMountainsPage_MountainsPage_PageInfo(data.PageInfo ?? throw new global::System.ArgumentNullException(), snapshot), MapIMountainsPage_MountainsPage_ItemsNonNullableArray(data.Items, snapshot));
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::MountainsClientDemoV2.IMountainsPage_MountainsPage_PageInfo MapNonNullableIMountainsPage_MountainsPage_PageInfo(global::MountainsClientDemoV2.State.CollectionSegmentInfoData data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            IMountainsPage_MountainsPage_PageInfo returnValue = default !;
+            if (data.__typename.Equals("CollectionSegmentInfo", global::System.StringComparison.Ordinal))
+            {
+                returnValue = new MountainsPage_MountainsPage_PageInfo_CollectionSegmentInfo(data.HasNextPage ?? throw new global::System.ArgumentNullException(), data.HasPreviousPage ?? throw new global::System.ArgumentNullException());
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Items>? MapIMountainsPage_MountainsPage_ItemsNonNullableArray(global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.EntityId>? list, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (list is null)
+            {
+                return null;
+            }
+
+            var mountains = new global::System.Collections.Generic.List<global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Items>();
+            foreach (global::StrawberryShake.EntityId child in list)
+            {
+                mountains.Add(MapNonNullableIMountainsPage_MountainsPage_Items(child, snapshot));
+            }
+
+            return mountains;
+        }
+
+        private global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Items MapNonNullableIMountainsPage_MountainsPage_Items(global::StrawberryShake.EntityId entityId, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (entityId.Name.Equals("Mountain", global::System.StringComparison.Ordinal))
+            {
+                return _mountainsPage_MountainsPage_Items_MountainFromMountainEntityMapper.Map(snapshot.GetEntity<global::MountainsClientDemoV2.State.MountainEntity>(entityId) ?? throw new global::StrawberryShake.GraphQLClientException());
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        global::System.Object global::StrawberryShake.IOperationResultDataFactory.Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot)
+        {
+            return Create(dataInfo, snapshot);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class MountainsPageResultInfo : global::StrawberryShake.IOperationResultDataInfo
+    {
+        private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
+        private readonly global::System.UInt64 _version;
+        public MountainsPageResultInfo(global::MountainsClientDemoV2.State.MountainCollectionSegmentData? mountainsPage, global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> entityIds, global::System.UInt64 version)
+        {
+            MountainsPage = mountainsPage;
+            _entityIds = entityIds ?? throw new global::System.ArgumentNullException(nameof(entityIds));
+            _version = version;
+        }
+
+        public global::MountainsClientDemoV2.State.MountainCollectionSegmentData? MountainsPage { get; }
+
+        public global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> EntityIds => _entityIds;
+        public global::System.UInt64 Version => _version;
+        public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
+        {
+            return new MountainsPageResultInfo(MountainsPage, _entityIds, version);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class MountainsPage_MountainsPage_Items_MountainFromMountainEntityMapper : global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, MountainsPage_MountainsPage_Items_Mountain>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        public MountainsPage_MountainsPage_Items_MountainFromMountainEntityMapper(global::StrawberryShake.IEntityStore entityStore)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+        }
+
+        public MountainsPage_MountainsPage_Items_Mountain Map(global::MountainsClientDemoV2.State.MountainEntity entity, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            return new MountainsPage_MountainsPage_Items_Mountain(entity.Id, entity.OfficialName, entity.MetresAboveSeaLevel, entity.County, entity.Municipality, entity.PrimaryFactor, entity.ReferencePoint, entity.Comments);
+        }
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
@@ -2043,157 +2028,6 @@ namespace MountainsClientDemoV2.State
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPageResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.MountainsPageResult>
-    {
-        private readonly global::StrawberryShake.IEntityStore _entityStore;
-        private readonly global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, MountainsPage_MountainsPage_Edges_Node_Mountain> _mountainsPage_MountainsPage_Edges_Node_MountainFromMountainEntityMapper;
-        public MountainsPageResultFactory(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, MountainsPage_MountainsPage_Edges_Node_Mountain> mountainsPage_MountainsPage_Edges_Node_MountainFromMountainEntityMapper)
-        {
-            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
-            _mountainsPage_MountainsPage_Edges_Node_MountainFromMountainEntityMapper = mountainsPage_MountainsPage_Edges_Node_MountainFromMountainEntityMapper ?? throw new global::System.ArgumentNullException(nameof(mountainsPage_MountainsPage_Edges_Node_MountainFromMountainEntityMapper));
-        }
-
-        global::System.Type global::StrawberryShake.IOperationResultDataFactory.ResultType => typeof(global::MountainsClientDemoV2.IMountainsPageResult);
-        public MountainsPageResult Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
-        {
-            if (snapshot is null)
-            {
-                snapshot = _entityStore.CurrentSnapshot;
-            }
-
-            if (dataInfo is MountainsPageResultInfo info)
-            {
-                return new MountainsPageResult(MapIMountainsPage_MountainsPage(info.MountainsPage, snapshot));
-            }
-
-            throw new global::System.ArgumentException("MountainsPageResultInfo expected.");
-        }
-
-        private global::MountainsClientDemoV2.IMountainsPage_MountainsPage? MapIMountainsPage_MountainsPage(global::MountainsClientDemoV2.State.MountainsPageConnectionData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
-        {
-            if (data is null)
-            {
-                return null;
-            }
-
-            IMountainsPage_MountainsPage returnValue = default !;
-            if (data?.__typename.Equals("MountainsPageConnection", global::System.StringComparison.Ordinal) ?? false)
-            {
-                returnValue = new MountainsPage_MountainsPage_MountainsPageConnection(MapNonNullableIMountainsPage_MountainsPage_PageInfo(data.PageInfo ?? throw new global::System.ArgumentNullException(), snapshot), MapIMountainsPage_MountainsPage_EdgesNonNullableArray(data.Edges, snapshot));
-            }
-            else
-            {
-                throw new global::System.NotSupportedException();
-            }
-
-            return returnValue;
-        }
-
-        private global::MountainsClientDemoV2.IMountainsPage_MountainsPage_PageInfo MapNonNullableIMountainsPage_MountainsPage_PageInfo(global::MountainsClientDemoV2.State.PageInfoData data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
-        {
-            IMountainsPage_MountainsPage_PageInfo returnValue = default !;
-            if (data.__typename.Equals("PageInfo", global::System.StringComparison.Ordinal))
-            {
-                returnValue = new MountainsPage_MountainsPage_PageInfo_PageInfo(data.HasNextPage ?? throw new global::System.ArgumentNullException(), data.HasPreviousPage ?? throw new global::System.ArgumentNullException(), data.StartCursor, data.EndCursor);
-            }
-            else
-            {
-                throw new global::System.NotSupportedException();
-            }
-
-            return returnValue;
-        }
-
-        private global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Edges>? MapIMountainsPage_MountainsPage_EdgesNonNullableArray(global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.State.MountainsPageEdgeData>? list, global::StrawberryShake.IEntityStoreSnapshot snapshot)
-        {
-            if (list is null)
-            {
-                return null;
-            }
-
-            var mountainsPageEdges = new global::System.Collections.Generic.List<global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Edges>();
-            foreach (global::MountainsClientDemoV2.State.MountainsPageEdgeData child in list)
-            {
-                mountainsPageEdges.Add(MapNonNullableIMountainsPage_MountainsPage_Edges(child, snapshot));
-            }
-
-            return mountainsPageEdges;
-        }
-
-        private global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Edges MapNonNullableIMountainsPage_MountainsPage_Edges(global::MountainsClientDemoV2.State.MountainsPageEdgeData data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
-        {
-            IMountainsPage_MountainsPage_Edges returnValue = default !;
-            if (data.__typename.Equals("MountainsPageEdge", global::System.StringComparison.Ordinal))
-            {
-                returnValue = new MountainsPage_MountainsPage_Edges_MountainsPageEdge(MapNonNullableIMountainsPage_MountainsPage_Edges_Node(data.Node ?? throw new global::System.ArgumentNullException(), snapshot));
-            }
-            else
-            {
-                throw new global::System.NotSupportedException();
-            }
-
-            return returnValue;
-        }
-
-        private global::MountainsClientDemoV2.IMountainsPage_MountainsPage_Edges_Node MapNonNullableIMountainsPage_MountainsPage_Edges_Node(global::StrawberryShake.EntityId entityId, global::StrawberryShake.IEntityStoreSnapshot snapshot)
-        {
-            if (entityId.Name.Equals("Mountain", global::System.StringComparison.Ordinal))
-            {
-                return _mountainsPage_MountainsPage_Edges_Node_MountainFromMountainEntityMapper.Map(snapshot.GetEntity<global::MountainsClientDemoV2.State.MountainEntity>(entityId) ?? throw new global::StrawberryShake.GraphQLClientException());
-            }
-
-            throw new global::System.NotSupportedException();
-        }
-
-        global::System.Object global::StrawberryShake.IOperationResultDataFactory.Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot)
-        {
-            return Create(dataInfo, snapshot);
-        }
-    }
-
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPageResultInfo : global::StrawberryShake.IOperationResultDataInfo
-    {
-        private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
-        private readonly global::System.UInt64 _version;
-        public MountainsPageResultInfo(global::MountainsClientDemoV2.State.MountainsPageConnectionData? mountainsPage, global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> entityIds, global::System.UInt64 version)
-        {
-            MountainsPage = mountainsPage;
-            _entityIds = entityIds ?? throw new global::System.ArgumentNullException(nameof(entityIds));
-            _version = version;
-        }
-
-        public global::MountainsClientDemoV2.State.MountainsPageConnectionData? MountainsPage { get; }
-
-        public global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> EntityIds => _entityIds;
-        public global::System.UInt64 Version => _version;
-        public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
-        {
-            return new MountainsPageResultInfo(MountainsPage, _entityIds, version);
-        }
-    }
-
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPage_MountainsPage_Edges_Node_MountainFromMountainEntityMapper : global::StrawberryShake.IEntityMapper<global::MountainsClientDemoV2.State.MountainEntity, MountainsPage_MountainsPage_Edges_Node_Mountain>
-    {
-        private readonly global::StrawberryShake.IEntityStore _entityStore;
-        public MountainsPage_MountainsPage_Edges_Node_MountainFromMountainEntityMapper(global::StrawberryShake.IEntityStore entityStore)
-        {
-            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
-        }
-
-        public MountainsPage_MountainsPage_Edges_Node_Mountain Map(global::MountainsClientDemoV2.State.MountainEntity entity, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
-        {
-            if (snapshot is null)
-            {
-                snapshot = _entityStore.CurrentSnapshot;
-            }
-
-            return new MountainsPage_MountainsPage_Edges_Node_Mountain(entity.Id, entity.OfficialName, entity.MetresAboveSeaLevel, entity.County, entity.Municipality, entity.PrimaryFactor, entity.ReferencePoint, entity.Comments);
-        }
-    }
-
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class GetMountainsResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.GetMountainsResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -2295,6 +2129,207 @@ namespace MountainsClientDemoV2.State
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
+    public partial class MountainsPageBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IMountainsPageResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityIdSerializer _idSerializer;
+        private readonly global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IMountainsPageResult> _resultDataFactory;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Int32, global::System.Int32> _intParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Boolean, global::System.Boolean> _booleanParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _stringParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Double, global::System.Double> _floatParser;
+        public MountainsPageBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IMountainsPageResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _idSerializer = idSerializer ?? throw new global::System.ArgumentNullException(nameof(idSerializer));
+            _resultDataFactory = resultDataFactory ?? throw new global::System.ArgumentNullException(nameof(resultDataFactory));
+            _intParser = serializerResolver.GetLeafValueParser<global::System.Int32, global::System.Int32>("Int") ?? throw new global::System.ArgumentException("No serializer for type `Int` found.");
+            _booleanParser = serializerResolver.GetLeafValueParser<global::System.Boolean, global::System.Boolean>("Boolean") ?? throw new global::System.ArgumentException("No serializer for type `Boolean` found.");
+            _stringParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("String") ?? throw new global::System.ArgumentException("No serializer for type `String` found.");
+            _floatParser = serializerResolver.GetLeafValueParser<global::System.Double, global::System.Double>("Float") ?? throw new global::System.ArgumentException("No serializer for type `Float` found.");
+        }
+
+        public global::StrawberryShake.IOperationResult<IMountainsPageResult> Build(global::StrawberryShake.Response<global::System.Text.Json.JsonDocument> response)
+        {
+            (IMountainsPageResult Result, MountainsPageResultInfo Info)? data = null;
+            global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.IClientError>? errors = null;
+            if (response.Exception is null)
+            {
+                try
+                {
+                    if (response.Body != null)
+                    {
+                        if (response.Body.RootElement.TryGetProperty("data", out global::System.Text.Json.JsonElement dataElement) && dataElement.ValueKind == global::System.Text.Json.JsonValueKind.Object)
+                        {
+                            data = BuildData(dataElement);
+                        }
+
+                        if (response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                        {
+                            errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                        }
+                    }
+                }
+                catch (global::System.Exception ex)
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(ex.Message, exception: ex, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+            else
+            {
+                if (response.Body != null && response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
+                {
+                    errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
+                }
+                else
+                {
+                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
+                }
+            }
+
+            return new global::StrawberryShake.OperationResult<IMountainsPageResult>(data?.Result, data?.Info, _resultDataFactory, errors);
+        }
+
+        private (IMountainsPageResult, MountainsPageResultInfo) BuildData(global::System.Text.Json.JsonElement obj)
+        {
+            var entityIds = new global::System.Collections.Generic.HashSet<global::StrawberryShake.EntityId>();
+            global::StrawberryShake.IEntityStoreSnapshot snapshot = default !;
+            global::MountainsClientDemoV2.State.MountainCollectionSegmentData? mountainsPageId = default !;
+            _entityStore.Update(session =>
+            {
+                mountainsPageId = DeserializeIMountainsPage_MountainsPage(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "mountainsPage"), entityIds);
+                snapshot = session.CurrentSnapshot;
+            });
+            var resultInfo = new MountainsPageResultInfo(mountainsPageId, entityIds, snapshot.Version);
+            return (_resultDataFactory.Create(resultInfo), resultInfo);
+        }
+
+        private global::MountainsClientDemoV2.State.MountainCollectionSegmentData? DeserializeIMountainsPage_MountainsPage(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("MountainCollectionSegment", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::MountainsClientDemoV2.State.MountainCollectionSegmentData(typename, pageInfo: DeserializeNonNullableIMountainsPage_MountainsPage_PageInfo(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "pageInfo")), items: UpdateIMountainsPage_MountainsPage_ItemsEntityNonNullableArray(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "items"), entityIds));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::MountainsClientDemoV2.State.CollectionSegmentInfoData DeserializeNonNullableIMountainsPage_MountainsPage_PageInfo(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("CollectionSegmentInfo", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::MountainsClientDemoV2.State.CollectionSegmentInfoData(typename, hasNextPage: DeserializeNonNullableBoolean(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "hasNextPage")), hasPreviousPage: DeserializeNonNullableBoolean(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "hasPreviousPage")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.Boolean DeserializeNonNullableBoolean(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _booleanParser.Parse(obj.Value.GetBoolean()!);
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.EntityId>? UpdateIMountainsPage_MountainsPage_ItemsEntityNonNullableArray(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            var mountains = new global::System.Collections.Generic.List<global::StrawberryShake.EntityId>();
+            foreach (global::System.Text.Json.JsonElement child in obj.Value.EnumerateArray())
+            {
+                mountains.Add(UpdateNonNullableIMountainsPage_MountainsPage_ItemsEntity(session, child, entityIds));
+            }
+
+            return mountains;
+        }
+
+        private global::StrawberryShake.EntityId UpdateNonNullableIMountainsPage_MountainsPage_ItemsEntity(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            global::StrawberryShake.EntityId entityId = _idSerializer.Parse(obj.Value);
+            entityIds.Add(entityId);
+            if (entityId.Name.Equals("Mountain", global::System.StringComparison.Ordinal))
+            {
+                if (session.CurrentSnapshot.TryGetEntity(entityId, out global::MountainsClientDemoV2.State.MountainEntity? entity))
+                {
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments"))));
+                }
+                else
+                {
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments"))));
+                }
+
+                return entityId;
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.Int32 DeserializeNonNullableInt32(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _intParser.Parse(obj.Value.GetInt32()!);
+        }
+
+        private global::System.String DeserializeNonNullableString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::System.Double DeserializeNonNullableDouble(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _floatParser.Parse(obj.Value.GetDouble()!);
+        }
+
+        private global::System.String? DeserializeString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
     public partial class UpdateMountainCommentBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IUpdateMountainCommentResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -2379,11 +2414,11 @@ namespace MountainsClientDemoV2.State
             {
                 if (session.CurrentSnapshot.TryGetEntity(entityId, out global::MountainsClientDemoV2.State.MountainEntity? entity))
                 {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), entity.OfficialName, entity.MetresAboveSeaLevel, entity.PrimaryFactor, entity.ReferencePoint, entity.County, entity.Municipality));
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), entity.OfficialName, entity.MetresAboveSeaLevel, entity.County, entity.Municipality, entity.PrimaryFactor, entity.ReferencePoint, DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments"))));
                 }
                 else
                 {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), default !, default !, default !, default !, default !, default !));
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), default !, default !, default !, default !, default !, default !, DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments"))));
                 }
 
                 return entityId;
@@ -2500,11 +2535,11 @@ namespace MountainsClientDemoV2.State
             {
                 if (session.CurrentSnapshot.TryGetEntity(entityId, out global::MountainsClientDemoV2.State.MountainEntity? entity))
                 {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments"))));
                 }
                 else
                 {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments"))));
                 }
 
                 return entityId;
@@ -2551,223 +2586,6 @@ namespace MountainsClientDemoV2.State
             }
 
             return _stringParser.Parse(obj.Value.GetString()!);
-        }
-    }
-
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPageBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::MountainsClientDemoV2.IMountainsPageResult>
-    {
-        private readonly global::StrawberryShake.IEntityStore _entityStore;
-        private readonly global::StrawberryShake.IEntityIdSerializer _idSerializer;
-        private readonly global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IMountainsPageResult> _resultDataFactory;
-        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Int32, global::System.Int32> _intParser;
-        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _stringParser;
-        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Boolean, global::System.Boolean> _booleanParser;
-        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Double, global::System.Double> _floatParser;
-        public MountainsPageBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::MountainsClientDemoV2.IMountainsPageResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
-        {
-            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
-            _idSerializer = idSerializer ?? throw new global::System.ArgumentNullException(nameof(idSerializer));
-            _resultDataFactory = resultDataFactory ?? throw new global::System.ArgumentNullException(nameof(resultDataFactory));
-            _intParser = serializerResolver.GetLeafValueParser<global::System.Int32, global::System.Int32>("Int") ?? throw new global::System.ArgumentException("No serializer for type `Int` found.");
-            _stringParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("String") ?? throw new global::System.ArgumentException("No serializer for type `String` found.");
-            _booleanParser = serializerResolver.GetLeafValueParser<global::System.Boolean, global::System.Boolean>("Boolean") ?? throw new global::System.ArgumentException("No serializer for type `Boolean` found.");
-            _floatParser = serializerResolver.GetLeafValueParser<global::System.Double, global::System.Double>("Float") ?? throw new global::System.ArgumentException("No serializer for type `Float` found.");
-        }
-
-        public global::StrawberryShake.IOperationResult<IMountainsPageResult> Build(global::StrawberryShake.Response<global::System.Text.Json.JsonDocument> response)
-        {
-            (IMountainsPageResult Result, MountainsPageResultInfo Info)? data = null;
-            global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.IClientError>? errors = null;
-            if (response.Exception is null)
-            {
-                try
-                {
-                    if (response.Body != null)
-                    {
-                        if (response.Body.RootElement.TryGetProperty("data", out global::System.Text.Json.JsonElement dataElement) && dataElement.ValueKind == global::System.Text.Json.JsonValueKind.Object)
-                        {
-                            data = BuildData(dataElement);
-                        }
-
-                        if (response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
-                        {
-                            errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
-                        }
-                    }
-                }
-                catch (global::System.Exception ex)
-                {
-                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(ex.Message, exception: ex, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
-                }
-            }
-            else
-            {
-                if (response.Body != null && response.Body.RootElement.TryGetProperty("errors", out global::System.Text.Json.JsonElement errorsElement))
-                {
-                    errors = global::StrawberryShake.Json.JsonErrorParser.ParseErrors(errorsElement);
-                }
-                else
-                {
-                    errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
-                }
-            }
-
-            return new global::StrawberryShake.OperationResult<IMountainsPageResult>(data?.Result, data?.Info, _resultDataFactory, errors);
-        }
-
-        private (IMountainsPageResult, MountainsPageResultInfo) BuildData(global::System.Text.Json.JsonElement obj)
-        {
-            var entityIds = new global::System.Collections.Generic.HashSet<global::StrawberryShake.EntityId>();
-            global::StrawberryShake.IEntityStoreSnapshot snapshot = default !;
-            global::MountainsClientDemoV2.State.MountainsPageConnectionData? mountainsPageId = default !;
-            _entityStore.Update(session =>
-            {
-                mountainsPageId = DeserializeIMountainsPage_MountainsPage(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "mountainsPage"), entityIds);
-                snapshot = session.CurrentSnapshot;
-            });
-            var resultInfo = new MountainsPageResultInfo(mountainsPageId, entityIds, snapshot.Version);
-            return (_resultDataFactory.Create(resultInfo), resultInfo);
-        }
-
-        private global::MountainsClientDemoV2.State.MountainsPageConnectionData? DeserializeIMountainsPage_MountainsPage(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
-        {
-            if (!obj.HasValue)
-            {
-                return null;
-            }
-
-            var typename = obj.Value.GetProperty("__typename").GetString();
-            if (typename?.Equals("MountainsPageConnection", global::System.StringComparison.Ordinal) ?? false)
-            {
-                return new global::MountainsClientDemoV2.State.MountainsPageConnectionData(typename, pageInfo: DeserializeNonNullableIMountainsPage_MountainsPage_PageInfo(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "pageInfo")), edges: DeserializeIMountainsPage_MountainsPage_EdgesNonNullableArray(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "edges"), entityIds));
-            }
-
-            throw new global::System.NotSupportedException();
-        }
-
-        private global::MountainsClientDemoV2.State.PageInfoData DeserializeNonNullableIMountainsPage_MountainsPage_PageInfo(global::System.Text.Json.JsonElement? obj)
-        {
-            if (!obj.HasValue)
-            {
-                throw new global::System.ArgumentNullException();
-            }
-
-            var typename = obj.Value.GetProperty("__typename").GetString();
-            if (typename?.Equals("PageInfo", global::System.StringComparison.Ordinal) ?? false)
-            {
-                return new global::MountainsClientDemoV2.State.PageInfoData(typename, hasNextPage: DeserializeNonNullableBoolean(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "hasNextPage")), hasPreviousPage: DeserializeNonNullableBoolean(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "hasPreviousPage")), startCursor: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "startCursor")), endCursor: DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "endCursor")));
-            }
-
-            throw new global::System.NotSupportedException();
-        }
-
-        private global::System.Boolean DeserializeNonNullableBoolean(global::System.Text.Json.JsonElement? obj)
-        {
-            if (!obj.HasValue)
-            {
-                throw new global::System.ArgumentNullException();
-            }
-
-            return _booleanParser.Parse(obj.Value.GetBoolean()!);
-        }
-
-        private global::System.String? DeserializeString(global::System.Text.Json.JsonElement? obj)
-        {
-            if (!obj.HasValue)
-            {
-                return null;
-            }
-
-            return _stringParser.Parse(obj.Value.GetString()!);
-        }
-
-        private global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.State.MountainsPageEdgeData>? DeserializeIMountainsPage_MountainsPage_EdgesNonNullableArray(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
-        {
-            if (!obj.HasValue)
-            {
-                return null;
-            }
-
-            var mountainsPageEdges = new global::System.Collections.Generic.List<global::MountainsClientDemoV2.State.MountainsPageEdgeData>();
-            foreach (global::System.Text.Json.JsonElement child in obj.Value.EnumerateArray())
-            {
-                mountainsPageEdges.Add(DeserializeNonNullableIMountainsPage_MountainsPage_Edges(session, child, entityIds));
-            }
-
-            return mountainsPageEdges;
-        }
-
-        private global::MountainsClientDemoV2.State.MountainsPageEdgeData DeserializeNonNullableIMountainsPage_MountainsPage_Edges(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
-        {
-            if (!obj.HasValue)
-            {
-                throw new global::System.ArgumentNullException();
-            }
-
-            var typename = obj.Value.GetProperty("__typename").GetString();
-            if (typename?.Equals("MountainsPageEdge", global::System.StringComparison.Ordinal) ?? false)
-            {
-                return new global::MountainsClientDemoV2.State.MountainsPageEdgeData(typename, node: UpdateNonNullableIMountainsPage_MountainsPage_Edges_NodeEntity(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "node"), entityIds));
-            }
-
-            throw new global::System.NotSupportedException();
-        }
-
-        private global::StrawberryShake.EntityId UpdateNonNullableIMountainsPage_MountainsPage_Edges_NodeEntity(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
-        {
-            if (!obj.HasValue)
-            {
-                throw new global::System.ArgumentNullException();
-            }
-
-            global::StrawberryShake.EntityId entityId = _idSerializer.Parse(obj.Value);
-            entityIds.Add(entityId);
-            if (entityId.Name.Equals("Mountain", global::System.StringComparison.Ordinal))
-            {
-                if (session.CurrentSnapshot.TryGetEntity(entityId, out global::MountainsClientDemoV2.State.MountainEntity? entity))
-                {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
-                }
-                else
-                {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
-                }
-
-                return entityId;
-            }
-
-            throw new global::System.NotSupportedException();
-        }
-
-        private global::System.Int32 DeserializeNonNullableInt32(global::System.Text.Json.JsonElement? obj)
-        {
-            if (!obj.HasValue)
-            {
-                throw new global::System.ArgumentNullException();
-            }
-
-            return _intParser.Parse(obj.Value.GetInt32()!);
-        }
-
-        private global::System.String DeserializeNonNullableString(global::System.Text.Json.JsonElement? obj)
-        {
-            if (!obj.HasValue)
-            {
-                throw new global::System.ArgumentNullException();
-            }
-
-            return _stringParser.Parse(obj.Value.GetString()!);
-        }
-
-        private global::System.Double DeserializeNonNullableDouble(global::System.Text.Json.JsonElement? obj)
-        {
-            if (!obj.HasValue)
-            {
-                throw new global::System.ArgumentNullException();
-            }
-
-            return _floatParser.Parse(obj.Value.GetDouble()!);
         }
     }
 
@@ -2874,11 +2692,11 @@ namespace MountainsClientDemoV2.State
             {
                 if (session.CurrentSnapshot.TryGetEntity(entityId, out global::MountainsClientDemoV2.State.MountainEntity? entity))
                 {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments"))));
                 }
                 else
                 {
-                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality"))));
+                    session.SetEntity(entityId, new global::MountainsClientDemoV2.State.MountainEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "officialName")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "metresAboveSeaLevel")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "county")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "municipality")), DeserializeNonNullableDouble(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "primaryFactor")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "referencePoint")), DeserializeString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "comments"))));
                 }
 
                 return entityId;
@@ -2928,68 +2746,42 @@ namespace MountainsClientDemoV2.State
         }
     }
 
-    ///<summary>A connection to a list of items.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPageConnectionData
+    public partial class MountainCollectionSegmentData
     {
-        public MountainsPageConnectionData(global::System.String __typename, global::MountainsClientDemoV2.State.PageInfoData? pageInfo = default !, global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.State.MountainsPageEdgeData>? edges = default !)
+        public MountainCollectionSegmentData(global::System.String __typename, global::MountainsClientDemoV2.State.CollectionSegmentInfoData? pageInfo = default !, global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.EntityId>? items = default !)
         {
             this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
             PageInfo = pageInfo;
-            Edges = edges;
+            Items = items;
         }
 
         public global::System.String __typename { get; }
 
         ///<summary>Information to aid in pagination.</summary>
-        public global::MountainsClientDemoV2.State.PageInfoData? PageInfo { get; }
+        public global::MountainsClientDemoV2.State.CollectionSegmentInfoData? PageInfo { get; }
 
-        ///<summary>A list of edges.</summary>
-        public global::System.Collections.Generic.IReadOnlyList<global::MountainsClientDemoV2.State.MountainsPageEdgeData>? Edges { get; }
+        public global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.EntityId>? Items { get; }
     }
 
-    ///<summary>Information about pagination in a connection.</summary>
+    ///<summary>Information about the offset pagination.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class PageInfoData
+    public partial class CollectionSegmentInfoData
     {
-        public PageInfoData(global::System.String __typename, global::System.Boolean? hasNextPage = default !, global::System.Boolean? hasPreviousPage = default !, global::System.String? startCursor = default !, global::System.String? endCursor = default !)
+        public CollectionSegmentInfoData(global::System.String __typename, global::System.Boolean? hasNextPage = default !, global::System.Boolean? hasPreviousPage = default !)
         {
             this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
             HasNextPage = hasNextPage;
             HasPreviousPage = hasPreviousPage;
-            StartCursor = startCursor;
-            EndCursor = endCursor;
         }
 
         public global::System.String __typename { get; }
 
-        ///<summary>Indicates whether more edges exist following the set defined by the clients arguments.</summary>
+        ///<summary>Indicates whether more items exist following the set defined by the clients arguments.</summary>
         public global::System.Boolean? HasNextPage { get; }
 
-        ///<summary>Indicates whether more edges exist prior the set defined by the clients arguments.</summary>
+        ///<summary>Indicates whether more items exist prior the set defined by the clients arguments.</summary>
         public global::System.Boolean? HasPreviousPage { get; }
-
-        ///<summary>When paginating backwards, the cursor to continue.</summary>
-        public global::System.String? StartCursor { get; }
-
-        ///<summary>When paginating forwards, the cursor to continue.</summary>
-        public global::System.String? EndCursor { get; }
-    }
-
-    ///<summary>An edge in a connection.</summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]
-    public partial class MountainsPageEdgeData
-    {
-        public MountainsPageEdgeData(global::System.String __typename, global::StrawberryShake.EntityId? node = default !)
-        {
-            this.__typename = __typename ?? throw new global::System.ArgumentNullException(nameof(__typename));
-            Node = node;
-        }
-
-        public global::System.String __typename { get; }
-
-        ///<summary>The item at the end of the edge.</summary>
-        public global::StrawberryShake.EntityId? Node { get; }
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.15.0.0")]

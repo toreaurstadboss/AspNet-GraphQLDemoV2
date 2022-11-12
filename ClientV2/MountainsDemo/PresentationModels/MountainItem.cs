@@ -24,7 +24,11 @@ namespace MountainsDemo.PresentationModels
         public MountainItem(IGetMountains_Mountains mountain) :
             this(mountain.Id, mountain.OfficialName, mountain.MetresAboveSeaLevel, mountain.PrimaryFactor, mountain.ReferencePoint, mountain.County, mountain.Municipality, mountain.Comments)
         {
+        }
 
+        public MountainItem(IMountainsPage_MountainsPage_Items mountain) :
+            this(mountain.Id, mountain.OfficialName, mountain.MetresAboveSeaLevel, mountain.PrimaryFactor, mountain.ReferencePoint, mountain.County, mountain.Municipality, mountain.Comments)
+        {
         }
 
         public global::System.Int32 Id { get; set; }

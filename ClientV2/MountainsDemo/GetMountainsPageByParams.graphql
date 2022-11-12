@@ -1,0 +1,20 @@
+query mountainsPage ($pageSize : Int, $startIndex: Int) {
+ 
+  mountainsPage(take: $pageSize, skip: $startIndex ) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+    }
+    items{
+       id
+        officialName
+        metresAboveSeaLevel
+        county
+        municipality
+        primaryFactor
+        referencePoint
+        comments     
+      
+    }
+  }
+}
