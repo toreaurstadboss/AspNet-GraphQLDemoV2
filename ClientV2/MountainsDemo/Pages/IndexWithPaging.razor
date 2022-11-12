@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/mountainsPaginated"
 @using Blazorise
 @using Blazorise.DataGrid
 @using System.Text.Json
@@ -21,27 +21,6 @@
 <Card></Card>
 Clientside : .net 6 Blazor wasm with StrawberryShake to access GraphQL Server
 Backend: HotChocolate GraphQL server
-Note: Pagination is provided via the built-in pagination of Blazorise.DataGrid component, but ALL data is loaded on page loaded here since the GraphQL query used does not specify pagination.
-
-<Blazorise.Bootstrap.Button Color="Color.Success" Clicked="@ShowGraphQLQueryTextModal">
-    Show GraphQL Query used
-</Blazorise.Bootstrap.Button>
-
-<Modal @ref="MountainsQueryDialogExampleModal">
-    <ModalContent Centered>
-        <ModalHeader>
-            <ModalTitle>GraphQL query used to fetch data</ModalTitle>
-        </ModalHeader>
-        <ModalBody>
-            <MemoEdit Rows="20" Text="@querySample1">                  
-            </MemoEdit>
-        </ModalBody>
-        <ModalFooter>
-            <Button Color="Color.Secondary" Clicked="@HideGraphQLQueryTextModal">Close</Button>
-        </ModalFooter>
-    </ModalContent>
-</Modal>
-
 
 <DataGrid Data="@mountainsResult"
           TItem="MountainItem"
@@ -106,34 +85,9 @@ Note: Pagination is provided via the built-in pagination of Blazorise.DataGrid c
 
     [Inject] private MountainsDemoV2 client { get; set; }
 
-    private Modal? MountainsQueryDialogExampleModal;
-
     private MountainItem? selectedMountain;
 
-    private string querySample1 = 
-    @" query GetMountains {
-                 mountains {
-                    id
-                    officialName
-                    metresAboveSeaLevel
-                    primaryFactor
-                    officialName
-                    referencePoint
-                    county
-                    municipality
-                    comments
-          }
-      }";
-
     private IList<MountainItem>? mountainsResult;
-
-    private Task ShowGraphQLQueryTextModal(){
-        return MountainsQueryDialogExampleModal!.Show();
-    }
-
-    private Task HideGraphQLQueryTextModal(){
-        return MountainsQueryDialogExampleModal!.Hide(); 
-    }    
 
     protected void OnSelectedRowChanged(MountainItem model)
     {
@@ -145,8 +99,6 @@ Note: Pagination is provided via the built-in pagination of Blazorise.DataGrid c
     {
         var mountainsFromServer = await client.GetMountains.ExecuteAsync();
         mountainsResult = mountainsFromServer?.Data?.Mountains?.Select(x => new MountainItem(x)).ToList();
-
-
     }
 
     public void OnRowUpdatingAsync(CancellableRowChange<MountainItem, Dictionary<string, object>> e){

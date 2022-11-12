@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -44,6 +44,7 @@
 
   <ItemGroup>
     <None Remove="Mutations\UpdateMountain.graphql" />
+    <None Remove="Queries\GetMountainPageByParams.graphql" />
     <None Remove="UpdateMountain.graphql" />
   </ItemGroup>
 
