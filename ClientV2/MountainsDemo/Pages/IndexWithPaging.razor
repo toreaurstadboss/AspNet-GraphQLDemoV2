@@ -22,7 +22,7 @@
 <Card></Card>
 Clientside : .net 6 Blazor wasm with StrawberryShake to access GraphQL Server
 Backend: HotChocolate GraphQL server
-This page uses a paginated query to fetch data from the server using cursor based pagination (and not offset based pagination).
+This page uses a paginated query to fetch data from the server using offset based pagination (and not cursor based pagination) in GraphQL.
 
 <DataGrid @ref="MountainsDataPaginatedGrid"
           Data="@mountainsResult"          
@@ -36,24 +36,23 @@ This page uses a paginated query to fetch data from the server using cursor base
           Striped="true"
           EditMode="DataGridEditMode.Popup"
           PageSizeChanged="OnPageSizeChangedAsync"
-          PageChanged="OnPageChangedAsync"
           RowUpdating="OnRowUpdatingAsync"
           RowUpdated="OnRowUpdatedAsync"          
           Hoverable="true"
           Responsive="true">
     <ChildContent>
-<FirstPageButtonTemplate>
-    <Button>First page</Button> <!-- TODO : implement custom control of the paging ! -->
-</FirstPageButtonTemplate>
-<FirstPageButtonTemplate>
-    <Button>Last page</Button>
-</FirstPageButtonTemplate>
-<PreviousPageButtonTemplate>
-    <Button>Previous page</Button>
-</PreviousPageButtonTemplate>
-<NextPageButtonTemplate>
-    Next page
-</NextPageButtonTemplate>
+        <FirstPageButtonTemplate>
+            <Button Class="page-item" Color="Color.Link">First</Button> <!-- TODO : implement custom control of the paging ! -->
+        </FirstPageButtonTemplate>        
+        <PreviousPageButtonTemplate>
+            <Button Class="page-item" Color="Color.Link">Prev</Button>
+        </PreviousPageButtonTemplate>
+        <NextPageButtonTemplate>
+            <Button Class="page-item" Color="Color.Link">Next</Button>
+        </NextPageButtonTemplate>
+         <LastPageButtonTemplate>
+            <Button Class="page-item" Color="Color.Link">Last</Button>
+        </LastPageButtonTemplate>
         <DataGridCommandColumn TItem="MountainItem" Width="200">
               <EditCommandTemplate>
                <Button Margin="Margin.Is1" Color="Color.Success" Clicked="@context.Clicked">Edit</Button>
@@ -90,10 +89,21 @@ This page uses a paginated query to fetch data from the server using cursor base
         <div class="box">
             <progress class="progress is-small is-primary" max="100" />
         </div>
-    </LoadingTemplate>
-  
+    </LoadingTemplate>        
 
 </DataGrid>
+
+<ul class="pagination">
+ @{
+     
+ }
+ @foreach (var i in Enumerable.Range(0, 10)){
+    <li class="page-item"><a onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, @i))" title="Go to page @i" style="color:black;cursor:pointer;" class="page-link">@i</a></li>
+ }
+</ul>
+<div class="inline-block">
+    1-5 of @totalCountMountainsPaginatedData items
+</div>
 
 @code {
 
@@ -107,6 +117,12 @@ This page uses a paginated query to fetch data from the server using cursor base
 
     private int startIndexGetMountainsPaginatedData;
 
+    private int totalCountMountainsPaginatedData;
+
+    private int currentPageMountainsPaginatedData;
+
+    private int pageSizeGetMountainsPaginatedData = 5;
+
     private DataGrid<MountainItem>? MountainsDataPaginatedGrid;
 
     protected void OnSelectedRowChanged(MountainItem model)
@@ -117,22 +133,15 @@ This page uses a paginated query to fetch data from the server using cursor base
 
     protected override async Task OnParametersSetAsync()
     {
-        await ReloadMountainData(5);
+        await ReloadMountainData(5, 0);
     }
 
     public async Task OnPageSizeChangedAsync(int pageSize){
         if (MountainsDataPaginatedGrid == null){
             return;
-        }      
-        await ReloadMountainData(pageSize);
-    }
-
-    public async Task OnPageChangedAsync(DataGridPageChangedEventArgs pageChanged){
-        if (MountainsDataPaginatedGrid == null){
-            return;
         }
-        int pageSize = MountainsDataPaginatedGrid?.PageSize ?? 5;
-        await ReloadMountainData(pageSize);
+        pageSizeGetMountainsPaginatedData = pageSize;
+        await ReloadMountainData(pageSize, 0);
     }
 
     public void OnRowUpdatingAsync(CancellableRowChange<MountainItem, Dictionary<string, object>> e){
@@ -160,21 +169,17 @@ This page uses a paginated query to fetch data from the server using cursor base
         }
     }
 
-    private async Task ReloadMountainData(int pageSize){
-        int pageIndex = 0;
-        if(MountainsDataPaginatedGrid != null){
-            pageIndex = MountainsDataPaginatedGrid.CurrentPage;
-        }
+    private async Task ReloadMountainData(int pageSize, int pageIndex){
+        Console.WriteLine("Inside ReloadMountainsData");
+
         startIndexGetMountainsPaginatedData = pageIndex * pageSize;     
         var mountainsFromServerPaginated = await client.MountainsPage.ExecuteAsync(pageSize, startIndexGetMountainsPaginatedData);
         mountainsResult = mountainsFromServerPaginated!.Data!.MountainsPage!.Items!.Select(e => new MountainItem(e)).ToList();
 
-        if (MountainsDataPaginatedGrid != null){
-            MountainsDataPaginatedGrid.TotalItems = 100; // mountainsFromServerPaginated.Data.MountainsPage.TotalCount;
-        }
+        totalCountMountainsPaginatedData = mountainsFromServerPaginated!.Data!.MountainsPage!.TotalCount;
 
         Console.WriteLine("Page info:" + JsonSerializer.Serialize(mountainsFromServerPaginated.Data.MountainsPage.PageInfo));
-
+        StateHasChanged();
     }
 
 }
