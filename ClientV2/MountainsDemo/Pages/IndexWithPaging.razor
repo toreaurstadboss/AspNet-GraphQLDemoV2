@@ -55,10 +55,10 @@ This page uses a paginated query to fetch data from the server using offset base
         </LastPageButtonTemplate>
         <DataGridCommandColumn TItem="MountainItem" Width="200">
               <EditCommandTemplate>
-               <Button Margin="Margin.Is1" Color="Color.Success" Clicked="@context.Clicked">Edit</Button>
+               <Button Margin="Margin.Is1" Color="Color.Success" Clicked="@context.Clicked" Outline>Edit</Button>
             </EditCommandTemplate>
             <DeleteCommandTemplate>
-                <Button Margin="Margin.Is1" Color="Color.Danger" Clicked="@context.Clicked">Delete</Button>
+                <Button Margin="Margin.Is1" Color="Color.Danger" Clicked="@context.Clicked" Outline>Delete</Button>
             </DeleteCommandTemplate>
         </DataGridCommandColumn>
         <DataGridColumn TItem="MountainItem" Field="Id" Caption="Id" Sortable="true" Displayable="true" />
@@ -98,7 +98,7 @@ This page uses a paginated query to fetch data from the server using offset base
      
  }
  @foreach (var i in Enumerable.Range(0, 10)){
-    <li class="page-item"><a onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, @i))" title="Go to page @i" style="color:black;cursor:pointer;" class="page-link">@i</a></li>
+    <li class="page-item"><a onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, @i))" title="Go to page @i" style="color:black;cursor:pointer;font-weight:@GetFontWeightForPage(@i)" class="page-link">@i</a></li>
  }
 </ul>
 <div class="inline-block">
@@ -115,7 +115,7 @@ This page uses a paginated query to fetch data from the server using offset base
 
     private IList<MountainItem>? mountainsResult;
 
-    private int startIndexGetMountainsPaginatedData;
+    private int startIndexMountainsPaginatedData;
 
     private int totalCountMountainsPaginatedData;
 
@@ -124,6 +124,11 @@ This page uses a paginated query to fetch data from the server using offset base
     private int pageSizeGetMountainsPaginatedData = 5;
 
     private DataGrid<MountainItem>? MountainsDataPaginatedGrid;
+
+    private string GetFontWeightForPage(int pageIndex){
+        return pageIndex != currentPageMountainsPaginatedData ? "normal" : "bold";
+
+    }
 
     protected void OnSelectedRowChanged(MountainItem model)
     {
@@ -171,9 +176,9 @@ This page uses a paginated query to fetch data from the server using offset base
 
     private async Task ReloadMountainData(int pageSize, int pageIndex){
         Console.WriteLine("Inside ReloadMountainsData");
-
-        startIndexGetMountainsPaginatedData = pageIndex * pageSize;     
-        var mountainsFromServerPaginated = await client.MountainsPage.ExecuteAsync(pageSize, startIndexGetMountainsPaginatedData);
+        currentPageMountainsPaginatedData = pageIndex;
+        startIndexMountainsPaginatedData = pageIndex * pageSize;     
+        var mountainsFromServerPaginated = await client.MountainsPage.ExecuteAsync(pageSize, startIndexMountainsPaginatedData);
         mountainsResult = mountainsFromServerPaginated!.Data!.MountainsPage!.Items!.Select(e => new MountainItem(e)).ToList();
 
         totalCountMountainsPaginatedData = mountainsFromServerPaginated!.Data!.MountainsPage!.TotalCount;

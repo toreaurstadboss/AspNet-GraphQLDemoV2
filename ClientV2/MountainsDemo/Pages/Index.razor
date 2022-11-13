@@ -61,10 +61,10 @@ Note: Pagination is provided via the built-in pagination of Blazorise.DataGrid c
     <ChildContent>
         <DataGridCommandColumn TItem="MountainItem" Width="200">
               <EditCommandTemplate>
-               <Button Margin="Margin.Is1" Color="Color.Success" Clicked="@context.Clicked">Edit</Button>
+               <Button Margin="Margin.Is1" Color="Color.Success" Clicked="@context.Clicked" Outline>Edit</Button>
             </EditCommandTemplate>
             <DeleteCommandTemplate>
-                <Button Margin="Margin.Is1" Color="Color.Danger" Clicked="@context.Clicked">Delete</Button>
+                <Button Margin="Margin.Is1" Color="Color.Danger" Clicked="@context.Clicked" Outline>Delete</Button>
             </DeleteCommandTemplate>
         </DataGridCommandColumn>
         <DataGridColumn TItem="MountainItem" Field="Id" Caption="Id" Sortable="true" Displayable="true" />
