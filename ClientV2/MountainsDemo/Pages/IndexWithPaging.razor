@@ -18,11 +18,29 @@
     </Figure>
 </h5>
 
-
 <Card></Card>
 Clientside : .net 6 Blazor wasm with StrawberryShake to access GraphQL Server
 Backend: HotChocolate GraphQL server
 This page uses a paginated query to fetch data from the server using offset based pagination (and not cursor based pagination) in GraphQL.
+
+<Blazorise.Bootstrap.Button Color="Color.Success" Clicked="@ShowGraphQLQueryTextModal">
+    Show GraphQL Query used
+</Blazorise.Bootstrap.Button>
+
+<Modal @ref="MountainsQueryDialogExampleModal">
+    <ModalContent Centered>
+        <ModalHeader>
+            <ModalTitle>GraphQL query used to fetch data</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
+            <MemoEdit Rows="20" Text="@querySample1">
+            </MemoEdit>
+        </ModalBody>
+        <ModalFooter>
+            <Button Color="Color.Secondary" Clicked="@HideGraphQLQueryTextModal">Close</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
 
 <DataGrid @ref="MountainsDataPaginatedGrid"
           Data="@mountainsResult"          
@@ -110,6 +128,8 @@ This page uses a paginated query to fetch data from the server using offset base
     [Inject] private ILogger<Index> log { get; init; }
 
     [Inject] private MountainsDemoV2 client { get; set; }
+
+    private Modal? MountainsQueryDialogExampleModal;
 
     private MountainItem? selectedMountain;
 
@@ -224,5 +244,38 @@ This page uses a paginated query to fetch data from the server using offset base
         Console.WriteLine("Page info:" + JsonSerializer.Serialize(mountainsFromServerPaginated.Data.MountainsPage.PageInfo));
         StateHasChanged();
     }
+
+    private Task ShowGraphQLQueryTextModal()
+    {
+        return MountainsQueryDialogExampleModal!.Show();
+    }
+
+    private Task HideGraphQLQueryTextModal()
+    {
+        return MountainsQueryDialogExampleModal!.Hide();
+    }
+
+    private string querySample1 =
+           @" query mountainsPage ($pageSize : Int, $startIndex: Int) {
+            mountainsPage(take: $pageSize, skip: $startIndex ) {
+              totalCount
+              pageInfo {
+                hasNextPage
+                hasPreviousPage
+              }
+              items{
+                 id
+                  officialName
+                  metresAboveSeaLevel
+                  county
+                  municipality
+                  primaryFactor
+                  referencePoint
+                  comments
+            
+              }
+            }
+          }
+      }";
 
 }
