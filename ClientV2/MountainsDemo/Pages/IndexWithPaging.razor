@@ -27,7 +27,7 @@ This page uses a paginated query to fetch data from the server using offset base
 <DataGrid @ref="MountainsDataPaginatedGrid"
           Data="@mountainsResult"          
           TItem="MountainItem"
-          Filterable="true"
+          Filterable="false"
           FilterMethod="DataGridFilterMethod.Contains"
           ShowPager="false"
           @bind-SelectedRow="@selectedMountain"
@@ -97,7 +97,7 @@ This page uses a paginated query to fetch data from the server using offset base
  @{
      
  }
- @foreach (var i in Enumerable.Range(0, 10)){
+ @foreach (var i in Enumerable.Range(GetSuitableFirstPage(), GetPageRangeAvailable())){
     <li class="page-item"><a onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, @i))" title="Go to page @i" style="color:black;cursor:pointer;font-weight:@GetFontWeightForPage(@i)" class="page-link">@i</a></li>
  }
 </ul>
@@ -127,6 +127,26 @@ This page uses a paginated query to fetch data from the server using offset base
 
     private string GetFontWeightForPage(int pageIndex){
         return pageIndex != currentPageMountainsPaginatedData ? "normal" : "bold";    
+    }
+
+    private int GetSuitableFirstPage(){
+        if (GetLastPageIndex() - 10 < currentPageMountainsPaginatedData){
+            return Math.Max(0, currentPageMountainsPaginatedData - 4);
+        }
+        return Math.Max(0, currentPageMountainsPaginatedData - 4);
+    }
+
+    private int GetPageRangeAvailable(){
+        int lastPage = GetLastPageIndex();
+        int pageRange = 1;
+        if (currentPageMountainsPaginatedData < lastPage - 10){
+            pageRange = 10;
+        }
+        else if (lastPage - currentPageMountainsPaginatedData < 10) {
+            pageRange = Math.Max(1, GetLastPageIndex() - GetSuitableFirstPage() + 1);
+        }
+        //StateHasChanged();
+        return pageRange;
     }
 
     private int GetLastPageIndex(){
