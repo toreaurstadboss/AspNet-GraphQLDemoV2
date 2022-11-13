@@ -44,11 +44,11 @@ This page uses a paginated query to fetch data from the server using offset base
         <FirstPageButtonTemplate>
             <Button Class="page-item" Color="Color.Link">First</Button> <!-- TODO : implement custom control of the paging ! -->
         </FirstPageButtonTemplate>        
-        <PreviousPageButtonTemplate>
+        <PreviousPageButtonTemplate @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, ++currentPageMountainsPaginatedData))">
             <Button Class="page-item" Color="Color.Link">Prev</Button>
         </PreviousPageButtonTemplate>
         <NextPageButtonTemplate>
-            <Button Class="page-item" Color="Color.Link">Next</Button>
+            <Button Class="page-item" @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, ++currentPageMountainsPaginatedData))" Color="Color.Link">Next</Button>
         </NextPageButtonTemplate>
          <LastPageButtonTemplate>
             <Button Class="page-item" Color="Color.Link">Last</Button>
@@ -102,7 +102,7 @@ This page uses a paginated query to fetch data from the server using offset base
  }
 </ul>
 <div class="inline-block">
-    1-5 of @totalCountMountainsPaginatedData items
+    @(startIndexMountainsPaginatedData) - @(startIndexMountainsPaginatedData+pageSizeGetMountainsPaginatedData) of @totalCountMountainsPaginatedData items
 </div>
 
 @code {
@@ -175,6 +175,9 @@ This page uses a paginated query to fetch data from the server using offset base
     }
 
     private async Task ReloadMountainData(int pageSize, int pageIndex){
+        if (pageIndex < 0){
+            pageIndex = 0;
+        }
         Console.WriteLine("Inside ReloadMountainsData");
         currentPageMountainsPaginatedData = pageIndex;
         startIndexMountainsPaginatedData = pageIndex * pageSize;     
