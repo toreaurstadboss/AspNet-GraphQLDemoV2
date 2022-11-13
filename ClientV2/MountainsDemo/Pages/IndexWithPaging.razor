@@ -42,15 +42,15 @@ This page uses a paginated query to fetch data from the server using offset base
           Responsive="true">
     <ChildContent>
         <FirstPageButtonTemplate>
-            <Button Class="page-item" Color="Color.Link">First</Button> <!-- TODO : implement custom control of the paging ! -->
+            <Button Class="page-item" @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, 0))" Color="Color.Link">First</Button> <!-- TODO : implement custom control of the paging ! -->
         </FirstPageButtonTemplate>        
-        <PreviousPageButtonTemplate @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, ++currentPageMountainsPaginatedData))">
+        <PreviousPageButtonTemplate @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, --currentPageMountainsPaginatedData))">
             <Button Class="page-item" Color="Color.Link">Prev</Button>
         </PreviousPageButtonTemplate>
         <NextPageButtonTemplate>
             <Button Class="page-item" @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, ++currentPageMountainsPaginatedData))" Color="Color.Link">Next</Button>
         </NextPageButtonTemplate>
-         <LastPageButtonTemplate>
+         <LastPageButtonTemplate @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, GetLastPageIndex()))">
             <Button Class="page-item" Color="Color.Link">Last</Button>
         </LastPageButtonTemplate>
         <DataGridCommandColumn TItem="MountainItem" Width="200">
@@ -102,7 +102,7 @@ This page uses a paginated query to fetch data from the server using offset base
  }
 </ul>
 <div class="inline-block">
-    @(startIndexMountainsPaginatedData) - @(startIndexMountainsPaginatedData+pageSizeGetMountainsPaginatedData) of @totalCountMountainsPaginatedData items
+    @(startIndexMountainsPaginatedData) - @(Math.Min(startIndexMountainsPaginatedData+pageSizeGetMountainsPaginatedData, totalCountMountainsPaginatedData)) of @totalCountMountainsPaginatedData items
 </div>
 
 @code {
@@ -126,8 +126,20 @@ This page uses a paginated query to fetch data from the server using offset base
     private DataGrid<MountainItem>? MountainsDataPaginatedGrid;
 
     private string GetFontWeightForPage(int pageIndex){
-        return pageIndex != currentPageMountainsPaginatedData ? "normal" : "bold";
+        return pageIndex != currentPageMountainsPaginatedData ? "normal" : "bold";    
+    }
 
+    private int GetLastPageIndex(){
+        if (totalCountMountainsPaginatedData > 0 && pageSizeGetMountainsPaginatedData > 0){
+            int lastPage = (totalCountMountainsPaginatedData / pageSizeGetMountainsPaginatedData) - 1; //0-indexed pages so need to subtract 1
+            if (((lastPage+1) * pageSizeGetMountainsPaginatedData) < totalCountMountainsPaginatedData){
+                lastPage++;
+            }
+            if (lastPage > 0){
+                return lastPage;
+            }
+        }
+        return 0;
     }
 
     protected void OnSelectedRowChanged(MountainItem model)
@@ -177,6 +189,9 @@ This page uses a paginated query to fetch data from the server using offset base
     private async Task ReloadMountainData(int pageSize, int pageIndex){
         if (pageIndex < 0){
             pageIndex = 0;
+        }
+        if (pageIndex > GetLastPageIndex()){
+            pageIndex = GetLastPageIndex();
         }
         Console.WriteLine("Inside ReloadMountainsData");
         currentPageMountainsPaginatedData = pageIndex;
