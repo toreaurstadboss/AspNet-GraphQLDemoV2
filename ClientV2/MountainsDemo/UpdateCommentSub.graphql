@@ -1,0 +1,7 @@
+﻿subscription commentUpdated {
+  commentUpdated {
+    id
+    officialName
+    comments
+  }
+}

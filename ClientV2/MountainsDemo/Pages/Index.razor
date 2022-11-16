@@ -23,8 +23,8 @@ Clientside : .net 6 Blazor wasm with StrawberryShake to access GraphQL Server
 Backend: HotChocolate GraphQL server
 Note: Pagination is provided via the built-in pagination of Blazorise.DataGrid component, but ALL data is loaded on page loaded here since the GraphQL query used does not specify pagination.
 
-<Blazorise.Bootstrap.Button Color="Color.Success" Clicked="@ShowGraphQLQueryTextModal">
-    Show GraphQL Query used
+<Blazorise.Bootstrap.Button Color="Color.Info" Clicked="@ShowGraphQLQueryTextModal">
+    Show GraphQL Query
 </Blazorise.Bootstrap.Button>
 
 <Modal @ref="MountainsQueryDialogExampleModal">

@@ -23,8 +23,8 @@ Clientside : .net 6 Blazor wasm with StrawberryShake to access GraphQL Server
 Backend: HotChocolate GraphQL server
 This page uses a paginated query to fetch data from the server using offset based pagination (and not cursor based pagination) in GraphQL.
 
-<Blazorise.Bootstrap.Button Color="Color.Success" Clicked="@ShowGraphQLQueryTextModal">
-    Show GraphQL Query used
+<Blazorise.Bootstrap.Button Color="Color.Info" Clicked="@ShowGraphQLQueryTextModal">
+    Show GraphQL Query
 </Blazorise.Bootstrap.Button>
 
 <Modal @ref="MountainsQueryDialogExampleModal">
@@ -41,6 +41,12 @@ This page uses a paginated query to fetch data from the server using offset base
         </ModalFooter>
     </ModalContent>
 </Modal>
+
+<Snackbar @ref="updatedCommentToast" Color="SnackbarColor.Info">
+    <SnackbarBody>
+        @updatedCommentToastText  
+    </SnackbarBody>
+</Snackbar>
 
 <DataGrid @ref="MountainsDataPaginatedGrid"
           Data="@mountainsResult"          
@@ -145,6 +151,10 @@ This page uses a paginated query to fetch data from the server using offset base
 
     private DataGrid<MountainItem>? MountainsDataPaginatedGrid;
 
+    private Snackbar? updatedCommentToast;
+
+    private string? updatedCommentToastText;
+
     private string GetFontWeightForPage(int pageIndex){
         return pageIndex != currentPageMountainsPaginatedData ? "normal" : "bold";    
     }
@@ -191,6 +201,7 @@ This page uses a paginated query to fetch data from the server using offset base
     protected override async Task OnParametersSetAsync()
     {
         await ReloadMountainData(5, 0);
+        SubscribeToGraphQLEvents();
     }
 
     public async Task OnPageSizeChangedAsync(int pageSize){
@@ -224,6 +235,15 @@ This page uses a paginated query to fetch data from the server using offset base
             client.UpdateMountainComment.ExecuteAsync(selectedMountain.Id, comments);
             StateHasChanged();
         }
+    }
+
+    private void SubscribeToGraphQLEvents(){
+        client.CommentUpdated.Watch().Subscribe(result =>
+        {
+            var mountainUpdated = result?.Data as MountainItem;
+            updatedCommentToastText = $"Update the comment of mountain with id: {mountainUpdated?.Id} and name: { mountainUpdated?.OfficialName} with a comment set to: {mountainUpdated?.Comments}";
+            updatedCommentToast.Show();
+        });
     }
 
     private async Task ReloadMountainData(int pageSize, int pageIndex){

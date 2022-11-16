@@ -8,10 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Helpers\**" />
+    <Content Remove="Helpers\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <GraphQL Remove="Helpers\**" />
+    <GraphQLConfig Remove="Helpers\**" />
+    <None Remove="Helpers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazorise.Snackbar" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
@@ -19,10 +29,12 @@
 	  <!--<PackageReference Include="StrawberryShake.Blazor" Version="13.0.0-preview.68" />-->
 	  <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="12.15.0" />
 	  <PackageReference Include="StrawberryShake.Transport.Http" Version="12.15.0" />
+	  <PackageReference Include="StrawberryShake.Transport.WebSockets" Version="12.15.0" />
 	  <PackageReference Include="StrawberryShake.Tools.Configuration" Version="12.15.0" />
 	  <PackageReference Include="blazorise.bootstrap" Version="1.1.2" />
 	  <PackageReference Include="Blazorise.DataGrid" Version="1.1.2" />
 	  <PackageReference Include="blazorise.icons.fontawesome" Version="1.1.2" />
+	  <PackageReference Include="System.Reactive" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,7 +64,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helpers\" />
+    <None Include="UpdateCommentSub.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Subscriptions\" />
   </ItemGroup>
 
 </Project>

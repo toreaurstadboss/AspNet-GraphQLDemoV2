@@ -1,6 +1,7 @@
 ﻿schema {
   query: MountainQueries
   mutation: MountainMutations
+  subscription: MountainSubscriptions
 }
 
 type MountainQueries {
@@ -14,6 +15,10 @@ type MountainMutations {
   removeMountain(id: Int!): Mountain
   updateMountainComment(mountainId: Int! comments: String!): Mountain
   updateMountain(mountain: MountainInput!): Mountain
+}
+
+type MountainSubscriptions {
+  commentUpdated: MountainCommentUpdatedInfo
 }
 
 input MountainFilterInput {
@@ -114,6 +119,12 @@ type CollectionSegmentInfo {
   hasNextPage: Boolean!
   "Indicates whether more items exist prior the set defined by the clients arguments."
   hasPreviousPage: Boolean!
+}
+
+type MountainCommentUpdatedInfo {
+  id: Int
+  officialName: String
+  comments: String
 }
 
 input MountainInput {

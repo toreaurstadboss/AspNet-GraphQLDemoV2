@@ -1,4 +1,7 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@using Blazorise
+
+<Blazorise.ThemeProvider Theme="@theme">
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -10,3 +13,30 @@
         </LayoutView>
     </NotFound>
 </Router>
+</Blazorise.ThemeProvider>
+
+@code {
+
+
+    private Theme theme = new Theme
+    {
+        ColorOptions = new ThemeColorOptions{
+            Info = HexConverter(System.Drawing.Color.LightBlue)
+        }
+    };
+
+    private static string HexConverter(System.Drawing.Color c)
+    {
+        string rtn = string.Empty;
+        try
+        {
+            rtn = "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+        return rtn;
+    }
+
+}

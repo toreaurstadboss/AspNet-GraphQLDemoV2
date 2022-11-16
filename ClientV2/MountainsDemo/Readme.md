@@ -66,3 +66,11 @@ Update a mountain (mutation):
 
 }
 ```
+
+Note : after the GraphQL server has been updated, run this command to update the schema for the client. Make 
+sure you run the server first.
+
+```
+dotnet graphql update 
+```
+
