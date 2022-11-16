@@ -2,6 +2,7 @@
 using AspNet_GraphQLDemoV2.Data;
 using AspNetGraphQLDemoV2.Server.GraphQL.Types.Subscriptions;
 using HotChocolate.Subscriptions;
+using static AspNetGraphQLDemoV2.Server.GraphQL.Types.Subscriptions.MountainSubscriptions;
 
 namespace AspNet_GraphQLDemoV2.Server.GraphQL.Types.Mutations
 {

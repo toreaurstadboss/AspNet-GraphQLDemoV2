@@ -21,18 +21,21 @@ builder.Services
     .RegisterDbContext<MountainDbContext>()
     .AddQueryType<MountainQueries>()
     .AddMutationType<MountainMutations>()
-    .AddSubscriptionType<MountainSubscriptions>();
-
-builder.Services.AddInMemorySubscriptions();
+    .AddSubscriptionType<MountainSubscriptions>()
+    .AddInMemorySubscriptions();
 
 var app = builder.Build();
 
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()); //this is just a demo.. allow CORS from whatever
 
+app.UseHttpsRedirection();
 app.UseWebSockets();
 
-app.MapGet("/", () => "Hello World!");
+app.UseRouting();
 
-app.MapGraphQL();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGraphQL();
+});
 
 app.Run();

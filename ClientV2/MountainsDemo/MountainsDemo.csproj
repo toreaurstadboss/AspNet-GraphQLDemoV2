@@ -29,6 +29,7 @@
 	  <!--<PackageReference Include="StrawberryShake.Blazor" Version="13.0.0-preview.68" />-->
 	  <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="12.15.0" />
 	  <PackageReference Include="StrawberryShake.Transport.Http" Version="12.15.0" />
+	  <PackageReference Include="StrawberryShake.Transport.InMemory" Version="12.15.0" /> <!-- async await does not work with WebSockets - see https://stackoverflow.com/a/71193164/741368 -->
 	  <PackageReference Include="StrawberryShake.Transport.WebSockets" Version="12.15.0" />
 	  <PackageReference Include="StrawberryShake.Tools.Configuration" Version="12.15.0" />
 	  <PackageReference Include="blazorise.bootstrap" Version="1.1.2" />

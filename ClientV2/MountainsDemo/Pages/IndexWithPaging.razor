@@ -204,6 +204,11 @@ This page uses a paginated query to fetch data from the server using offset base
         SubscribeToGraphQLEvents();
     }
 
+    protected override void OnInitialized()
+    {
+        SubscribeToGraphQLEvents();
+    }
+
     public async Task OnPageSizeChangedAsync(int pageSize){
         if (MountainsDataPaginatedGrid == null){
             return;
@@ -222,7 +227,7 @@ This page uses a paginated query to fetch data from the server using offset base
         }
     }
 
-    public void OnRowUpdatedAsync(SavedRowItem<MountainItem, Dictionary<string, object>> e)
+    public async Task OnRowUpdatedAsync(SavedRowItem<MountainItem, Dictionary<string, object>> e)
     {
         // This handler is fired after i hit the save button provided by internal edit functionality.
         MountainItem mountain = e.Item;
@@ -231,18 +236,18 @@ This page uses a paginated query to fetch data from the server using offset base
         if (selectedMountain == null || string.IsNullOrEmpty(comments)){
             return;
         }
-        else if (selectedMountain.Id >= 1) {
-            client.UpdateMountainComment.ExecuteAsync(selectedMountain.Id, comments);
+        else if (selectedMountain.Id >= 1) {     
+            await client.UpdateMountainComment.ExecuteAsync(selectedMountain.Id, comments);
             StateHasChanged();
         }
     }
 
     private void SubscribeToGraphQLEvents(){
-        client.CommentUpdated.Watch().Subscribe(result =>
+        client.CommentUpdated.Watch(StrawberryShake.ExecutionStrategy.CacheAndNetwork).Subscribe(result =>
         {
             var mountainUpdated = result?.Data as MountainItem;
             updatedCommentToastText = $"Update the comment of mountain with id: {mountainUpdated?.Id} and name: { mountainUpdated?.OfficialName} with a comment set to: {mountainUpdated?.Comments}";
-            updatedCommentToast.Show();
+            updatedCommentToast?.Show();
         });
     }
 
