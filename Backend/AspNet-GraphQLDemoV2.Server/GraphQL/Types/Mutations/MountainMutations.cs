@@ -1,5 +1,7 @@
 ﻿using AspNet_GraphQLDemoV2.Common.Types.Models;
 using AspNet_GraphQLDemoV2.Data;
+using AspNetGraphQLDemoV2.Server.GraphQL.Types.Subscriptions;
+using HotChocolate.Subscriptions;
 
 namespace AspNet_GraphQLDemoV2.Server.GraphQL.Types.Mutations
 {
@@ -23,7 +25,10 @@ namespace AspNet_GraphQLDemoV2.Server.GraphQL.Types.Mutations
             return removedMountain.Entity;
         }
 
-        public async Task<Mountain?> UpdateMountainComment([Service] MountainDbContext mountainDb, int mountainId, string comments)
+        public async Task<Mountain?> UpdateMountainComment([Service] MountainDbContext mountainDb,
+            [Service] ITopicEventSender topicEventSender,
+            int mountainId,
+            string comments)
         {              
             var mountainToUpdate = await mountainDb.Mountains.FindAsync(mountainId);
             if (mountainToUpdate == null)
@@ -31,6 +36,7 @@ namespace AspNet_GraphQLDemoV2.Server.GraphQL.Types.Mutations
             mountainToUpdate.Comments = comments;
             var updatedMountain = mountainDb.Update(mountainToUpdate);
             mountainDb.SaveChanges();
+            await topicEventSender.SendAsync(nameof(MountainSubscriptions.CommentUpdated), mountainToUpdate);
             return updatedMountain.Entity;
         }
 
