@@ -30,7 +30,7 @@ This page uses a paginated query to fetch data from the server using offset base
 <Div Position="Position.Absolute">
     <Div Position="Position.Absolute.Top.Is50">
         <Modal @ref="MountainsQueryDialogExampleModal" Animated="true" AnimationDuration="2000" Border="Border.Rounded" 
-        Overflow="Overflow.Scroll" TextOverflow="TextOverflow.Wrap" >
+        Overflow="Overflow.Scroll" TextOverflow="TextOverflow.Wrap">
             <ModalContent Centered>
                 <ModalHeader>
                     <ModalTitle>GraphQL query used to fetch data</ModalTitle>
@@ -47,7 +47,7 @@ This page uses a paginated query to fetch data from the server using offset base
     </Div>
 </Div>
 
-<Snackbar @ref="updatedCommentToast" Color="SnackbarColor.Info">
+<Snackbar @ref="updatedCommentToast" Color="SnackbarColor.Success" Multiline="true">
     <SnackbarBody>
         @updatedCommentToastText
     </SnackbarBody>
@@ -277,7 +277,7 @@ This page uses a paginated query to fetch data from the server using offset base
             Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(result));
             var mountainUpdated = result?.Data?.CommentUpdated as CommentUpdated_CommentUpdated_MountainCommentUpdatedInfo;
             Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(mountainUpdated));
-            updatedCommentToastText = $"Update the comment of mountain with id: {mountainUpdated?.Id} and name: {mountainUpdated?.OfficialName} {Environment.NewLine} with a comment set to: {mountainUpdated?.Comments}";
+            updatedCommentToastText = $"Updated the comment of mountain with id: {mountainUpdated?.Id} and name: {mountainUpdated?.OfficialName} {Environment.NewLine} with a comment set to: {mountainUpdated?.Comments} !";
             updatedCommentToast!.Show();
         });
     }
