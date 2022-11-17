@@ -22,7 +22,7 @@
       "transportProfiles": [
         {
           "default": "Http",
-          "subscription": "InMemory"
+          "subscription": "WebSocket"
         }
       ]
     }

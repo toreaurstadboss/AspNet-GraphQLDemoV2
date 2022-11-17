@@ -2,6 +2,7 @@
 
 namespace AspNetGraphQLDemoV2.Server.GraphQL.Types.Subscriptions
 {
+   
     public class MountainSubscriptions
     {
 
@@ -21,4 +22,6 @@ namespace AspNetGraphQLDemoV2.Server.GraphQL.Types.Subscriptions
         }
 
     }
+
 }
+

@@ -27,29 +27,34 @@ This page uses a paginated query to fetch data from the server using offset base
     Show GraphQL Query
 </Blazorise.Bootstrap.Button>
 
-<Modal @ref="MountainsQueryDialogExampleModal">
-    <ModalContent Centered>
-        <ModalHeader>
-            <ModalTitle>GraphQL query used to fetch data</ModalTitle>
-        </ModalHeader>
-        <ModalBody>
-            <MemoEdit Rows="20" Text="@querySample1">
-            </MemoEdit>
-        </ModalBody>
-        <ModalFooter>
-            <Button Color="Color.Secondary" Clicked="@HideGraphQLQueryTextModal">Close</Button>
-        </ModalFooter>
-    </ModalContent>
-</Modal>
+<Div Position="Position.Absolute">
+    <Div Position="Position.Absolute.Top.Is50">
+        <Modal @ref="MountainsQueryDialogExampleModal" Animated="true" AnimationDuration="2000" Border="Border.Rounded" 
+        Overflow="Overflow.Scroll" TextOverflow="TextOverflow.Wrap" >
+            <ModalContent Centered>
+                <ModalHeader>
+                    <ModalTitle>GraphQL query used to fetch data</ModalTitle>
+                </ModalHeader>
+                <ModalBody>
+                    <MemoEdit Rows="20" Text="@querySample1">
+                    </MemoEdit>
+                </ModalBody>
+                <ModalFooter>
+                    <Button Color="Color.Secondary" Clicked="@HideGraphQLQueryTextModal">Close</Button>
+                </ModalFooter>
+            </ModalContent>
+        </Modal>
+    </Div>
+</Div>
 
 <Snackbar @ref="updatedCommentToast" Color="SnackbarColor.Info">
     <SnackbarBody>
-        @updatedCommentToastText  
+        @updatedCommentToastText
     </SnackbarBody>
 </Snackbar>
 
 <DataGrid @ref="MountainsDataPaginatedGrid"
-          Data="@mountainsResult"          
+          Data="@mountainsResult"
           TItem="MountainItem"
           Filterable="false"
           FilterMethod="DataGridFilterMethod.Contains"
@@ -61,25 +66,25 @@ This page uses a paginated query to fetch data from the server using offset base
           EditMode="DataGridEditMode.Popup"
           PageSizeChanged="OnPageSizeChangedAsync"
           RowUpdating="OnRowUpdatingAsync"
-          RowUpdated="OnRowUpdatedAsync"          
+          RowUpdated="OnRowUpdatedAsync"
           Hoverable="true"
           Responsive="true">
     <ChildContent>
         <FirstPageButtonTemplate>
             <Button Class="page-item" @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, 0))" Color="Color.Link">First</Button> <!-- TODO : implement custom control of the paging ! -->
-        </FirstPageButtonTemplate>        
+        </FirstPageButtonTemplate>
         <PreviousPageButtonTemplate @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, --currentPageMountainsPaginatedData))">
             <Button Class="page-item" Color="Color.Link">Prev</Button>
         </PreviousPageButtonTemplate>
         <NextPageButtonTemplate>
             <Button Class="page-item" @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, ++currentPageMountainsPaginatedData))" Color="Color.Link">Next</Button>
         </NextPageButtonTemplate>
-         <LastPageButtonTemplate @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, GetLastPageIndex()))">
+        <LastPageButtonTemplate @onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, GetLastPageIndex()))">
             <Button Class="page-item" Color="Color.Link">Last</Button>
         </LastPageButtonTemplate>
         <DataGridCommandColumn TItem="MountainItem" Width="200">
-              <EditCommandTemplate>
-               <Button Margin="Margin.Is1" Color="Color.Success" Clicked="@context.Clicked" Outline>Edit</Button>
+            <EditCommandTemplate>
+                <Button Margin="Margin.Is1" Color="Color.Success" Clicked="@context.Clicked" Outline>Edit</Button>
             </EditCommandTemplate>
             <DeleteCommandTemplate>
                 <Button Margin="Margin.Is1" Color="Color.Danger" Clicked="@context.Clicked" Outline>Delete</Button>
@@ -97,7 +102,7 @@ This page uses a paginated query to fetch data from the server using offset base
                 <Label><br /><b>@context.Item.OfficialName</b></Label>
                 <TextEdit TValue="string"
                           Text="@((string)context.CellValue)"
-                          TextChanged="@( v => {                                                   
+                          TextChanged="@( v => {
                                                     context.CellValue = v;
                                                     context.UpdateCell( nameof( MountainItem.Comments ), v);
                                               })" />
@@ -113,20 +118,21 @@ This page uses a paginated query to fetch data from the server using offset base
         <div class="box">
             <progress class="progress is-small is-primary" max="100" />
         </div>
-    </LoadingTemplate>        
+    </LoadingTemplate>
 
 </DataGrid>
 
 <ul class="pagination">
- @{
-     
- }
- @foreach (var i in Enumerable.Range(GetSuitableFirstPage(), GetPageRangeAvailable())){
-    <li class="page-item"><a onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, @i))" title="Go to page @i" style="color:black;cursor:pointer;font-weight:@GetFontWeightForPage(@i)" class="page-link">@i</a></li>
- }
+    @{
+
+    }
+    @foreach (var i in Enumerable.Range(GetSuitableFirstPage(), GetPageRangeAvailable()))
+    {
+        <li class="page-item"><a onclick="@(async () => await ReloadMountainData(pageSizeGetMountainsPaginatedData, @i))" title="Go to page @i" style="color:black;cursor:pointer;font-weight:@GetFontWeightForPage(@i)" class="page-link">@i</a></li>
+    }
 </ul>
 <div class="inline-block">
-    @(startIndexMountainsPaginatedData) - @(Math.Min(startIndexMountainsPaginatedData+pageSizeGetMountainsPaginatedData, totalCountMountainsPaginatedData)) of @totalCountMountainsPaginatedData items
+    @(startIndexMountainsPaginatedData) - @(Math.Min(startIndexMountainsPaginatedData + pageSizeGetMountainsPaginatedData, totalCountMountainsPaginatedData)) of @totalCountMountainsPaginatedData items
 </div>
 
 @code {
@@ -155,37 +161,47 @@ This page uses a paginated query to fetch data from the server using offset base
 
     private string? updatedCommentToastText;
 
-    private string GetFontWeightForPage(int pageIndex){
-        return pageIndex != currentPageMountainsPaginatedData ? "normal" : "bold";    
+    private string GetFontWeightForPage(int pageIndex)
+    {
+        return pageIndex != currentPageMountainsPaginatedData ? "normal" : "bold";
     }
 
-    private int GetSuitableFirstPage(){
-        if (GetLastPageIndex() - 10 < currentPageMountainsPaginatedData){
+    private int GetSuitableFirstPage()
+    {
+        if (GetLastPageIndex() - 10 < currentPageMountainsPaginatedData)
+        {
             return Math.Max(0, currentPageMountainsPaginatedData - 4);
         }
         return Math.Max(0, currentPageMountainsPaginatedData - 4);
     }
 
-    private int GetPageRangeAvailable(){
+    private int GetPageRangeAvailable()
+    {
         int lastPage = GetLastPageIndex();
         int pageRange = 1;
-        if (currentPageMountainsPaginatedData < lastPage - 10){
+        if (currentPageMountainsPaginatedData < lastPage - 10)
+        {
             pageRange = 10;
         }
-        else if (lastPage - currentPageMountainsPaginatedData < 10) {
+        else if (lastPage - currentPageMountainsPaginatedData < 10)
+        {
             pageRange = Math.Max(1, GetLastPageIndex() - GetSuitableFirstPage() + 1);
         }
         //StateHasChanged();
         return pageRange;
     }
 
-    private int GetLastPageIndex(){
-        if (totalCountMountainsPaginatedData > 0 && pageSizeGetMountainsPaginatedData > 0){
+    private int GetLastPageIndex()
+    {
+        if (totalCountMountainsPaginatedData > 0 && pageSizeGetMountainsPaginatedData > 0)
+        {
             int lastPage = (totalCountMountainsPaginatedData / pageSizeGetMountainsPaginatedData) - 1; //0-indexed pages so need to subtract 1
-            if (((lastPage+1) * pageSizeGetMountainsPaginatedData) < totalCountMountainsPaginatedData){
+            if (((lastPage + 1) * pageSizeGetMountainsPaginatedData) < totalCountMountainsPaginatedData)
+            {
                 lastPage++;
             }
-            if (lastPage > 0){
+            if (lastPage > 0)
+            {
                 return lastPage;
             }
         }
@@ -201,7 +217,6 @@ This page uses a paginated query to fetch data from the server using offset base
     protected override async Task OnParametersSetAsync()
     {
         await ReloadMountainData(5, 0);
-        SubscribeToGraphQLEvents();
     }
 
     protected override void OnInitialized()
@@ -209,20 +224,25 @@ This page uses a paginated query to fetch data from the server using offset base
         SubscribeToGraphQLEvents();
     }
 
-    public async Task OnPageSizeChangedAsync(int pageSize){
-        if (MountainsDataPaginatedGrid == null){
+    public async Task OnPageSizeChangedAsync(int pageSize)
+    {
+        if (MountainsDataPaginatedGrid == null)
+        {
             return;
         }
         pageSizeGetMountainsPaginatedData = pageSize;
         await ReloadMountainData(pageSize, 0);
     }
 
-    public void OnRowUpdatingAsync(CancellableRowChange<MountainItem, Dictionary<string, object>> e){
-        MountainItem? mountain = e?.Item; 
-        if (mountain != null){
-            selectedMountain = mountain; 
+    public void OnRowUpdatingAsync(CancellableRowChange<MountainItem, Dictionary<string, object>> e)
+    {
+        MountainItem? mountain = e?.Item;
+        if (mountain != null)
+        {
+            selectedMountain = mountain;
         }
-        else {
+        else
+        {
             selectedMountain = null;
         }
     }
@@ -233,34 +253,48 @@ This page uses a paginated query to fetch data from the server using offset base
         MountainItem mountain = e.Item;
         string? comments = e.Values["Comments"] as string; // This gives me old value.
                                                            //TODO: Persist the comments for mountain via a mutation to the GraphQL Server
-        if (selectedMountain == null || string.IsNullOrEmpty(comments)){
+        if (selectedMountain == null || string.IsNullOrEmpty(comments))
+        {
             return;
         }
-        else if (selectedMountain.Id >= 1) {     
+        else if (selectedMountain.Id >= 1)
+        {
             await client.UpdateMountainComment.ExecuteAsync(selectedMountain.Id, comments);
-            StateHasChanged();
+            //StateHasChanged();
         }
     }
 
-    private void SubscribeToGraphQLEvents(){
-        client.CommentUpdated.Watch(StrawberryShake.ExecutionStrategy.CacheAndNetwork).Subscribe(result =>
+    private ICommentUpdatedSubscription? commentUpdatedSub;
+
+    private void SubscribeToGraphQLEvents()
+    {
+        commentUpdatedSub = client.CommentUpdated;
+
+        commentUpdatedSub.Watch()
+        .Subscribe(result =>
         {
-            var mountainUpdated = result?.Data as MountainItem;
-            updatedCommentToastText = $"Update the comment of mountain with id: {mountainUpdated?.Id} and name: { mountainUpdated?.OfficialName} with a comment set to: {mountainUpdated?.Comments}";
-            updatedCommentToast?.Show();
+            Console.WriteLine("got reponse from sub");
+            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(result));
+            var mountainUpdated = result?.Data?.CommentUpdated as CommentUpdated_CommentUpdated_MountainCommentUpdatedInfo;
+            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(mountainUpdated));
+            updatedCommentToastText = $"Update the comment of mountain with id: {mountainUpdated?.Id} and name: {mountainUpdated?.OfficialName} {Environment.NewLine} with a comment set to: {mountainUpdated?.Comments}";
+            updatedCommentToast!.Show();
         });
     }
 
-    private async Task ReloadMountainData(int pageSize, int pageIndex){
-        if (pageIndex < 0){
+    private async Task ReloadMountainData(int pageSize, int pageIndex)
+    {
+        if (pageIndex < 0)
+        {
             pageIndex = 0;
         }
-        if (pageIndex > GetLastPageIndex()){
+        if (pageIndex > GetLastPageIndex())
+        {
             pageIndex = GetLastPageIndex();
         }
         Console.WriteLine("Inside ReloadMountainsData");
         currentPageMountainsPaginatedData = pageIndex;
-        startIndexMountainsPaginatedData = pageIndex * pageSize;     
+        startIndexMountainsPaginatedData = pageIndex * pageSize;
         var mountainsFromServerPaginated = await client.MountainsPage.ExecuteAsync(pageSize, startIndexMountainsPaginatedData);
         mountainsResult = mountainsFromServerPaginated!.Data!.MountainsPage!.Items!.Select(e => new MountainItem(e)).ToList();
 
@@ -281,7 +315,7 @@ This page uses a paginated query to fetch data from the server using offset base
     }
 
     private string querySample1 =
-           @" query mountainsPage ($pageSize : Int, $startIndex: Int) {
+               @" query mountainsPage ($pageSize : Int, $startIndex: Int) {
             mountainsPage(take: $pageSize, skip: $startIndex ) {
               totalCount
               pageInfo {
@@ -297,7 +331,7 @@ This page uses a paginated query to fetch data from the server using offset base
                   primaryFactor
                   referencePoint
                   comments
-            
+
               }
             }
           }
