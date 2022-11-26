@@ -39,6 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Include="GetMountainsQueryable.graphql" />
+    <Page Include="GetMountain.graphql" />
     <Page Include="Mutations\UpdateMountain.graphql" />
     <Page Include="Queries\GetMountain.graphql" />
     <Page Include="Mutations\UpdateMountainComments.graphql" />
@@ -52,12 +54,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <GraphQL Remove="GetMountain.graphql" />
+    <GraphQL Remove="GetMountainsQueryable.graphql" />
     <GraphQL Remove="Mutations\UpdateMountain.graphql" />
     <GraphQL Remove="Queries\GetMountainsPageByParams.graphql" />
     <GraphQL Remove="UpdateMountain.graphql" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="GetMountain.graphql" />
+    <None Remove="GetMountainsQueryable.graphql" />
     <None Remove="Mutations\UpdateMountain.graphql" />
     <None Remove="Queries\GetMountainPageByParams.graphql.txt" />
     <None Remove="Queries\GetMountainsPageByParams.graphql" />

@@ -1,0 +1,43 @@
+﻿@page "/mountainInfo"
+@using MountainsClientDemoV2
+@using System.Text.Json
+@using Blazorise
+@using MountainsDemo.PresentationModels
+<h3>MountainInfo</h3>
+
+<Table>
+    <TableHeader ThemeContrast="ThemeContrast.Dark">
+        <TableRow>
+            <TableHeaderCell>#</TableHeaderCell>
+            <TableHeaderCell>Id</TableHeaderCell>
+            <TableHeaderCell>OfficialName</TableHeaderCell>
+            <TableHeaderCell>Metres above sea level</TableHeaderCell>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        <TableRow>
+            <TableRowHeader>1</TableRowHeader>
+            <TableRowCell>Mark</TableRowCell>
+            <TableRowCell>Otto</TableRowCell>
+            <TableRowCell>@@mdo</TableRowCell>
+        </TableRow>
+    </TableBody>
+</Table>
+
+
+
+
+
+@code {
+    [Inject] private MountainsDemoV2 client { get; set; } = null!;
+
+    private IGetMountainResult mountainResult;
+
+    protected async override Task OnParametersSetAsync()
+    {
+        
+        var foo = await client.GetMountain.ExecuteAsync(10);
+    }
+
+
+}
