@@ -41,6 +41,28 @@ namespace AspNet_GraphQLDemoV2.Server.GraphQL.Types.Queries
             });
         }
 
+
+        /// <summary>
+        /// Returns a list of queryable that can project mountain DTO (choose columns to select) 
+        /// </summary>
+        /// <param name="mountainDb"></param>
+        /// <returns></returns>
+        [UseProjection]
+        public IQueryable<Mountain> GetMountainQueryable([Service] MountainDbContext mountainDb, int id)
+        {
+            return mountainDb.Mountains.Select(m => new Mountain
+            {
+                Id = m.Id,
+                Comments = m.Comments,
+                MetresAboveSeaLevel = m.MetresAboveSeaLevel,
+                County = m.County,
+                Municipality = m.Municipality,
+                OfficialName = m.OfficialName,
+                PrimaryFactor = m.PrimaryFactor,
+                ReferencePoint = m.ReferencePoint
+            }).Where(m => m.Id == id);
+        }
+
         //[UsePaging(MaxPageSize = 250,IncludeTotalCount = true)]
         [UseOffsetPaging(MaxPageSize = 250,IncludeTotalCount = true)]
         [UseFiltering]

@@ -55,7 +55,7 @@
 
   <ItemGroup>
     <GraphQL Remove="GetMountain.graphql" />
-    <GraphQL Remove="GetMountainsQueryable.graphql" />
+    <GraphQL Include="GetMountainsQueryable.graphql" />
     <GraphQL Remove="Mutations\UpdateMountain.graphql" />
     <GraphQL Remove="Queries\GetMountainsPageByParams.graphql" />
     <GraphQL Remove="UpdateMountain.graphql" />
@@ -63,7 +63,7 @@
 
   <ItemGroup>
     <None Remove="GetMountain.graphql" />
-    <None Remove="GetMountainsQueryable.graphql" />
+    <None Remove="GetMountainQueryable .graphql" />
     <None Remove="Mutations\UpdateMountain.graphql" />
     <None Remove="Queries\GetMountainPageByParams.graphql.txt" />
     <None Remove="Queries\GetMountainsPageByParams.graphql" />

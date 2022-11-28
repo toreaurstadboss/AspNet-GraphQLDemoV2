@@ -1,0 +1,7 @@
+query GetMountainQueryable($id:Int!) {
+ mountainQueryable(id:$id) {
+    id
+    officialName
+    metresAboveSeaLevel
+  }
+}

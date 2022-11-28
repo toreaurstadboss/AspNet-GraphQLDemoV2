@@ -3,7 +3,19 @@
 @using System.Text.Json
 @using Blazorise
 @using MountainsDemo.PresentationModels
+@using System.Linq 
 <h3>MountainInfo</h3>
+
+<h4>Choose mountain to display more info of:</h4>
+
+<Select id="MountainIdSelector" TValue="int" SelectedValueChanged="@OnMountainIdSelectedValueChanged">
+    <SelectItem Value="-1">-1</SelectItem>
+    @foreach (var id in Enumerable.Range(1, 400))
+    {
+        <SelectItem Value="@id">@id</SelectItem>       
+    }
+</Select>
+
 
 <Table>
     <TableHeader ThemeContrast="ThemeContrast.Dark">
@@ -17,26 +29,33 @@
     <TableBody>
         <TableRow>
             <TableRowHeader>1</TableRowHeader>
-            <TableRowCell>Mark</TableRowCell>
-            <TableRowCell>Otto</TableRowCell>
-            <TableRowCell>@@mdo</TableRowCell>
+            <TableRowCell>@mountainFoundResult?.Id</TableRowCell>
+            <TableRowCell>@mountainFoundResult?.OfficialName</TableRowCell>
+            <TableRowCell>@mountainFoundResult?.MetresAboveSeaLevel</TableRowCell>
         </TableRow>
     </TableBody>
 </Table>
 
-
-
-
-
 @code {
     [Inject] private MountainsDemoV2 client { get; set; } = null!;
 
-    private IGetMountainResult mountainResult;
+    private IGetMountainQueryable_MountainQueryable? mountainFoundResult;
 
-    protected async override Task OnParametersSetAsync()
+    private int? selectedMountainId;
+
+    private async Task LoadMountainInfoQueryableData()
     {
-        
-        var foo = await client.GetMountain.ExecuteAsync(10);
+        if (!selectedMountainId.HasValue)
+        {
+            return;
+        }
+        mountainFoundResult = (await client.GetMountainQueryable.ExecuteAsync(selectedMountainId.Value))?.Data?.MountainQueryable?.FirstOrDefault();
+    }
+
+    async Task OnMountainIdSelectedValueChanged(int value)
+    {
+        selectedMountainId = value;
+        await LoadMountainInfoQueryableData();
     }
 
 

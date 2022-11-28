@@ -7,6 +7,7 @@
 type MountainQueries {
   mountains(where: MountainFilterInput order: [MountainSortInput!]): [Mountain!]!
   mountainsQueryable: [Mountain!]!
+  mountainQueryable(id: Int!): [Mountain!]!
   mountainsPage(skip: Int take: Int where: MountainFilterInput order: [MountainSortInput!]): MountainCollectionSegment
   mountain(id: Int!): Mountain
 }
