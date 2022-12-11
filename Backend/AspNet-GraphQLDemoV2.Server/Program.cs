@@ -1,8 +1,9 @@
-using AspNet_GraphQLDemoV2.Common.Types.Models;
 using AspNet_GraphQLDemoV2.Data;
 using AspNet_GraphQLDemoV2.Server.GraphQL.Types.Mutations;
 using AspNet_GraphQLDemoV2.Server.GraphQL.Types.Queries;
+using AspNetGraphQLDemoV2.Server;
 using AspNetGraphQLDemoV2.Server.GraphQL.Types.Subscriptions;
+using HotChocolate.Data.Filters;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -17,6 +18,7 @@ builder.Services
     .AddGraphQLServer()
     .AddProjections()
     .AddFiltering()
+    .AddConvention<IFilterConvention, FilterConventionExtensionForInvariantContainsStrings>()
     .AddSorting()
     .RegisterDbContext<MountainDbContext>()
     .AddQueryType<MountainQueries>()
