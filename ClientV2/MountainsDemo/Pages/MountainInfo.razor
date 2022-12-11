@@ -1,0 +1,62 @@
+﻿@page "/mountainInfo"
+@using MountainsClientDemoV2
+@using System.Text.Json
+@using Blazorise
+@using MountainsDemo.PresentationModels
+@using System.Linq 
+<h3>MountainInfo</h3>
+
+<h4>Choose mountain to display more info of:</h4>
+
+<Select id="MountainIdSelector" TValue="int" SelectedValueChanged="@OnMountainIdSelectedValueChanged">
+    <SelectItem Value="-1">-1</SelectItem>
+    @foreach (var id in Enumerable.Range(1, 400))
+    {
+        <SelectItem Value="@id">@id</SelectItem>       
+    }
+</Select>
+
+
+<Table>
+    <TableHeader ThemeContrast="ThemeContrast.Dark">
+        <TableRow>
+            <TableHeaderCell>#</TableHeaderCell>
+            <TableHeaderCell>Id</TableHeaderCell>
+            <TableHeaderCell>OfficialName</TableHeaderCell>
+            <TableHeaderCell>Metres above sea level</TableHeaderCell>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        <TableRow>
+            <TableRowHeader>1</TableRowHeader>
+            <TableRowCell>@mountainFoundResult?.Id</TableRowCell>
+            <TableRowCell>@mountainFoundResult?.OfficialName</TableRowCell>
+            <TableRowCell>@mountainFoundResult?.MetresAboveSeaLevel</TableRowCell>
+        </TableRow>
+    </TableBody>
+</Table>
+
+@code {
+    [Inject] private MountainsDemoV2 client { get; set; } = null!;
+
+    private IGetMountainQueryable_MountainQueryable? mountainFoundResult;
+
+    private int? selectedMountainId;
+
+    private async Task LoadMountainInfoQueryableData()
+    {
+        if (!selectedMountainId.HasValue)
+        {
+            return;
+        }
+        mountainFoundResult = (await client.GetMountainQueryable.ExecuteAsync(selectedMountainId.Value))?.Data?.MountainQueryable?.FirstOrDefault();
+    }
+
+    async Task OnMountainIdSelectedValueChanged(int value)
+    {
+        selectedMountainId = value;
+        await LoadMountainInfoQueryableData();
+    }
+
+
+}
