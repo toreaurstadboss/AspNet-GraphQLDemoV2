@@ -22,8 +22,8 @@
 
   <ItemGroup>
     <PackageReference Include="Blazorise.Snackbar" Version="1.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.8" PrivateAssets="all" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
 	  <!--<PackageReference Include="StrawberryShake.Blazor" Version="13.0.0-preview.68" />-->
