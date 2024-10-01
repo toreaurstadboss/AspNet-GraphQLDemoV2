@@ -9,11 +9,17 @@
 
   <ItemGroup>
     <Compile Remove="Helpers\**" />
+    <Compile Remove="Subscriptions\**" />
     <Content Remove="Helpers\**" />
+    <Content Remove="Subscriptions\**" />
     <EmbeddedResource Remove="Helpers\**" />
+    <EmbeddedResource Remove="Subscriptions\**" />
     <GraphQL Remove="Helpers\**" />
+    <GraphQL Remove="Subscriptions\**" />
     <GraphQLConfig Remove="Helpers\**" />
+    <GraphQLConfig Remove="Subscriptions\**" />
     <None Remove="Helpers\**" />
+    <None Remove="Subscriptions\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,10 +78,6 @@
 
   <ItemGroup>
     <None Include="UpdateCommentSub.graphql" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Subscriptions\" />
   </ItemGroup>
 
 </Project>
